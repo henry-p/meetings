@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141016162855) do
+ActiveRecord::Schema.define(version: 20141016131008) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -61,14 +61,18 @@ ActiveRecord::Schema.define(version: 20141016162855) do
     t.integer  "creator_id"
     t.string   "title"
     t.string   "location"
+    t.datetime "start_time"
+    t.datetime "end_time"
+    t.string   "time_zone"
     t.text     "notes"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.datetime "start"
-    t.datetime "end"
   end
 
   add_index "meetings", ["creator_id"], name: "index_meetings_on_creator_id", using: :btree
+  add_index "meetings", ["end_time"], name: "index_meetings_on_end_time", using: :btree
+  add_index "meetings", ["start_time"], name: "index_meetings_on_start_time", using: :btree
+  add_index "meetings", ["time_zone"], name: "index_meetings_on_time_zone", using: :btree
 
   create_table "responsibilities", force: true do |t|
     t.integer  "actionable_id"
