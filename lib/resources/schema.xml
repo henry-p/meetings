@@ -69,11 +69,14 @@
 <row name="notes" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
-<row name="start" null="1" autoincrement="0">
+<row name="start_time" null="1" autoincrement="0">
 <datatype>DATETIME</datatype>
 <default>NULL</default></row>
-<row name="end" null="1" autoincrement="0">
+<row name="end_time" null="1" autoincrement="0">
 <datatype>DATETIME</datatype>
+<default>NULL</default></row>
+<row name="time_zone" null="1" autoincrement="0">
+<datatype>CHAR</datatype>
 <default>NULL</default></row>
 <key type="PRIMARY" name="">
 <part>id</part>
