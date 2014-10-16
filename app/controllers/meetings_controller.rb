@@ -21,7 +21,7 @@ class MeetingsController < ApplicationController
   				'end' => {
   					'dateTime' => '2014-11-11T11:00:00.000-07:00'
   				},
-  				'attendees' => [ { 'email' => 'isaacnoda@gmail.com' } ]
+  				'attendees' => [ { 'email' => 'joe.timmer89@gmail.com' } ]
   			}
 
   			current_user.create_event(event)
@@ -33,5 +33,9 @@ class MeetingsController < ApplicationController
 				format.json { render json: @event.errors, status: :unprocessable_entity }
 			end
 		end
+  end
+
+  def show
+    @meeting = Meeting.find_by_id(params[:id])
   end
 end
