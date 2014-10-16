@@ -21,7 +21,14 @@ class User < ActiveRecord::Base
   end
 
   def calendar_service
-    self.google_client.discovered_api('calendar', 'v3')
+    self.google_api_client.discovered_api('calendar', 'v3')
+  end
+
+  def create_event(event)
+  	self.google_api_client.execute(:api_method => self.calendar_service.events.insert,
+  															   :parameters => { 'calendarId' => 'primary', 'sendNotifications' => true },
+  															   :body => JSON.dump(event),
+  															   :headers => { 'Content-Type' => 'application/json' } )
   end
 
   def oauth2_client
