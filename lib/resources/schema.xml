@@ -66,11 +66,14 @@
 <row name="location" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
-<row name="scheduled_date" null="1" autoincrement="0">
-<datatype>INTEGER</datatype>
-<default>NULL</default></row>
 <row name="notes" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="start" null="1" autoincrement="0">
+<datatype>DATETIME</datatype>
+<default>NULL</default></row>
+<row name="end" null="1" autoincrement="0">
+<datatype>DATETIME</datatype>
 <default>NULL</default></row>
 <key type="PRIMARY" name="">
 <part>id</part>
