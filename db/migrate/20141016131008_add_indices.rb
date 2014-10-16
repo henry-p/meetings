@@ -1,6 +1,6 @@
 class AddIndices < ActiveRecord::Migration
   def change
-    add_index(:users, :email)
+    add_index(:users, :email, unique: true)
     add_index(:users, [:last_name, :first_name])
     add_index(:responsibilities, :actionable_id)
     add_index(:responsibilities, :user_id)
