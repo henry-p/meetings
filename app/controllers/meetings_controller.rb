@@ -16,7 +16,7 @@ class MeetingsController < ApplicationController
   					'url' => "http://jtimmer89.github.io"
   				},
   				'start' => {
-  					'dateTime' => '2011-06-03T10:00:00.000-07:00',
+  					'dateTime' => '2014-11-10T10:00:00.000-07:00',
   				},
   				'end' => {
   					'dateTime' => '2014-11-11T11:00:00.000-07:00'

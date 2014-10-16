@@ -25,7 +25,7 @@ class User < ActiveRecord::Base
   end
 
   def create_event(event)
-  	self.google_api_client.execute(:api_method => self.calendar_service.events.insert,
+  	response = self.google_api_client.execute(:api_method => self.calendar_service.events.insert,
   															   :parameters => { 'calendarId' => 'primary', 'sendNotifications' => true },
   															   :body => JSON.dump(event),
   															   :headers => { 'Content-Type' => 'application/json' } )
