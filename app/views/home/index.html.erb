@@ -1,2 +1,6 @@
 <h1>HOMEPAGE</h1>
+<% if flash[:error] %>
+<%= flash[:error] %>
+<% end %>
+
 <%= link_to "Sign in with Google", '/auth/google_oauth2' %>
