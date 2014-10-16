@@ -89,7 +89,7 @@ ActiveRecord::Schema.define(version: 20141016131008) do
     t.datetime "updated_at"
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", using: :btree
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["last_name", "first_name"], name: "index_users_on_last_name_and_first_name", using: :btree
 
   create_table "votes", force: true do |t|
