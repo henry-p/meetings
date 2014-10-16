@@ -12,7 +12,7 @@ class AddIndices < ActiveRecord::Migration
     add_index(:invites, :meeting_id)
     add_index(:meetings, :creator_id)
     add_index(:meetings, :start)
-    add_index(:meetings, :end)
+    add_index(:meetings, :endr)
     add_index(:agenda_topics, :creator_id)
     add_index(:agenda_topics, :meeting_id)
     add_index(:conclusions, :agenda_topic_id)
