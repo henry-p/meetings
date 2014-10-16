@@ -34,7 +34,6 @@ gem 'json'
 
 gem 'redis'
 
-
 group :development, :test do
   gem 'rspec-rails', '~> 2.14.1'
   gem 'capybara', '~> 2.2.1'

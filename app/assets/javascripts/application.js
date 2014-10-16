@@ -12,5 +12,18 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require turbolinks
 //= require_tree .
+//= require jquery-ui.min
+//= require underscore.min
+//= require jqueryui-multisearch.min
+
+$(function() {
+     $("#myMultiSearch").multisearch({
+      source: [
+         {name: 'One'},
+         {name: 'Two'},
+         {name: 'Three'},
+         {name: 'Four'}
+      ],
+   });
+});
