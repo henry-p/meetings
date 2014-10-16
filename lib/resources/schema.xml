@@ -52,7 +52,7 @@
 <part>id</part>
 </key>
 </table>
-<table x="783" y="344" name="meetings">
+<table x="804" y="291" name="meetings">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
@@ -76,6 +76,9 @@
 <datatype>DATETIME</datatype>
 <default>NULL</default></row>
 <row name="time_zone" null="1" autoincrement="0">
+<datatype>CHAR</datatype>
+<default>NULL</default></row>
+<row name="description" null="1" autoincrement="0">
 <datatype>CHAR</datatype>
 <default>NULL</default></row>
 <key type="PRIMARY" name="">
