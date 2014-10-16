@@ -44,3 +44,12 @@ gem 'json'
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
+group :development, :test do
+  gem 'rspec-rails', '~> 2.14.1'
+  gem 'capybara', '~> 2.2.1'
+  gem 'database_cleaner', '~> 1.2.0'
+  gem 'launchy'
+  gem 'better_errors'
+  gem 'binding_of_caller'
+  gem 'shoulda-matchers'
+end
