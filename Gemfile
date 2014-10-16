@@ -38,6 +38,8 @@ gem 'json'
 
 gem 'redis'
 
+gem 'twitter-bootstrap-rails'
+
 group :development, :test do
   gem 'rspec-rails', '~> 2.14.1'
   gem 'capybara', '~> 2.2.1'

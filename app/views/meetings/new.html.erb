@@ -1,19 +1,17 @@
 <h1>NEW MEETING</h1>
 
-<div id="myMultiSearch">
-   <div data-role="selected-list">
-      <input data-role="input" type="text" placeholder="Search..."/>
-   </div>
-
-   <div data-role="picker" class="picker">
-      <ul class="list-group" data-role="picker-list">
-      </ul>
-   </div>
-</div>
-
-
 <%= form_for @meeting do |f| %>
-  <%= text_field_tag "contacts[1]", nil, placeholder: "Add a contact", class: :contacts %> ENTER / DELETE<br><br>
+  <%= content_tag("div", { id: 'contactsSearch' } ) do %>
+    <%= content_tag("div", { data: {role: 'selected-list'} } ) do %>
+      <%= tag("input", { name: "lol", type: "text", data: {role: 'input'}, placeholder: "Add a contact..." }) %>
+    <% end %>
+
+    <%= content_tag("div", { class: 'picker'}) do %>
+      <%= content_tag("ul", { class: 'list-group', data: {role: 'picker-list'} }) do %>
+      <% end %>
+    <% end %>
+  <% end %>
+
   <%= f.text_field :title, placeholder: "Title" %><br>
   <%= f.text_field :location, placeholder: "Location" %><br>
   <%= f.text_field :start, placeholder: "Startdate" %><br>

@@ -18,12 +18,20 @@
 //= require jqueryui-multisearch.min
 
 $(function() {
-     $("#myMultiSearch").multisearch({
-      source: [
-         {name: 'One'},
-         {name: 'Two'},
-         {name: 'Three'},
-         {name: 'Four'}
-      ],
-   });
+  $("#contactsSearch").multisearch({
+    source: [{
+      name: 'One'
+    }, {
+      name: 'Two'
+    }, {
+      name: 'Three'
+    }, {
+      name: 'Four'
+    }],
+  });
+
+  $('input[type="submit"]').on("click", function(event) {
+    event.preventDefault();
+    var str = $("form").serializeArray();
+  })
 });
