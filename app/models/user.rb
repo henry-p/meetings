@@ -14,7 +14,7 @@ class User < ActiveRecord::Base
 
   has_many :agenda_topics, foreign_key: :creator_id
 
-  def google_client
+  def google_api_client
     client = Google::APIClient.new
     client.authorization.access_token = self.token
     client
@@ -24,50 +24,22 @@ class User < ActiveRecord::Base
     self.google_client.discovered_api('calendar', 'v3')
   end
 
-  
+  def oauth2_client
+    OAuth2::Client.new(ENV['CLIENT_ID'], ENV['CLIENT_SECRET'], :site => 'https://www.google.com')
+  end
 
-  def contacts_service
-    self.google_client.discovered_api('calendar', 'v3')
+  def oauth2_token_object 
+    OAuth2::AccessToken.new(self.oauth2_client, self.token)
   end
 
   def load_contacts
     google_contacts_user = GoogleContactsApi::User.new(self.oauth2_token_object)
-
 
     contact_data = google_contacts_user.contacts.map do |contact|
       { full_name: contact.full_name, emails: contact.emails }
     end.to_json
 
     $redis.set("#{self.id}", contact_data)
-  end
-
-
-  def oauth2_token_object 
-    OAuth2::AccessToken.new(self.google_client, self.token)
-  end
+  end  
 end
 
-
-
-
-# event = {
-#           'summary' => @event.title,
-#           'location' => 'Chinatown',
-#           'start' => {
-#             'dateTime' => '2011-06-03T10:00:00.000-07:00'
-#           },
-#           'end' => {
-#             'dateTime' => '2014-11-11T11:00:00.000-07:00'
-#           },
-#           'attendess' => [ { 'email' => 'joe.timmer@loringindustries.com' } ]
-#         }
-#         # define user token here
-
-
-        # client = Google::APIClient.new
-        # client.authorization.access_token = self.token
-#         service = client.discovered_api('calendar', 'v3')
-#         result = client.execute(:api_method => service.events.insert,
-#                                 :parameters => {'calendarId' => 'primary' },
-#                                 :body => JSON.dump(event),
-#                                 :headers => { 'Content-Type' => 'application/json' } )
