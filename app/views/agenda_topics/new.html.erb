@@ -1,0 +1,6 @@
+<h1>Agenda Topic For <%= @meeting.title %></h1>
+
+<%= form_tag meeting_agenda_topics_path do %>
+  <%= text_area :content, '', placeholder: 'Content' %>
+  <%= submit_tag "Add" %>
+<% end %>

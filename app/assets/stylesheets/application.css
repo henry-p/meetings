@@ -9,7 +9,6 @@ body {
   font-weight: 100;
 }
 
-h1, h2 {
-  text-align: center;
-  font-weight: 100;
+.google-circle {
+  border-radius: 100%;
 }

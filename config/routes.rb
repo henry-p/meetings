@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'agenda_topics/new'
+
   get 'meetings/new'
 
   root 'home#index'
