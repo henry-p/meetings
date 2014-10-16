@@ -13,4 +13,33 @@ class User < ActiveRecord::Base
   has_many :meetings, foreign_key: :creator_id
 
   has_many :agenda_topics, foreign_key: :creator_id
+
+  def google_client
+    client = Google::APIClient.new
+    client.authorization.access_token = self.token
+    client
+  end
+
+  def calendar_service
+    self.google_client.discovered_api('calendar', 'v3')
+  end
+
+  def contacts_service
+    self.google_client.discovered_api('calendar', 'v3')
+  end
+
+  def load_contacts
+    google_contacts_user = GoogleContactsApi::User.new(self.oauth2_token_object)
+
+
+    contact_data = google_contacts_user.contacts.map do |contact|
+      { full_name: contact.full_name, emails: contact.emails }
+    end.to_json
+
+    $redis.set("#{self.id}", contact_data)
+  end
+
+  def oauth2_token_object 
+    OAuth2::AccessToken.new(self.google_client, self.token)
+  end
 end
