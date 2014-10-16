@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 
 
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.6'
 # Use postgresql as the database for Active Record
@@ -25,6 +26,11 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 
 # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
 gem 'spring',        group: :development
+
+gem 'google-api-client'
+gem 'omniauth', '~> 1.2.2'
+gem 'omniauth-google-oauth2', :git => 'https://github.com/zquestz/omniauth-google-oauth2.git'
+gem 'json'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
