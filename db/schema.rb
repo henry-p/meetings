@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141016004018) do
+ActiveRecord::Schema.define(version: 20141016131008) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,6 +24,9 @@ ActiveRecord::Schema.define(version: 20141016004018) do
     t.datetime "updated_at"
   end
 
+  add_index "actionables", ["creator_id"], name: "index_actionables_on_creator_id", using: :btree
+  add_index "actionables", ["meeting_id"], name: "index_actionables_on_meeting_id", using: :btree
+
   create_table "agenda_topics", force: true do |t|
     t.integer  "creator_id"
     t.integer  "meeting_id"
@@ -32,6 +35,9 @@ ActiveRecord::Schema.define(version: 20141016004018) do
     t.datetime "updated_at"
   end
 
+  add_index "agenda_topics", ["creator_id"], name: "index_agenda_topics_on_creator_id", using: :btree
+  add_index "agenda_topics", ["meeting_id"], name: "index_agenda_topics_on_meeting_id", using: :btree
+
   create_table "conclusions", force: true do |t|
     t.integer  "agenda_topic_id"
     t.text     "content"
@@ -39,12 +45,17 @@ ActiveRecord::Schema.define(version: 20141016004018) do
     t.datetime "updated_at"
   end
 
+  add_index "conclusions", ["agenda_topic_id"], name: "index_conclusions_on_agenda_topic_id", using: :btree
+
   create_table "invites", force: true do |t|
     t.integer  "invitee_id"
     t.integer  "meeting_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "invites", ["invitee_id"], name: "index_invites_on_invitee_id", using: :btree
+  add_index "invites", ["meeting_id"], name: "index_invites_on_meeting_id", using: :btree
 
   create_table "meetings", force: true do |t|
     t.integer  "creator_id"
@@ -56,12 +67,18 @@ ActiveRecord::Schema.define(version: 20141016004018) do
     t.datetime "updated_at"
   end
 
+  add_index "meetings", ["creator_id"], name: "index_meetings_on_creator_id", using: :btree
+  add_index "meetings", ["scheduled_date"], name: "index_meetings_on_scheduled_date", using: :btree
+
   create_table "responsibilities", force: true do |t|
     t.integer  "actionable_id"
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "responsibilities", ["actionable_id"], name: "index_responsibilities_on_actionable_id", using: :btree
+  add_index "responsibilities", ["user_id"], name: "index_responsibilities_on_user_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "email"
@@ -72,11 +89,17 @@ ActiveRecord::Schema.define(version: 20141016004018) do
     t.datetime "updated_at"
   end
 
+  add_index "users", ["email"], name: "index_users_on_email", using: :btree
+  add_index "users", ["last_name", "first_name"], name: "index_users_on_last_name_and_first_name", using: :btree
+
   create_table "votes", force: true do |t|
     t.integer  "agenda_topic_id"
     t.integer  "voter_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "votes", ["agenda_topic_id"], name: "index_votes_on_agenda_topic_id", using: :btree
+  add_index "votes", ["voter_id"], name: "index_votes_on_voter_id", using: :btree
 
 end
