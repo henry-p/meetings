@@ -135,6 +135,10 @@
 <datatype>INTEGER</datatype>
 <default>NULL</default><relation table="meetings" row="id" />
 </row>
+<row name="creator_id" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="users" row="id" />
+</row>
 <row name="content" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>

@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(version: 20141016004018) do
 
   create_table "actionables", force: true do |t|
     t.integer  "meeting_id"
+    t.integer  "creator_id"
     t.text     "content"
     t.datetime "created_at"
     t.datetime "updated_at"
