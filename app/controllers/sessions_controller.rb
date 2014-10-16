@@ -12,11 +12,28 @@ class SessionsController < ApplicationController
   end
 
   def create
+    require 'net/http'
+
+
     user_info = request.env["omniauth.auth"]['info']
     user_credentials = request.env["omniauth.auth"]['credentials']
-
     user = User.find_or_create_by(email: user_info['email'])
     user.update(image_path: user_info['image'], first_name: user_info['first_name'], last_name: user_info['last_name'])
+
+
+    client = OAuth2::Client.new(ENV['CLIENT_ID'], ENV['CLIENT_SECRET'], :site => 'https://www.google.com')
+    token = OAuth2::AccessToken.new(client, user_credentials['token'])
+
+    google_contacts_user = GoogleContactsApi::User.new(token)
+    puts google_contacts_user.contacts.first
+
+    # google_contacts_user.contacts.first.family_name LAST NAME
+    # google_contacts_user.contacts.first.given_name FIRST NAME
+
+    # google_contacts_user.contacts.first.full_name
+    # google_contacts_user.contacts.first.pirmary_email
+    raise
+  
 
     session[:user_id] = user.id
     session[:token] = user_credentials['token']
