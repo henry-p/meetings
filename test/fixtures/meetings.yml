@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  creator_id: 1
+  title: MyString
+  location: MyString
+  scheduled_date: 2014-10-15
+  notes: MyText
+
+two:
+  creator_id: 1
+  title: MyString
+  location: MyString
+  scheduled_date: 2014-10-15
+  notes: MyText
