@@ -1,4 +1,10 @@
 <h1>NEW MEETING</h1>
-
 <%= render "add_contacts" %>
 <%= render "underscore_templates" %>
+
+<%= form_for @meeting do |f| %>
+	<%= f.label :title %><br>
+	<%= f.text_field :title %><br>
+
+	<%= f.submit %>
+<% end %>
