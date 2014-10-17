@@ -3,11 +3,6 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 @import "bootstrap";
 
-/*textarea {
-  resize: none;
-  font-size: 12px !important;
-}*/
-
 input[data-role="input"] {
   outline: none;
   border: none;
@@ -19,7 +14,7 @@ input[data-role="input"] {
 }
 
 input.error {
-  color: #f00;
+  color: #a7a7a7;
 }
 
 [data-role="picker"] {

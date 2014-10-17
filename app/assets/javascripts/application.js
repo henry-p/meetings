@@ -85,7 +85,8 @@ $(function() {
     },
 
     adding: function(event, ui) {
-      var validater = new RegExp('^(?:[^,]+@[^,/]+\.[^,/]+|)$');
+      // var validater = new RegExp('^(?:[^,]+@[^,/]+\.[^,/]+|)$');
+      var validater = new RegExp('^(?:[^,]+@gmail.com');
 
       $(this).find('input').removeClass('error');
       if (ui.notfound) {
