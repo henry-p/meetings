@@ -1,3 +1,5 @@
-$('#agendas').append('<%= escape_javascript render(@agenda) %>');
+<% publish_to "/meetings/#{@meeting.id}/actionables" do %>
+  $('#agendas').append('<%= escape_javascript render(@agenda) %>');
+<% end %>
 
 $('#new-agenda-form textarea').first().val('')
