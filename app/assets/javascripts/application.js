@@ -19,6 +19,11 @@
 //= require jqueryui-multisearch.min
 
 $(function() {
+  _.templateSettings = {
+    interpolate: /\{\{\=(.+?)\}\}/g,
+    evaluate: /\{\{(.+?)\}\}/g
+  };
+
   $("#recipients").multisearch({
     source: localData,
 
@@ -52,9 +57,9 @@ $(function() {
 });
 
 localData = [{
-    "id": 1,
-    "display_name": "Neal, Amelia R.",
-    "organization": "XYZ Company",
-    "primary_email": "pede@nibh.com",
-    "primary_phone": "(577) 324-9152"
-  },
+  "id": 1,
+  "display_name": "Neal, Amelia R.",
+  "organization": "XYZ Company",
+  "primary_email": "pede@nibh.com",
+  "primary_phone": "(577) 324-9152"
+}]

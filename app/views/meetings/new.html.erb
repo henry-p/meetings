@@ -17,14 +17,14 @@
 
 <script id="contact-item" type="text/template">
    <a class="list-group-item" href="#">
-      <small><%= display_name %> (<%= primary_email %>)</small>
+      <small>{{= display_name }} ({{= primary_email }})</small>
    </a>
 </script>
 
 <script id="selected-item" type="text/template">
    <a class="list-group-item" href="#">
      <a class="label label-default pull-left">
-       <%= display_name %> 
+       {{= display_name }} 
        <span class="glyphicon glyphicon-remove" data-action="remove" aria-hidden="true"></span>
      </a>
    </a>
