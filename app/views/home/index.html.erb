@@ -1,6 +1,10 @@
-<h1>HOMEPAGE</h1>
+<h1>Meetingz</h1>
 <% if flash[:error] %>
-<%= flash[:error] %>
+  <%= flash[:error] %>
 <% end %>
 
-<%= link_to "Sign in with Google", '/auth/google_oauth2' %>
+<div id='sign-in'>
+  <%= link_to (image_tag('google.png')), '/auth/google_oauth2' %>
+</div>
+
+<h2>How It Works</h2>
