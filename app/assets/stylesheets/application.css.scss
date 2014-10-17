@@ -1,0 +1,71 @@
+/*
+ *= require normalize-rails
+ *= require font-awesome
+ *= require_tree .
+ *= require_self
+ */
+
+
+body {
+  font-family: helvetica;
+  font-weight: 100;
+  margin-bottom: 50px;
+}
+
+.container {
+  max-width:1000px;
+  margin:auto;
+}
+
+.google-circle-sm {
+  width:30px;
+  border-radius: 100%;
+}
+
+
+
+
+
+
+
+
+
+#top-banner {
+  height:12px;
+  background-color:#df4a32;
+}
+
+#sign-in-banner {
+  background-color: lightgray;
+  overflow:auto;
+  div {
+    display:block;
+  };
+  #about {
+    padding:10px;
+    font-size:1.3em;
+    line-height:1.5em;
+  };
+  #sign-in {
+    text-align:center;
+    margin-bottom:30px;
+  }
+}
+
+#how-it-works {
+  text-align:center;
+  .tile {
+    margin-bottom:50px;
+  }
+}
+
+.tile {
+  background-color:#E6E6E6;
+  line-height:1.3em;
+  width:200px;  
+  display:inline-block;
+  vertical-align:top;
+  border-radius:5px;
+  padding:15px 10px 10px 10px;
+  margin:5px;
+}
