@@ -60,6 +60,7 @@ ActiveRecord::Schema.define(version: 20141016175909) do
   create_table "meetings", force: true do |t|
     t.integer  "creator_id"
     t.string   "title"
+    t.string   "description"
     t.string   "location"
     t.datetime "start_time"
     t.datetime "end_time"
