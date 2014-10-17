@@ -14,6 +14,6 @@ class Meeting < ActiveRecord::Base
   end
 
   def duration
-    (self.end - self.start) / 3600
+    (self.end_time - self.start_time) / 3600
   end
 end

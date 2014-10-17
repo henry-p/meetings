@@ -10,8 +10,16 @@
 
 <div id="new-agenda-form"></div>
 
-
 <h2>Actionables</h2>
+<div id="actionables">
+<%= render @meeting.actionables %>
+</div>
+
+<%= form_for [@meeting, Actionable.new], :html => {:remote => true} do |f| %>
+  <%= f.text_field :content %>
+  <%= f.submit "Send" %>
+<% end %> 
+
 
 <h2>Notes</h2>
-<textarea></textarea>
+<%= subscribe_to "/meetings/#{@meeting.id}/actionables" %>

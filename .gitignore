@@ -18,3 +18,5 @@
 /tmp/*
 /config/initializers/google_auth.rb
 .DS_Store
+google_auth.rb
+private_pub.rb

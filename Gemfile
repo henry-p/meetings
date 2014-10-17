@@ -38,6 +38,11 @@ gem 'json'
 
 gem 'redis'
 
+# socket gems
+gem 'faye'
+gem 'thin'
+gem 'private_pub'
+
 
 group :development, :test do
   gem 'rspec-rails', '~> 2.14.1'
