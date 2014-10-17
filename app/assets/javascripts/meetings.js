@@ -1,16 +1,20 @@
 function contactsMultiSearchBox() {
+  // Make 'Mustache Syntax' Underscore's default script syntax
   _.templateSettings = {
     interpolate: /\{\{\=(.+?)\}\}/g,
     evaluate: /\{\{(.+?)\}\}/g
   };
 
+  // Compile scripts with Underscore's template function
   var multiSearch = _.template($('#multisearch').html()),
     infoBox = _.template($('#contact-info').html());
 
+  // Since you can use tab to go to next field, trigger a click event on box focus
   $(document.body).on('focusin', 'input, textarea', function(event) {
     $(event.target).trigger('click');
   });
 
+  // Make div look like a form input
   $('[data-control="multisearch"]').append(multiSearch())
     .children()
     .on('click', function simulateFocus(event) {
@@ -31,6 +35,7 @@ function contactsMultiSearchBox() {
         });
       }
     })
+    // Maka div a 'multisearch' box
     .multisearch({
       source: localData,
 
@@ -40,6 +45,7 @@ function contactsMultiSearchBox() {
       formatPickerItem: _.template($('#contact-item').html()),
       formatSelectedItem: _.template($('#selected-item').html()),
 
+      // Validation
       buildNewItem: function(text) {
         return {
           id: null,
@@ -65,6 +71,7 @@ function contactsMultiSearchBox() {
         }
       },
 
+      // Popover box
       itemselect: function(event, ui) {
         var $info = $(infoBox(ui.data)).insertAfter($(this)).show();
 
