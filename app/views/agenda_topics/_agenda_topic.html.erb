@@ -1,12 +1,14 @@
 <div id="<%= agenda_topic.id %>">
   <%= image_tag("#{agenda_topic.creator.image_path}", class: "google-circle-sm") %>
   <%= agenda_topic.content %>
-  <%= link_to "Upvote", meeting_agenda_topic_votes_path(agenda_topic.meeting, agenda_topic), method: :post %>
+  <%= link_to "Upvote", meeting_agenda_topic_votes_path(agenda_topic.meeting, agenda_topic), remote: true, method: :post %>
   <span id="vote"><%= agenda_topic.votes.count %></span>
 
-  <% agenda_topic.votes.each do |vote| %>
-    <%= image_tag("#{vote.voter.image_path}", class: "google-circle-sm") %>
-  <% end %>
+  <span id="agenda-voter-pictures">
+    <% agenda_topic.votes.each do |vote| %>
+      <%= image_tag("#{vote.voter.image_path}", class: "google-circle-sm") %>
+    <% end %>
+  </span>
 </div>
 
 <br>
