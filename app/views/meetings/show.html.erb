@@ -2,9 +2,14 @@
 
 <h2>Agenda Topics</h2>
 
+<div id="agendas">
 <%= render @meeting.agenda_topics %>
-<br>
-<%= link_to "Add agenda item", new_meeting_agenda_topic_path(@meeting) %>
+</div>
+
+<%= link_to "Add agenda item", new_meeting_agenda_topic_path(@meeting), remote:true, id: "new-agenda-link" %>
+
+<div id="new-agenda-form"></div>
+
 
 <h2>Actionables</h2>
 
