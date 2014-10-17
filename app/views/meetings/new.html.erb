@@ -1,20 +1,31 @@
 <h1>NEW MEETING</h1>
 
-<%= form_for @meeting do |f| %>
-  <%= content_tag("div", { id: 'contactsSearch' } ) do %>
-    <%= content_tag("div", { data: {role: 'selected-list'} } ) do %>
-      <%= tag("input", { name: "lol", type: "text", data: {role: 'input'}, placeholder: "Add a contact..." }) %>
-    <% end %>
+<div id="recipients">
+ 
+   <div class="panel panel-default">
+      <div data-role="selected-list" class="panel-body">
+         <input class="pull-left" data-role="input" type="text" placeholder=""/>
+      </div>
+   </div>
+ 
+   <div data-role="picker" class="panel panel-default">
+      <div class="list-group" data-role="picker-list">
+      </div>
+   </div>
+ 
+</div>
 
-    <%= content_tag("div", { class: 'picker'}) do %>
-      <%= content_tag("ul", { class: 'list-group', data: {role: 'picker-list'} }) do %>
-      <% end %>
-    <% end %>
-  <% end %>
+<script id="contact-item" type="text/template">
+   <a class="list-group-item" href="#">
+      <small><%= display_name %> (<%= primary_email %>)</small>
+   </a>
+</script>
 
-  <%= f.text_field :title, placeholder: "Title" %><br>
-  <%= f.text_field :location, placeholder: "Location" %><br>
-  <%= f.text_field :start, placeholder: "Startdate" %><br>
-  <%= f.text_field :end, placeholder: "Enddate" %><br>
-  <%= f.submit %>
-<% end %>
+<script id="selected-item" type="text/template">
+   <a class="list-group-item" href="#">
+     <a class="label label-default pull-left">
+       <%= display_name %> 
+       <span class="glyphicon glyphicon-remove" data-action="remove" aria-hidden="true"></span>
+     </a>
+   </a>
+</script>

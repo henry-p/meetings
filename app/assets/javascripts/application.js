@@ -12,27 +12,49 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require twitter/bootstrap
+//= require bootstrap
 //= require_tree .
 //= require jquery-ui.min
 //= require underscore.min
 //= require jqueryui-multisearch.min
 
 $(function() {
-  $("#contactsSearch").multisearch({
-    source: [{
-      name: 'One'
-    }, {
-      name: 'Two'
-    }, {
-      name: 'Three'
-    }, {
-      name: 'Four'
-    }],
-  });
+  $("#recipients").multisearch({
+    source: localData,
 
-  $('input[type="submit"]').on("click", function(event) {
-    event.preventDefault();
-    var str = $("form").serializeArray();
-  })
+    keyAttrs: ['id'],
+    searchAttrs: ['display_name', 'primary_email'],
+    formatPickerItem: _.template($('#contact-item').html()),
+    formatSelectedItem: _.template($('#selected-item').html()),
+    buildNewItem: function(text) {
+      return {
+        id: null,
+        display_name: text,
+        organization: '',
+        primary_phone: '',
+        primary_email: text
+      };
+    },
+
+    adding: function(event, ui) {
+      var validater = new RegExp('^(?:[^,]+@[^,/]+\.[^,/]+|)$');
+
+      $(this).find('input').removeClass('error');
+      if (ui.notfound) {
+        if (!validater.test(ui.data.primary_email)) {
+          $("#recipients").find('input').addClass('error');
+          return false;
+        }
+      }
+    },
+
+  });
 });
+
+localData = [{
+    "id": 1,
+    "display_name": "Neal, Amelia R.",
+    "organization": "XYZ Company",
+    "primary_email": "pede@nibh.com",
+    "primary_phone": "(577) 324-9152"
+  },

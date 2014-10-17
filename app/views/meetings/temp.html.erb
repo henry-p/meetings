@@ -1,0 +1,18 @@
+<%= form_for @meeting do |f| %>
+  <%= content_tag("div", { id: 'contactsSearch' } ) do %>
+    <%= content_tag("div", { data: {role: 'selected-list'} } ) do %>
+      <%= tag("input", { name: "lol", type: "text", data: {role: 'input'}, placeholder: "Add a contact..." }) %>
+    <% end %>
+
+    <%= content_tag("div", { class: 'picker'}) do %>
+      <%= content_tag("ul", { class: 'list-group', data: {role: 'picker-list'} }) do %>
+      <% end %>
+    <% end %>
+  <% end %>
+
+  <%= f.text_field :title, placeholder: "Title" %><br>
+  <%= f.text_field :location, placeholder: "Location" %><br>
+  <%= f.text_field :start, placeholder: "Startdate" %><br>
+  <%= f.text_field :end, placeholder: "Enddate" %><br>
+  <%= f.submit %>
+<% end %>
