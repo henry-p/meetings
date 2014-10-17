@@ -49,3 +49,5 @@ class User < ActiveRecord::Base
     $redis.set("#{self.id}", contact_data)
   end
 end
+
+
