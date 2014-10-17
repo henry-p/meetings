@@ -19,6 +19,8 @@ input.error {
 
 [data-role="picker"] {
   z-index: 1080;
+  max-height: 375px;
+  overflow: auto;
 }
 
 a:focus {
