@@ -70,6 +70,8 @@ GEM
     extlib (0.9.16)
     faraday (0.9.0)
       multipart-post (>= 1.2, < 3)
+    font-awesome-rails (4.2.0.0)
+      railties (>= 3.2, < 5.0)
     google-api-client (0.7.1)
       addressable (>= 2.3.2)
       autoparse (>= 0.3.3)
@@ -109,6 +111,7 @@ GEM
     multipart-post (2.0.0)
     nokogiri (1.6.3.1)
       mini_portile (= 0.6.0)
+    normalize-rails (3.0.1)
     oauth2 (1.0.0)
       faraday (>= 0.8, < 0.10)
       jwt (~> 1.0)
@@ -213,12 +216,14 @@ DEPENDENCIES
   capybara (~> 2.2.1)
   coffee-rails (~> 4.0.0)
   database_cleaner (~> 1.2.0)
+  font-awesome-rails
   google-api-client
   google_contacts_api
   jbuilder (~> 2.0)
   jquery-rails
   json
   launchy
+  normalize-rails
   oauth2
   omniauth (~> 1.2.2)
   omniauth-google-oauth2!
