@@ -17,6 +17,8 @@
 //= require jquery-ui.min
 //= require underscore.min
 //= require jqueryui-multisearch.min
+//= require moment.min
+//= require bootstrap-datetimepicker.min
 
 $(function() {
   contactsMultiSearchBox();

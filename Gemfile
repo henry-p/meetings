@@ -33,6 +33,9 @@ gem 'omniauth-google-oauth2', :git => 'https://github.com/zquestz/omniauth-googl
 gem 'oauth2'
 gem 'google_contacts_api'
 
+gem 'momentjs-rails', '>= 2.8.1'
+gem 'bootstrap3-datetimepicker-rails', '~> 3.1.3'
+
 
 gem 'json'
 

@@ -1,5 +1,5 @@
 class Meeting < ActiveRecord::Base
-	after_save :apply_time_zone
+	# before_validation :string_to_datetime
 
   has_many :invites
   has_many :invitees, through: :invites
@@ -25,8 +25,8 @@ class Meeting < ActiveRecord::Base
   	self.invitees.map { |invitee| emails_array << { 'email' => invitee.email } }
   end
 
-  def apply_time_zone
-    self.start_time = self.start_time.in_time_zone(self.time_zone)
-    self.end_time = end_time.in_time_zone(self.time_zone)
+  def self.strings_to_datetime(start_time, end_time)
+  	start_time = DateTime.strptime(start_time, '%m/%d/%Y %H:%M')
+  	end_time = DateTime.strptime(end_time, '%m/%d/%Y %H:%M')
   end
 end

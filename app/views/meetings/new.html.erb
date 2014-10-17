@@ -9,18 +9,54 @@
 <%= f.label :description %><br>
 <%= f.text_area :description %><br>
 
-<%= f.label :start_time %><br>
-<%= f.datetime_select :start_time, :ampm => true %><br>
+<%= f.label :meeting_Time %><br>
+<div class="container">
+    <div class="col-sm-6" style="height:75px;">
+       <div class='col-md-5'>
+            <div class="form-group">
+                <div class='input-group date' id='datetimepicker9'>
+                    <input type='text' class="form-control" name="meeting[start_time]"/>
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div>
+            </div>
+        </div>
 
-<%= f.label :end_time %><br>
-<%= f.datetime_select :end_time, :ampm => true %><br>
+				<div class='col-md-2'>
+          <span class="glyphicon glyphicon-arrow-right"></span>
+				</div>
+
+        <div class='col-md-5'>
+            <div class="form-group">
+                <div class='input-group date' id='datetimepicker10'>
+                    <input type='text' class="form-control" name="meeting[end_time]"/>
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+      $('#datetimepicker9').datetimepicker();
+      $('#datetimepicker10').datetimepicker();
+      $("#datetimepicker9").on("dp.change",function (e) {
+         $('#datetimepicker10').data("DateTimePicker").setMinDate(e.date);
+      });
+      $("#datetimepicker10").on("dp.change",function (e) {
+         $('#datetimepicker9').data("DateTimePicker").setMaxDate(e.date);
+      });
+    </script>
+</div>
 
 <select id="id="meeting_time_zone"" name="meeting[time_zone]">
 	<option value="America/Los_Angeles">Pacific Time</option>
 	<option value="America/Denver">Mountain Time</option>
 	<option value="America/Chicago">Central Time</option>
 	<option value="America/New_York">Eastern Time</option>
-</select><br>
+</select><br><br>
+
+
 
 <%= f.submit %>
 <% end %>
+
