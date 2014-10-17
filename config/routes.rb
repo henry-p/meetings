@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'votes/create'
+
   get 'agenda_topics/new'
 
   get 'meetings/new'

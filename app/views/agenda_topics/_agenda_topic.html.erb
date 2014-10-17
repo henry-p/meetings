@@ -1,5 +1,6 @@
 <%= image_tag("#{agenda_topic.creator.image_path}", class: "google-circle") %>
 <%= agenda_topic.content %>
 <%= link_to "Upvote", meeting_agenda_topic_votes_path(agenda_topic.meeting, agenda_topic), method: :post %>
+<%= agenda_topic.votes.count %>
 
 <br>
