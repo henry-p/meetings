@@ -33,11 +33,12 @@ gem 'omniauth-google-oauth2', :git => 'https://github.com/zquestz/omniauth-googl
 gem 'oauth2'
 gem 'google_contacts_api'
 
-
 gem 'json'
-
 gem 'redis'
 
+gem 'normalize-rails'
+gem "font-awesome-rails"
+gem 'rails_12factor', group: :production
 
 group :development, :test do
   gem 'rspec-rails', '~> 2.14.1'
