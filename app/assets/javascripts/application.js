@@ -19,5 +19,7 @@
 //= require jqueryui-multisearch.min
 
 $(function() {
-  contactsMultiSearchBox();
+  if (window.location.pathname === "/meetings/new") {
+    contactsMultiSearchBox();
+  }
 });

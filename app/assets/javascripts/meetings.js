@@ -1,4 +1,13 @@
 function contactsMultiSearchBox() {
+  var localData;
+  $.ajax({
+    type: "GET",
+    url: "/contacts",
+    success: function(response){
+      localData = response;
+    }
+  });
+
   // Make 'Mustache Syntax' Underscore's default script syntax
   _.templateSettings = {
     interpolate: /\{\{\=(.+?)\}\}/g,
