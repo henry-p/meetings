@@ -44,6 +44,7 @@ body {
   #about {
     padding:10px;
     font-size:1.3em;
+    line-height:1.5em;
   };
   #sign-in {
     text-align:center;
@@ -59,7 +60,8 @@ body {
 }
 
 .tile {
-  background-color:lightgray;
+  background-color:#E6E6E6;
+  line-height:1.3em;
   width:200px;  
   display:inline-block;
   vertical-align:top;
