@@ -1,3 +1,84 @@
 // Place all the styles related to the meetings controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+@import "bootstrap";
+
+input[data-role="input"] {
+  outline: none;
+  border: none;
+  font-size: 12px;
+  color: #555;
+  vertical-align: middle;
+  padding: 3px 4px;
+  margin: 3px;
+}
+
+input.error {
+  color: #a7a7a7;
+}
+
+[data-role="picker"] {
+  z-index: 1080;
+}
+
+a:focus {
+  outline: none;
+}
+
+a.list-group-item.hover {
+  background-color: #6cb1e9;
+  color: #ffffff;
+  text-decoration: none;
+}
+
+a.label-default {
+  cursor: pointer;
+  font-size: 12px;
+  margin: 3px;
+  color: #ffffff;
+  background-color: #6cb1e9;
+  text-decoration: none;
+}
+
+a.label-default.hover {
+  box-shadow: 0 0 5px #a9a9a9;
+  text-decoration: none;
+}
+
+a.label-default.active {
+  box-shadow: none;
+  text-decoration: none;
+}
+
+.glyphicon-remove:hover {
+  color: #333333;
+}
+
+.panel {
+  margin: 0;
+  transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s;
+}
+
+.panel.focus {
+  border-color: #66AFE9;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(102, 175, 233, 0.6);
+  outline: 0 none;
+}
+
+.panel-body {
+  padding: 3px 6px;
+}
+
+.popover {
+  max-width: 347px;
+  min-width: 276px;
+}
+
+.popover-content {
+  overflow: hidden;
+  font-size: 90%;
+}
+
+.popover-content .col-lg-4, .popover-content .col-lg-8 {
+  padding: 0 5px
+}
