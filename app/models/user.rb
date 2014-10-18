@@ -31,12 +31,19 @@ class User < ActiveRecord::Base
 
   def create_event(event_hash)
     response = self.google_api_client.execute(:api_method => self.calendar_service.events.insert,
-    :parameters => { 'calendarId' => 'primary', 'sendNotifications' => true },
-    :body => JSON.dump(event_hash),
-    :headers => { 'Content-Type' => 'application/json' } )
+																					    :parameters => { 'calendarId' => 'primary', 'sendNotifications' => true },
+																					    :body => JSON.dump(event_hash),
+																					    :headers => { 'Content-Type' => 'application/json' } )
 
     add_calendar_event_id(response, Meeting.find_by_id(User.get_meeting_id(event_hash)))
     response
+  end
+
+  def update_event(event_hash, event_id)
+  	self.google_api_client.execute(:api_method => self.calendar_service.events.update,
+															     :parameters => { 'calendarId' => 'primary', 'eventId' => event_id, 'sendNotifications' => true },
+															     :body => JSON.dump(event_hash),
+															     :headers => { 'Content-Type' => 'application/json' } )
   end
 
   def oauth2_client

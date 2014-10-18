@@ -34,6 +34,17 @@ class MeetingsController < ApplicationController
   end
 
   def update
+  	@event = Meeting.find_by_id(params[:id])
+  	if @event.update(meeting_params)
+  		unless @event.calendar_event_id.nil?
+  			@event.invites.destroy_all
+  			Invite.create_invites(params[:attendees], @event)
+  			current_user.update_event(Meeting.event_hash(@event), @event.calendar_event_id)
+  			redirect_to root_path
+  		end
+  	else
+  		render 'meetings/edit'
+  	end
   end
 
   def destroy
