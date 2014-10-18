@@ -11,7 +11,6 @@ class ActionablesController < ApplicationController
     @actionable = Actionable.find_by_id(params[:id]) 
     @actionable.update_attributes(content: params[:content])
     @meeting = @actionable.meeting
-
   end
 
   def destroy

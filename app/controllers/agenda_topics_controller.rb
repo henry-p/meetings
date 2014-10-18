@@ -6,7 +6,7 @@ class AgendaTopicsController < ApplicationController
     respond_to do |format|
       format.html
       format.js 
-    end    
+    end
   end
 
 
@@ -18,8 +18,8 @@ class AgendaTopicsController < ApplicationController
     @agenda.save
 
     respond_to do |format|
-      format.html { redirect_to meeting_path(@meeting) }
       format.js
+      format.html { redirect_to meeting_path(@meeting) }
     end  
   end
 

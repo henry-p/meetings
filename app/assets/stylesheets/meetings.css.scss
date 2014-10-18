@@ -3,6 +3,9 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 @import "bootstrap";
 
+body {
+  padding-left: 25px;
+}
 input[data-role="input"] {
   outline: none;
   border: none;
