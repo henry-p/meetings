@@ -20,4 +20,10 @@ describe AgendaTopic do
       expect(agenda_topic).to have_one(:conclusion)
     end
   end
+
+  describe "Validations" do
+    it { should validate_presence_of(:content) }  
+    it { should validate_presence_of(:creator_id) }
+    it { should validate_presence_of(:meeting_id) }    
+  end
 end
