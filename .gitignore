@@ -17,4 +17,5 @@
 /log/*
 /tmp/*
 /config/initializers/google_auth.rb
+/config/initializers/faye_auth.rb
 .DS_Store

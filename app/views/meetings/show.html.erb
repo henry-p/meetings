@@ -1,0 +1,25 @@
+<h1><%= @meeting.title %></h1>
+
+<h2>Agenda Topics</h2>
+
+<div id="agendas">
+<%= render @meeting.agenda_topics %>
+</div>
+
+<%= link_to "Add agenda item", new_meeting_agenda_topic_path(@meeting), remote:true, id: "new-agenda-link" %>
+
+<div id="new-agenda-form"></div>
+
+<h2>Actionables</h2>
+<div id="actionables">
+<%= render @meeting.actionables %>
+</div>
+
+<%= form_for [@meeting, Actionable.new], :html => {:remote => true} do |f| %>
+  <%= f.text_field :content %>
+  <%= f.submit "Send" %>
+<% end %> 
+
+
+<h2>Notes</h2>
+<%= subscribe_to "/meetings/#{@meeting.id}/actionables" %>

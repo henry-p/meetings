@@ -10,22 +10,24 @@ class MeetingsController < ApplicationController
     end
   end
 
-  def create
-    params[:meeting][:start_time] = DateTime.strptime(params[:meeting][:start_time], '%m/%d/%Y %H:%M %P')
-    params[:meeting][:end_time] = DateTime.strptime(params[:meeting][:end_time], '%m/%d/%Y %H:%M %P')
+  def show
+    @meeting = Meeting.find_by_id(params[:id])
+  end
 
-    @event = Meeting.new(meeting_params)
-    if @event.save
-      current_user.create_event(Meeting.event_hash(@event))
-      redirect_to root_path
-    else
-      render 'meetings/new'
-    end
+  def create
+  	@event = Meeting.new(meeting_params.merge(creator: current_user))
+		if @event.save
+  		Invite.create_invites(params[:attendees], @event)
+			current_user.create_event(Meeting.event_hash(@event))
+			redirect_to root_path
+		else
+			render 'meetings/new'
+		end
   end
 
   private
-
-  def meeting_params
-    params.require(:meeting).permit(:title, :description, :location, :start_time, :end_time, :time_zone, :notes)
-  end
+  
+	def meeting_params
+		Meeting.format_params(params.require(:meeting).permit(:title, :description, :location, :start_time, :end_time, :time_zone, :notes))
+	end
 end

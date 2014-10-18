@@ -36,12 +36,21 @@ gem 'google_contacts_api'
 gem 'momentjs-rails', '>= 2.8.1'
 gem 'bootstrap3-datetimepicker-rails', '~> 3.1.3'
 
-
 gem 'json'
-
 gem 'redis'
 
 gem 'twitter-bootstrap-rails'
+
+# socket gems
+gem 'faye'
+gem 'thin'
+gem 'private_pub'
+
+
+gem 'normalize-rails'
+gem "font-awesome-rails"
+gem 'rails_12factor', group: :production
+
 
 group :development, :test do
   gem 'rspec-rails', '~> 2.14.1'

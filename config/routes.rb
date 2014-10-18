@@ -1,4 +1,11 @@
 Rails.application.routes.draw do
+
+  get 'votes/create'
+
+  get 'agenda_topics/new'
+
+  get 'meetings/new'
+
   root 'home#index'
 
   get "/auth/google_oauth2/callback" => "sessions#create", as: :create_session
