@@ -26,6 +26,7 @@ class MeetingsController < ApplicationController
     @invitee_emails = @meeting.invitees.pluck(:email)
 
     if @invitee_emails.include?(params[:email])
+      session[:user_id] = User.find_by_email(params[:email]).id
       render :show
     else
       flash[:error] = "This email address is not on the list of the people invited to this meeting."
