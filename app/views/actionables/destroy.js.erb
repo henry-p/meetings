@@ -1,0 +1,3 @@
+<% publish_to "/meetings/#{@meeting.id}/actionables" do %>
+  $('#<%= @actionable.id %>.actionable').fadeOut();
+<% end %>

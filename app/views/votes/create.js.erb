@@ -1,3 +1,4 @@
-$("#<%= @vote.agenda_topic.id %> #vote").html("<%= @vote.agenda_topic.votes.count %>");
-
-$("#<%= @vote.agenda_topic.id %> #agenda-voter-pictures").append('<%= image_tag(@vote.voter.image_path, class: "google-circle-sm") %>');
+<% publish_to "/meetings/#{@vote.agenda_topic.meeting.id}/actionables" do %>
+  $("#<%= @vote.agenda_topic.id %> #vote").html("<%= @vote.agenda_topic.votes.count %>");
+  $("#<%= @vote.agenda_topic.id %> #agenda-voter-pictures").append('<%= image_tag(@vote.voter.image_path, class: "google-circle-sm") %>');
+<% end %>

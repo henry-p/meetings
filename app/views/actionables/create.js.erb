@@ -2,4 +2,7 @@
   $('#actionables').append("<%= j render(@actionable)%>")
 <% end %>
 $('#actionable_content').val('');
+  <% if current_user != @actionable.creator %>
+    $("#<%= @actionable.id %>.actionable").attr("contenteditable", "false")
+  <% end %>
 

@@ -1,0 +1,3 @@
+<% publish_to "/meetings/#{@meeting.id}/actionables" do %>
+  $('#<%= @agenda_topic.id %>.agenda').replaceWith('<%= escape_javascript render(@agenda_topic) %>')
+<% end %>

@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   get 'meetings/new'
 
   root 'home#index'
+
   get "/auth/google_oauth2/callback" => "sessions#create", as: :create_session
   delete "/logout" => "sessions#destroy", as: "logout"
 
@@ -22,4 +23,6 @@ Rails.application.routes.draw do
       resources :responsibilities, except: [:edit, :update]
     end
   end
+  
+  get "/contacts" => "meetings#contacts"
 end
