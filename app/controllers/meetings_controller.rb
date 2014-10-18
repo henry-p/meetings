@@ -18,8 +18,12 @@ class MeetingsController < ApplicationController
   	@event = Meeting.new(meeting_params.merge(creator: current_user))
 		if @event.save
   		Invite.create_invites(params[:attendees], @event)
-			current_user.create_event(Meeting.event_hash(@event))
-			redirect_to root_path
+			response = current_user.create_event(Meeting.event_hash(@event))
+			if response.status == 200
+				redirect_to root_path
+			else
+				render 'meetings/new'
+			end
 		else
 			render 'meetings/new'
 		end
@@ -27,6 +31,20 @@ class MeetingsController < ApplicationController
 
   def edit
   	@meeting = Meeting.find_by_id(params[:id])
+  end
+
+  def update
+  end
+
+  def destroy
+  	@event = Meeting.find_by_id(params[:id])
+  	@event.destroy
+  	if @event.destroyed?
+  		unless @event.calendar_event_id.nil?
+  			current_user.delete_event(@event.calendar_event_id)
+  		end
+  	end
+  	redirect_to root_path
   end
 
   private
