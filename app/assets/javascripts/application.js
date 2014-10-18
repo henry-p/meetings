@@ -23,5 +23,7 @@
 $(function() {
   if (window.location.pathname === "/meetings/new") {
     contactsMultiSearchBox();
+    makeDateTimePicker(datetimepicker_start, datetimepicker_end);
+    submitFormEventHandler();
   }
 });

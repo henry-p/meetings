@@ -1,3 +1,9 @@
+function Meeting() {
+  this.emails = [];
+}
+
+var meeting = new Meeting();
+
 function contactsMultiSearchBox() {
   var localData = [];
   $.ajax({
@@ -15,8 +21,6 @@ function contactsMultiSearchBox() {
       });
     }
   });
-
-  console.log(localData);
 
   // Make 'Mustache Syntax' Underscore's default script syntax
   _.templateSettings = {
@@ -90,6 +94,8 @@ function contactsMultiSearchBox() {
           return false;
         }
       }
+
+      meeting.emails.push(ui.data.email);
     },
 
     // Popover box
@@ -116,5 +122,70 @@ function contactsMultiSearchBox() {
         });
       });
     },
-  })
+  });
 }
+
+function makeDateTimePicker(picker1, picker2) {
+  $(picker1)
+    .datetimepicker()
+    .on("dp.change", function(e) {
+      $(picker2).data("DateTimePicker").setMinDate(e.date);
+    });
+  $(picker2)
+    .datetimepicker()
+    .on("dp.change", function(e) {
+      $(picker1).data("DateTimePicker").setMaxDate(e.date);
+    });
+}
+
+function submitFormEventHandler() {
+  var form = $("form#new_meeting");
+  form.submit( function(event) {
+    // var formData = prepareFormData(getFormData());
+
+    $("button[type=submit]").before($('<input/>', {
+      type: 'hidden',
+      id: "contacts",
+      name: "contacts",
+      value: getContactsData()
+    }));
+  });
+  // $('button[type="submit"]').on("click", function(event) {
+  //   event.preventDefault();
+
+  //   // var formData = prepareFormData(getFormData());
+
+  //   var form = $("form#new_meeting");
+  //   form.append($('<input/>', {
+  //     type: 'hidden',
+  //     id: "contacts",
+  //     value: getContactsData()
+  //   }));
+
+  //   form.submit();
+  // });
+}
+
+function getContactsData() {
+  var emails = "";
+  for (var i = 0; i < meeting.emails.length; i++) {
+    emails += meeting.emails[i] + ",";
+  }
+  return emails.substring(0, emails.length - 1);
+}
+
+// function getFormData() {
+//   return $('form#new_meeting').serializeArray();
+// }
+
+// function prepareFormData(formData) {
+//   formData = formData.slice(2);
+//   var formattedData = {};
+//   for (i = 0; i < formData.length; i++) {
+//     var element = formData[i];
+//     var name = /\[([^)]+)\]/.exec(element.name)[1];
+//     var value = element.value;
+//     formattedData[name] = value;
+//   }
+//   return { meetings: formattedData };
+// }

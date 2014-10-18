@@ -25,17 +25,17 @@ class User < ActiveRecord::Base
   end
 
   def create_event(event)
-  	response = self.google_api_client.execute(:api_method => self.calendar_service.events.insert,
-  															   						:parameters => { 'calendarId' => 'primary', 'sendNotifications' => true },
-  															   						:body => JSON.dump(event),
-  															   						:headers => { 'Content-Type' => 'application/json' } )
+    response = self.google_api_client.execute(:api_method => self.calendar_service.events.insert,
+    :parameters => { 'calendarId' => 'primary', 'sendNotifications' => true },
+    :body => JSON.dump(event),
+    :headers => { 'Content-Type' => 'application/json' } )
   end
 
   def oauth2_client
     OAuth2::Client.new(ENV['CLIENT_ID'], ENV['CLIENT_SECRET'], :site => 'https://www.google.com')
   end
 
-  def oauth2_token_object 
+  def oauth2_token_object
     OAuth2::AccessToken.new(self.oauth2_client, self.token)
   end
 
@@ -49,10 +49,5 @@ class User < ActiveRecord::Base
     end.flatten.to_json
 
     $redis.set("#{self.id}", contact_data)
-<<<<<<< HEAD
-  end  
-end
-=======
   end
 end
->>>>>>> ff7bfe6a1ce46170b54ec6bf17705b677ed7dd1a
