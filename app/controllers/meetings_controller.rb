@@ -16,15 +16,13 @@ class MeetingsController < ApplicationController
 
   def create
   	@event = Meeting.new(meeting_params.merge(creator: current_user))
-		if @event.save
-  		Invite.create_invites(params[:attendees], @event)
-			response = current_user.create_event(Meeting.event_hash(@event))
-			if response.status == 200
-				redirect_to root_path
-			else
-				render 'meetings/new'
-			end
+  	Invite.create_invites(params[:attendees], @event)
+		response = current_user.create_event(Meeting.event_hash(@event))
+		if response.status == 200
+			@event.update(calendar_event_id: response.data.id)
+			redirect_to root_path
 		else
+			@event.invites.destroy_all
 			render 'meetings/new'
 		end
   end
@@ -35,13 +33,13 @@ class MeetingsController < ApplicationController
 
   def update
   	@event = Meeting.find_by_id(params[:id])
-  	if @event.update(meeting_params)
-  		unless @event.calendar_event_id.nil?
-  			@event.invites.destroy_all
-  			Invite.create_invites(params[:attendees], @event)
-  			current_user.update_event(Meeting.event_hash(@event), @event.calendar_event_id)
-  			redirect_to root_path
-  		end
+  	@event.invites.destroy_all
+  	Invite.create_invites(params[:attendees], @event)
+  	unsaved_event = @event.clone
+  	response = current_user.update_event(Meeting.event_hash(unsaved_event), @event.calendar_event_id)
+  	if response.status == 200
+  		@event.update(meeting_params)
+  		redirect_to root_path
   	else
   		render 'meetings/edit'
   	end
@@ -49,12 +47,8 @@ class MeetingsController < ApplicationController
 
   def destroy
   	@event = Meeting.find_by_id(params[:id])
-  	@event.destroy
-  	if @event.destroyed?
-  		unless @event.calendar_event_id.nil?
-  			current_user.delete_event(@event.calendar_event_id)
-  		end
-  	end
+  	response = current_user.delete_event(@event.calendar_event_id)
+  	@event.destroy if response.status == 204
   	redirect_to root_path
   end
 
