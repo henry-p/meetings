@@ -16,4 +16,10 @@ describe Actionable do
       expect(actionable).to belong_to(:meeting)
     end
   end
+
+  describe "Validations" do
+    it { should validate_presence_of(:content) }  
+    it { should validate_presence_of(:creator_id) }
+    it { should validate_presence_of(:meeting_id) }    
+  end  
 end
