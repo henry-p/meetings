@@ -62,4 +62,8 @@ class Meeting < ActiveRecord::Base
   		return "America/Chicago"
   	end
   end
+
+  def format_to_local_time(utc_time)
+  	utc_time.strftime('%m/%d/%Y %I:%M %p')
+  end
 end

@@ -14,24 +14,24 @@
   <label for="meeting_time_zone">Time zone</label><br>
   <select id="meeting_time_zone" name="meeting[time_zone]">
     <option disabled="disabled" value="">-------------</option>
-    <option value="Hawaii">(GMT-10:00) Hawaii</option>
-    <option value="Alaska">(GMT-09:00) Alaska</option>
-    <option value="Pacific Time (US &amp; Canada)">(GMT-08:00) Pacific Time (US &amp; Canada)</option>
-    <option value="Arizona">(GMT-07:00) Arizona</option>
-    <option value="Mountain Time (US &amp; Canada)">(GMT-07:00) Mountain Time (US &amp; Canada)</option>
-    <option value="Central Time (US &amp; Canada)">(GMT-06:00) Central Time (US &amp; Canada)</option>
-    <option value="Eastern Time (US &amp; Canada)">(GMT-05:00) Eastern Time (US &amp; Canada)</option>
-    <option value="Indiana (East)">(GMT-05:00) Indiana (East)</option>
+    <option <%= "selected" if @meeting.time_zone == "Hawaii" %> value="Hawaii">(GMT-10:00) Hawaii</option>
+    <option <%= "selected" if @meeting.time_zone == "Alaska" %> value="Alaska">(GMT-09:00) Alaska</option>
+    <option <%= "selected" if @meeting.time_zone == "Pacific Time (US & Canada)" %> value="Pacific Time (US &amp; Canada)">(GMT-08:00) Pacific Time (US &amp; Canada)</option>
+    <option <%= "selected" if @meeting.time_zone == "Arizona" %> value="Arizona">(GMT-07:00) Arizona</option>
+    <option <%= "selected" if @meeting.time_zone == "Mountain Time (US & Canada)" %> value="Mountain Time (US &amp; Canada)">(GMT-07:00) Mountain Time (US &amp; Canada)</option>
+    <option <%= "selected" if @meeting.time_zone == "Central Time (US & Canada)" %> value="Central Time (US &amp; Canada)">(GMT-06:00) Central Time (US &amp; Canada)</option>
+    <option <%= "selected" if @meeting.time_zone == "Eastern Time (US & Canada)" %> value="Eastern Time (US &amp; Canada)">(GMT-05:00) Eastern Time (US &amp; Canada)</option>
+    <option <%= "selected" if @meeting.time_zone == "Indiana (East)" %> value="Indiana (East)">(GMT-05:00) Indiana (East)</option>
     <option disabled="disabled" value="">-------------</option>
-  </select>
+  </select><br>
 
-  <%= f.label :meeting_Time %><br>
+  <%= f.label :meeting_time %><br>
   <div class="container">
       <div class="col-sm-6" style="height:75px;">
        <div class='col-md-5'>
         <div class="form-group">
           <div class='input-group date' id='datetimepicker_start'>
-            <input type='text' class="form-control" name="meeting[start_time]" value="<%= @meeting.start_time %>"/>
+            <input type='text' class="form-control" name="meeting[start_time]" value="<%= @meeting.format_to_local_time(@meeting.start_time) %>"/>
             <span class="input-group-addon">
               <span class="glyphicon glyphicon-calendar"></span>
             </span>
@@ -46,7 +46,7 @@
       <div class='col-md-5'>
         <div class="form-group">
           <div class='input-group date' id='datetimepicker_end'>
-            <input type='text' class="form-control" name="meeting[end_time]"/>
+            <input type='text' class="form-control" name="meeting[end_time]" value="<%= @meeting.format_to_local_time(@meeting.end_time) %>"/>
             <span class="input-group-addon">
               <span class="glyphicon glyphicon-calendar"></span>
             </span>
