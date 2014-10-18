@@ -8,7 +8,7 @@ class MeetingsController < ApplicationController
   end
 
   def create
-  	@event = Meeting.new(meeting_params)
+  	@event = Meeting.new(meeting_params.merge(creator: current_user))
 		if @event.save
   		Invite.create_invites(params[:attendees], @event)
 			current_user.create_event(Meeting.event_hash(@event))
