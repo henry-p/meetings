@@ -10,4 +10,12 @@ $(document).ready(function() {
       data: { 'content': agendaContent }
     });
   });
+  $('body').on('click', '#new-agenda-link',function() {
+    event.preventDefault();
+    $("#new-agenda-form").show();
+  });
+  $("body").on("submit", "#new-agenda-form", function() {
+    $(this).hide();
+  });
+
 });
