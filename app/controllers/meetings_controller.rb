@@ -11,7 +11,6 @@ class MeetingsController < ApplicationController
   end
 
   def create
-    raise
     params[:meeting][:start_time] = DateTime.strptime(params[:meeting][:start_time], '%m/%d/%Y %H:%M %P')
     params[:meeting][:end_time] = DateTime.strptime(params[:meeting][:end_time], '%m/%d/%Y %H:%M %P')
 
