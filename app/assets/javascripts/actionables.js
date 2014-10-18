@@ -9,4 +9,14 @@ $(document).ready(function() {
       data: {content: input, id: actionableId}
     });
   });
+
+  $("#new_actionable").on('ajax:beforeSend', function(event, xhr) {
+    var actionableContent = $("#actionable_content").val();
+    if (actionableContent.trim().length < 1) {
+      xhr.abort();
+      $("#actionables-error").text('An actionable cannot be blank!');
+    } else {
+      $("#actionables-error").text('');
+    }
+  });  
 });

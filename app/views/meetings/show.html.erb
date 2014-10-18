@@ -9,6 +9,7 @@
 <%= link_to "Add agenda item", new_meeting_agenda_topic_path(@meeting), remote:true, id: "new-agenda-link" %>
 
 <div id="new-agenda-form"></div>
+<span id="agenda-error"></span>
 
 <div id="actionables">
 <h2>Actionables</h2>
@@ -19,7 +20,7 @@
   <%= f.text_field :content %>
   <%= f.submit "Send" %>
 <% end %> 
-
+<span id="actionables-error"></span>
 
 <h2>Notes</h2>
 <%= subscribe_to "/meetings/#{@meeting.id}/actionables" %>
