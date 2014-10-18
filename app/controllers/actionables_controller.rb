@@ -7,6 +7,19 @@ class ActionablesController < ApplicationController
     @meeting = Meeting.find_by_id(params[:meeting_id])
   end
 
+  def update
+    @actionable = Actionable.find_by_id(params[:id]) 
+    @actionable.update_attributes(content: params[:content])
+    @meeting = @actionable.meeting
+    
+  end
+
+  def destroy
+    @actionable = Actionable.find_by_id(params[:id])
+    @meeting = @actionable.meeting
+    @actionable.destroy
+  end
+
   # def strong_params
   #   params.require(:actionable).permit(:content, :creator, :meeting_id)
   # end
