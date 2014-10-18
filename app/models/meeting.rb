@@ -17,16 +17,21 @@ class Meeting < ActiveRecord::Base
 		}
   end
 
+  [{ 'email' => 'joe.timmer89@gmail.com' }, ]
+
   def invite_notes
   	"#{self.description} \nlocalhost:3000/meetings/#{self.id}"
   end
 
   def invitees_array
+  	emails_array = []
   	self.invitees.map { |invitee| emails_array << { 'email' => invitee.email } }
+  	emails_array
   end
 
-  def self.strings_to_datetime(start_time, end_time)
-  	start_time = DateTime.strptime(start_time, '%m/%d/%Y %H:%M')
-  	end_time = DateTime.strptime(end_time, '%m/%d/%Y %H:%M')
+  def self.format_params(meeting_params)
+  	meeting_params[:start_time] = DateTime.strptime(meeting_params[:start_time], '%m/%d/%Y %H:%M %P')
+  	meeting_params[:end_time] = DateTime.strptime(meeting_params[:end_time], '%m/%d/%Y %H:%M %P')
+  	meeting_params
   end
 end
