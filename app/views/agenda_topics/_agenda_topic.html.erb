@@ -6,9 +6,9 @@
   <% end %>
 
   <% if agenda_topic.creator == current_user %>
-    <div class='editable' contenteditable='true'><%= agenda_topic.content %></div>
+    <span class='content'><div class='editable' contenteditable='true'><%= agenda_topic.content %></div></span>
   <% else %>
-    <%= agenda_topic.content %>
+    <span class='content'><span><%= agenda_topic.content %></span></span>
   <% end %>
 
 

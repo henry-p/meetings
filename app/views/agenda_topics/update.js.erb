@@ -1,0 +1,3 @@
+<% publish_to "/meetings/#{@meeting.id}/actionables" do %>
+  $('#<%= @agenda_topic.id %>.agenda .content').first().text('<%= @agenda_topic.content %>')
+<% end %>
