@@ -1,7 +1,4 @@
 Rails.application.routes.draw do
-
-  get 'votes/create'
-
   get 'agenda_topics/new'
 
   root 'home#index'
