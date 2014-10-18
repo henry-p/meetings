@@ -171,7 +171,6 @@ function getContactsData() {
 
 function makeWholeBoxClickable() {
   $("div.panel-body").on("click", function(event) {
-    console.log("hey");
     $(".pull-left").trigger("focus");
   });
 }
