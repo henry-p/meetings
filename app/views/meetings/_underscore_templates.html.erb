@@ -1,0 +1,39 @@
+<script id="multisearch" type="text/template">
+   <div>
+      <div class="panel panel-default">
+         <div data-role="selected-list" class="panel-body">
+            <input class="pull-left" data-role="input" type="text" placeholder=""/>
+         </div>
+      </div>
+
+      <div data-role="picker" class="panel panel-default">
+         <div class="list-group" data-role="picker-list">
+         </div>
+      </div>
+   </div>
+</script>
+
+<script id="contact-item" type="text/template">
+   <a class="list-group-item" href="#">
+      <small>{{= full_name }} | ({{= email }})</small>
+   </a>
+</script>
+
+<script id="selected-item" type="text/template">
+   <a class="label label-default pull-left">{{= full_name }}&nbsp;&nbsp;<span class="glyphicon glyphicon-remove" data-action="remove" aria-hidden="true"></span></a>
+</script>
+
+<script id="contact-info" type="text/template">
+   <div class="popover bottom fade">
+     <div class="arrow"></div>
+     <h3 class="popover-title">{{= full_name }}</h3>
+     <div class="popover-content">
+
+         <div class="row">
+           <div class="col-lg-4 text-right"><strong>Email</strong></div>
+           <div class="col-lg-8">{{= email }}</div>
+         </div>
+
+     </div>
+   </div>
+</script>

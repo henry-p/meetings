@@ -13,4 +13,18 @@
 //= require jquery
 //= require jquery_ujs
 //= require private_pub
+//= require bootstrap
 //= require_tree .
+//= require jquery-ui.min
+//= require underscore.min
+//= require jqueryui-multisearch.min
+//= require moment.min
+//= require bootstrap-datetimepicker.min
+
+$(function() {
+  if (window.location.pathname === "/meetings/new") {
+    contactsMultiSearchBox();
+    makeDateTimePicker(datetimepicker_start, datetimepicker_end);
+    submitFormEventHandler();
+  }
+});

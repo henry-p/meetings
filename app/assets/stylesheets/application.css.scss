@@ -3,6 +3,8 @@
  *= require font-awesome
  *= require_tree .
  *= require_self
+ *= require bootstrap
+ *= require bootstrap-datetimepicker.min
  */
 
 
@@ -30,6 +32,25 @@ body {
 #meeting-id {
   display:none;
 }
+
+.actionable {
+  margin: 10px 5px;
+  min-height: 30px;
+  width: auto;
+  border-radius: 4px;
+  text-align: center;
+  background-color: lightblue;
+  box-shadow: -2px 2px 5px #555;
+  overflow: hidden;
+}
+
+#actionables {
+  width: 300px;
+  padding: 7px;
+}
+
+
+
 
 
 
