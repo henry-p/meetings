@@ -1,4 +1,6 @@
 class MeetingsController < ApplicationController
+  skip_before_action :require_login, only: [:show, :check_invited]
+
   def new
     @meeting = Meeting.new
   end
@@ -11,23 +13,40 @@ class MeetingsController < ApplicationController
   end
 
   def show
-    @meeting = Meeting.find_by_id(params[:id])
+    if logged_in?
+      @meeting = Meeting.find_by_id(params[:id])
+    else
+      @meeting = Meeting.find_by_id(params[:id])
+      render :invited
+    end
+  end
+
+  def check_invited
+    @meeting = Meeting.find_by_id(params[:meeting_id])
+    @invitee_emails = @meeting.invitees.pluck(:email)
+
+    if @invitee_emails.include?(params[:email])
+      render :show
+    else
+      flash[:error] = "This email address is not on the list of the people invited to this meeting."
+      render :invited
+    end
   end
 
   def create
-  	@event = Meeting.new(meeting_params.merge(creator: current_user))
-		if @event.save
-  		Invite.create_invites(params[:attendees], @event)
-			current_user.create_event(Meeting.event_hash(@event))
-			redirect_to root_path
-		else
-			render 'meetings/new'
-		end
+    @event = Meeting.new(meeting_params.merge(creator: current_user))
+    if @event.save
+      Invite.create_invites(params[:attendees], @event)
+      current_user.create_event(Meeting.event_hash(@event))
+      redirect_to root_path
+    else
+      render 'meetings/new'
+    end
   end
 
   private
-  
-	def meeting_params
-		Meeting.format_params(params.require(:meeting).permit(:title, :description, :location, :start_time, :end_time, :time_zone, :notes))
-	end
+
+  def meeting_params
+    Meeting.format_params(params.require(:meeting).permit(:title, :description, :location, :start_time, :end_time, :time_zone, :notes))
+  end
 end
