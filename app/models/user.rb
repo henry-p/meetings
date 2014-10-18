@@ -29,6 +29,8 @@ class User < ActiveRecord::Base
     :parameters => { 'calendarId' => 'primary', 'sendNotifications' => true },
     :body => JSON.dump(event),
     :headers => { 'Content-Type' => 'application/json' } )
+
+    raise response
   end
 
   def oauth2_client
