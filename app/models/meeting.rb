@@ -18,8 +18,8 @@ class Meeting < ActiveRecord::Base
   	{ 'summary' => event.title,
 			'location' => event.location,
 			'description' => event.invite_notes,
-			'start' => { 'dateTime' => event.start_time.to_datetime.strftime("%FT%T"), 'timeZone' => event.time_zone },
-			'end' => { 'dateTime' => event.end_time.to_datetime.strftime("%FT%T"), 'timeZone' => event.time_zone },
+			'start' => { 'dateTime' => event.start_time.to_datetime.strftime("%FT%T"), 'timeZone' => event.to_google_time_zone },
+			'end' => { 'dateTime' => event.end_time.to_datetime.strftime("%FT%T"), 'timeZone' => event.to_google_time_zone },
 			'attendees' => event.invitees_array
 		}
   end
@@ -38,5 +38,28 @@ class Meeting < ActiveRecord::Base
   	meeting_params[:start_time] = DateTime.strptime(meeting_params[:start_time], '%m/%d/%Y %H:%M %P')
   	meeting_params[:end_time] = DateTime.strptime(meeting_params[:end_time], '%m/%d/%Y %H:%M %P')
   	meeting_params
+  end
+
+  def to_google_time_zone
+  	case self.time_zone
+  	when "Hawaii"
+  		return "Pacific/Honolulu"
+  	when "Alaska"
+  		return "America/Anchorage"
+  	when "Pacific Time (US & Canada)"
+  		return "America/Los_Angeles"
+  	when "Arizona"
+  		return "America/Phoenix"
+  	when "Mountain Time (US & Canada)"
+  		return "America/Denver"
+  	when "Central Time (US & Canada)"
+  		return "America/Chicago"
+  	when "Eastern Time (US & Canada)"
+  		return "America/New_York"
+  	when "Indiana (East)"
+  		return "America/Indiana/Indianapolis"
+  	else
+  		return "America/Chicago"
+  	end
   end
 end
