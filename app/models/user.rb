@@ -15,6 +15,8 @@ class User < ActiveRecord::Base
 
   has_many :agenda_topics, foreign_key: :creator_id
 
+  validates :email, presence: true, uniqueness: true
+
   def google_api_client
     client = Google::APIClient.new
     client.authorization.access_token = self.token
