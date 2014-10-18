@@ -11,8 +11,8 @@ $(document).ready(function() {
   });
 
   $("#new_actionable").on('ajax:beforeSend', function(event, xhr) {
-    var agendaContent = $("#actionable_content").val();
-    if (agendaContent.trim().length < 1) {
+    var actionableContent = $("#actionable_content").val();
+    if (actionableContent.trim().length < 1) {
       xhr.abort();
       $("#actionables-error").text('An actionable cannot be blank!');
     } else {
