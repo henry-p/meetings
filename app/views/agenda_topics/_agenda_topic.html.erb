@@ -1,6 +1,17 @@
-<div id="<%= agenda_topic.id %>">
+<div id="<%= agenda_topic.id %>" class='agenda'>
   <%= image_tag("#{agenda_topic.creator.image_path}", class: "google-circle-sm") %>
-  <%= agenda_topic.content %>
+
+  <% if agenda_topic.creator == current_user %>
+    <%= link_to "Delete", meeting_agenda_topic_path(agenda_topic.meeting, agenda_topic), method: :delete, remote: true, data: { confirm: "Are you sure? This cannot be undone" } %>
+  <% end %>
+
+  <% if agenda_topic.creator == current_user %>
+    <span class='content'><div class='editable' contenteditable='true'><%= agenda_topic.content %></div></span>
+  <% else %>
+    <span class='content'><span><%= agenda_topic.content %></span></span>
+  <% end %>
+
+
   <%= link_to "Upvote", meeting_agenda_topic_votes_path(agenda_topic.meeting, agenda_topic), remote: true, method: :post %>
   <span id="vote"><%= agenda_topic.votes.count %></span>
 

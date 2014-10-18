@@ -25,6 +25,14 @@ body {
   border-radius: 100%;
 }
 
+.editable {
+  display:inline-block;
+}
+
+#meeting-id {
+  display:none;
+}
+
 .actionable {
   margin: 10px 5px;
   min-height: 30px;
@@ -40,6 +48,7 @@ body {
   width: 300px;
   padding: 7px;
 }
+
 
 
 
