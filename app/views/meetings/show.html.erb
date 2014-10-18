@@ -19,7 +19,7 @@
   <%= f.text_field :content %>
   <%= f.submit "Send" %>
 <% end %> 
-
+<span id="actionables-error"></span>
 
 <h2>Notes</h2>
 <%= subscribe_to "/meetings/#{@meeting.id}/actionables" %>

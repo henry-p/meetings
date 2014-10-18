@@ -3,7 +3,6 @@ $(document).ready(function() {
     var agendaId = $(this).parent().parent().attr('id');
     var agendaContent = $(this).context.innerText;
     var meetingId = $("#meeting-id").text();
-    console.log("/meetings/" + meetingId + "/agenda_topics/" + agendaId)
     $.ajax({
       type: "PATCH",
       url: "/meetings/" + meetingId + "/agenda_topics/" + agendaId,
