@@ -22,4 +22,16 @@ class AgendaTopicsController < ApplicationController
       format.js
     end  
   end
+
+  def destroy
+    @meeting = Meeting.find_by_id(params[:meeting_id])
+
+    @agenda_topic = AgendaTopic.find_by_id(params[:id])
+    @agenda_topic.destroy
+
+    respond_to do |format|
+      format.html { redirect_to meeting_path(@meeting) }
+      format.js
+    end      
+  end
 end
