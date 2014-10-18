@@ -1,0 +1,10 @@
+<h1>INVITED PAGE</h1>
+
+<% if flash[:error] %>
+  <%= flash[:error] %>
+<% end %>
+
+<%= form_tag meeting_invited_path(@meeting), method: :get do %>
+  <%= text_field_tag "email", nil, { placeholder: "Email" } %>
+  <%= button_tag "Go to meeting!" %>
+<% end %>
