@@ -9,7 +9,15 @@ class ConclusionsController < ApplicationController
 
   def update
     @conclusion = Conclusion.find_by_id(params[:id])
-    @conclusion.update_attributes(content: params[:content])
+    @conclusion_id = @conclusion.id
+    @agenda_topic = @conclusion.agenda_topic
+    @meeting = @agenda_topic.meeting
+    if params[:content] == ''
+      @conclusion.destroy
+      render "update_blank"
+    else
+      @conclusion.update_attributes(content: params[:content])
+    end
   end
 
 end

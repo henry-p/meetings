@@ -1,7 +1,4 @@
 class ActionablesController < ApplicationController
-  def index
-  end
-
   def create
     @actionable = Actionable.create(content: params[:actionable][:content], creator: current_user, meeting_id: params[:meeting_id])
     @meeting = @actionable.meeting
