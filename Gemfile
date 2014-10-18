@@ -46,7 +46,7 @@ gem 'faye'
 gem 'thin'
 gem 'private_pub'
 
-
+gem 'httparty'
 gem 'normalize-rails'
 gem "font-awesome-rails"
 gem 'rails_12factor', group: :production
