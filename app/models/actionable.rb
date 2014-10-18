@@ -5,4 +5,6 @@ class Actionable < ActiveRecord::Base
   belongs_to :creator, class_name: "User"
 
   belongs_to :meeting
+
+  validates :content, :meeting_id, :creator_id, presence: true
 end

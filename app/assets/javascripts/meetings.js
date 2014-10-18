@@ -32,11 +32,6 @@ function contactsMultiSearchBox() {
   var multiSearch = _.template($('#multisearch').html()),
     infoBox = _.template($('#contact-info').html());
 
-  // Since you can use tab to go to next field, trigger a click event on box focus
-  $(document.body).on('focusin', 'input, textarea', function(event) {
-    $(event.target).trigger('click');
-  });
-
   // Make div look like a form input
   $('[data-control="multisearch"]').append(multiSearch())
     .children()
@@ -75,8 +70,6 @@ function contactsMultiSearchBox() {
       return {
         id: null,
         full_name: text,
-        organization: '',
-        primary_phone: '',
         email: text
       };
     },
@@ -140,7 +133,7 @@ function makeDateTimePicker(picker1, picker2) {
 
 function submitFormEventHandler() {
   var form = $("form#new_meeting");
-  form.submit( function(event) {
+  form.submit(function(event) {
     // var formData = prepareFormData(getFormData());
 
     $("button[type=submit]").before($('<input/>', {
@@ -150,20 +143,6 @@ function submitFormEventHandler() {
       value: getContactsData()
     }));
   });
-  // $('button[type="submit"]').on("click", function(event) {
-  //   event.preventDefault();
-
-  //   // var formData = prepareFormData(getFormData());
-
-  //   var form = $("form#new_meeting");
-  //   form.append($('<input/>', {
-  //     type: 'hidden',
-  //     id: "contacts",
-  //     value: getContactsData()
-  //   }));
-
-  //   form.submit();
-  // });
 }
 
 function getContactsData() {
@@ -189,3 +168,10 @@ function getContactsData() {
 //   }
 //   return { meetings: formattedData };
 // }
+
+function makeWholeBoxClickable() {
+  $("div.panel-body").on("click", function(event) {
+    console.log("hey");
+    $(".pull-left").trigger("focus");
+  });
+}
