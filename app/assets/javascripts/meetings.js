@@ -145,8 +145,8 @@ function submitFormEventHandler() {
 
     $("button[type=submit]").before($('<input/>', {
       type: 'hidden',
-      id: "contacts",
-      name: "contacts",
+      id: "attendees",
+      name: "attendees",
       value: getContactsData()
     }));
   });
