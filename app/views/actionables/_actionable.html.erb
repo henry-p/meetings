@@ -1,4 +1,6 @@
-<p>
+<div class = "actionable" id = "<%= actionable.id %>">
+  <div class = "editable" contenteditable = 'true'>
   <%= actionable.content %>
-  <%= button_tag("Push me", id: "actionable_button") %>
-</p>
+  </div>
+  <%= link_to("Delete", meeting_actionable_path(actionable.meeting, actionable), class: "delete_actionable", method: :delete, remote: true, data: {confirm: "are u sure bro"}) %>
+</div>
