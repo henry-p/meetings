@@ -18,10 +18,10 @@ Here is how we solve the problem:
 
 ##### To create a meeting
 
-* Log in with Google Account
+* Log in with **GMail Account**
 * Click on "Create meeting"
         
-##### To attend a meeting (no Gmail account required!):
+##### To attend a meeting -> (no Gmail account required!):
 
 You have two options:
 
@@ -34,11 +34,18 @@ You have two options:
   * Enter your email address
 
 ##### Before a Meeting
-Once you created a meeting, you can add agenda Topics and actionables to it.
+* Once you created a meeting, you can add agenda Topics and actionables to it.
 
 ##### During a Meeting
+* Add agenda topics
+* Add actionables and an (optional) conclusion to an agenda topic
+* Assign tasks to meeting members, by dragging and dropping them on an actionable.
+* Take general notes
 
 ##### After a Meeting
+* View results and analysis of the meeting
+* Get a report email
+* **Create "Follow Up"**
 
 #Team
 
