@@ -15,8 +15,14 @@ class MeetingsController < ApplicationController
   end
 
   def create
-  	if params[:meeting][:start_time].empty? || params[:meeting][:end_time].empty?
-  		redirect_to new_meeting_path, flash: { error: "Please give a start and end time to create an event." }
+  	if Meeting.empty_datetime(params)
+  		@meeting = Meeting.new(meeting_params_without_time)
+  		flash.now[:error] = "Please give a start and end time to create an event."
+  		render :new
+  	elsif Meeting.empty_title(params)
+  		@meeting = Meeting.new(meeting_params)
+  		flash.now[:error] = "Please include a title to create an event."
+  		render :new
   	else
 	  	@meeting = Meeting.new(meeting_params.merge(creator: current_user))
 	  	Invite.create_invites(params[:attendees], @meeting)
@@ -26,7 +32,8 @@ class MeetingsController < ApplicationController
 				redirect_to root_path, flash: { success: "Your event was successfully created." }
 			else
 				@meeting.invites.destroy_all
-				redirect_to new_meeting_path, flash: { error: "Google was not able to create your event. Please try again." }
+				flash.now[:error] = "Google was not able to create your event. Please try again."
+				render :new
 			end
 		end
   end
@@ -36,8 +43,14 @@ class MeetingsController < ApplicationController
   end
 
   def update
-  	if params[:meeting][:start_time].empty? || params[:meeting][:end_time].empty?
-  		redirect_to edit_meeting_path, flash: { error: "Please give a start and end time to edit an event." }
+  	if Meeting.empty_datetime(params)
+  		@meeting = Meeting.new(meeting_params_without_time)
+  		flash.now[:error] = "Please give a start and end time to edit an event."
+  		render :edit
+  	elsif Meeting.empty_title(params)
+  		@meeting = Meeting.new(meeting_params)
+  		flash.now[:error] = "Please include a title to edit an event."
+  		render :edit
   	else
 	  	@meeting = Meeting.find_by_id(params[:id])
 	  	@meeting.invites.destroy_all
@@ -48,7 +61,9 @@ class MeetingsController < ApplicationController
 	  		@meeting.update(meeting_params)
 	  		redirect_to root_path, flash: { success: "Your event was successfully edited." }
 	  	else
-	  		redirect_to edit_meeting_path, flash: { error: "Google was not able to update your event. Please try again." }
+	  		@meeting.invites.destroy_all
+				flash.now[:error] = "Google was not able to update your event. Please try again."
+				render :edit
 	  	end
 	  end
   end
@@ -68,5 +83,15 @@ class MeetingsController < ApplicationController
   
 	def meeting_params
 		Meeting.format_params(params.require(:meeting).permit(:title, :description, :location, :start_time, :end_time, :time_zone, :notes))
+	end
+
+	def meeting_params_without_time
+		if params[:meeting][:start_time].empty? && params[:meeting][:end_time].empty?
+			params.require(:meeting).permit(:title, :description, :location, :start_time, :end_time, :time_zone, :notes)
+		elsif params[:meeting][:start_time].empty?
+			Meeting.format_params(params.require(:meeting).permit(:title, :description, :location, :end_time, :time_zone, :notes))
+		else params[:meeting][:end_time].empty?
+			Meeting.format_params(params.require(:meeting).permit(:title, :description, :location, :start_time, :time_zone, :notes))
+		end
 	end
 end

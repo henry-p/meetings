@@ -35,7 +35,7 @@
        <div class='col-md-5'>
         <div class="form-group">
           <div class='input-group date' id='datetimepicker_start'>
-            <input type='text' class="form-control" name="meeting[start_time]" value="<%= @meeting.format_to_local_time(@meeting.start_time) %>"/>
+            <input type='datetime' class="form-control" name="meeting[start_time]" value="<%= @meeting.format_to_local_time(@meeting.start_time) %>"/>
             <span class="input-group-addon">
               <span class="glyphicon glyphicon-calendar"></span>
             </span>
@@ -50,7 +50,7 @@
       <div class='col-md-5'>
         <div class="form-group">
           <div class='input-group date' id='datetimepicker_end'>
-            <input type='text' class="form-control" name="meeting[end_time]" value="<%= @meeting.format_to_local_time(@meeting.end_time) %>"/>
+            <input type='datetime' class="form-control" name="meeting[end_time]" value="<%= @meeting.format_to_local_time(@meeting.end_time) %>"/>
             <span class="input-group-addon">
               <span class="glyphicon glyphicon-calendar"></span>
             </span>

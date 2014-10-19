@@ -6,6 +6,7 @@ class Meeting < ActiveRecord::Base
   has_many :agenda_topics
 
   validates :creator_id, presence: true
+  validates :title, presence: true
 
   def self.format_timestamp(datetime)
     datetime.strftime('%A - %b %d, %Y (%l:%M %p)')
@@ -37,9 +38,17 @@ class Meeting < ActiveRecord::Base
   end
 
   def self.format_params(meeting_params)
-  	meeting_params[:start_time] = DateTime.strptime(meeting_params[:start_time], '%m/%d/%Y %H:%M %P')
-  	meeting_params[:end_time] = DateTime.strptime(meeting_params[:end_time], '%m/%d/%Y %H:%M %P')
+  	meeting_params[:start_time] = DateTime.strptime(meeting_params[:start_time], '%m/%d/%Y %H:%M %P') if !meeting_params[:start_time].nil?
+  	meeting_params[:end_time] = DateTime.strptime(meeting_params[:end_time], '%m/%d/%Y %H:%M %P') if !meeting_params[:end_time].nil?
   	meeting_params
+  end
+
+  def self.empty_datetime(params)
+  	params[:meeting][:start_time].empty? || params[:meeting][:end_time].empty?
+  end
+
+  def self.empty_title(params)
+  	params[:meeting][:title].empty?
   end
 
   def to_google_time_zone
