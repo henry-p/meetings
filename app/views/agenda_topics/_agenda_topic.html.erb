@@ -13,7 +13,7 @@
   <% end %>
 
   <% if !agenda_topic.meeting.is_done %>
-    <%= link_to "Upvote", meeting_agenda_topic_votes_path(agenda_topic.meeting, agenda_topic), remote: true, method: :post %>
+    <%= link_to (fa_icon 'thumbs-up 2x'), meeting_agenda_topic_votes_path(agenda_topic.meeting, agenda_topic), remote: true, method: :post %>
   <% end %>
   <span id="vote"><%= agenda_topic.votes.count %></span>
 
@@ -21,4 +21,3 @@
     <%= render agenda_topic.votes %>
   </span>
 </div>
-<br>
