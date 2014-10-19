@@ -18,7 +18,9 @@ Because they are not efficient.
   * Create Follow Ups
   
 * Analyze:
-  * b
+  * Time analytics
+  * Actionable analytics
+  * Team analytics
 
 #### Code Status
 [Code Climate / ... Badge]
