@@ -19,5 +19,7 @@ Rails.application.routes.draw do
 
     get "/invited" => "meetings#check_invited"
     get "/attendees" => "meetings#attendees"
-  end  
+  end
+
+  match "/meetings/:id/update_notes" => "meetings#update_notes", as: :update_notes, via: :PATCH
 end

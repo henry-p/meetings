@@ -1,5 +1,5 @@
 $(document).ready(function() {
-  $("body").on('focusout', '.agenda .editable', function() {
+  $("body").on('focusout', '.edit_agenda', function() {
     var agendaId = $(this).parent().parent().attr('id');
     var agendaContent = $(this).context.innerText;
     var meetingId = $("#meeting-id").text();
@@ -8,6 +8,14 @@ $(document).ready(function() {
       url: "/meetings/" + meetingId + "/agenda_topics/" + agendaId,
       data: { 'content': agendaContent }
     });
+  });
+  
+  $('body').on('click', '#new-agenda-link',function() {
+    event.preventDefault();
+    $("#new-agenda-form").show();
+  });
+  $("body").on("submit", "#new-agenda-form", function() {
+    $(this).hide();
   });
 
   $("#new-agenda-form").on('ajax:beforeSend', function(event, xhr) {

@@ -7,7 +7,7 @@
   <% end %>
 
   <% if !agenda_topic.meeting.is_done %>
-    <span class='content'><div class='editable' contenteditable='true'><%= agenda_topic.content %></div></span>
+    <span class='content'><div class='editable edit_agenda' contenteditable='true'><%= agenda_topic.content %></div></span>
   <% else %>
     <span class='content'><span><%= agenda_topic.content %></span></span>
   <% end %>
@@ -20,4 +20,14 @@
   <span id="agenda-voter-pictures">
     <%= render agenda_topic.votes %>
   </span>
+
+  <div>
+    <% if !agenda_topic.conclusion && !agenda_topic.meeting.is_done %>
+      <%= link_to "Click to add conclusion", meeting_agenda_topic_conclusions_path(agenda_topic.meeting, agenda_topic), remote: true, method: :post, class: "add_conclusion" %>
+    <% elsif agenda_topic.conclusion %>
+      <%= render partial: "conclusions/conclusion", locals: {conclusion: agenda_topic.conclusion}%>
+    <% end %>
+  </div>
+
+<br>
 </div>
