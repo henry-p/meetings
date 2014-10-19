@@ -1,6 +1,8 @@
 class MeetingsController < ApplicationController
+
 	skip_before_action :require_login, only: [:show, :check_invited]
 	before_filter(only: [:update, :destroy]) { |filter| filter.check_if_meeting_is_closed(params[:id]) }
+	include ActionView::Helpers::SanitizeHelper
 
 	def new
 		@meeting = Meeting.new
@@ -80,7 +82,7 @@ class MeetingsController < ApplicationController
 			return redirect_to root_path
 		end
 
-
+		
 		if Meeting.empty_datetime(params)
 			@meeting = Meeting.new(meeting_params_without_time)
 			flash.now[:error] = "Please give a start and end time to edit an event."
@@ -116,6 +118,19 @@ class MeetingsController < ApplicationController
 			redirect_to root_path, flash: { error: "Google was not able to delete your event. Please try again." }
 		end
 	end
+
+  def update_notes
+    @meeting = Meeting.find_by_id(params[:id])
+    notes = params[:notes]
+    p notes
+    notes.gsub!(/(<br>|<p>|<div>)/, "\n")
+    notes = strip_tags(notes)
+    notes.strip!
+    notes.gsub!(/(\n+\s*){3,}/, "\n\n")
+    p notes
+    @meeting.update_attributes(notes: notes)
+    render 'update_notes'
+  end
 
 	private
 	
