@@ -18,4 +18,6 @@
 /tmp/*
 /config/initializers/google_auth.rb
 /config/initializers/faye_auth.rb
+/dump.rdb
+dump.rdb
 .DS_Store

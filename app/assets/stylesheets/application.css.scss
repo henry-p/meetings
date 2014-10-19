@@ -1,4 +1,8 @@
 /*
+ * 
+ * http://www.htmlhexcolor.com/be2f1f
+ * Colors: #CC3300, #D4DCE7, #C0CDDC, #5A6480, #FFFFFF, #be2f1f
+ *
  *= require normalize-rails
  *= require font-awesome
  *= require_tree .
@@ -8,11 +12,21 @@
  */
 
 
+$lightbluegray: #D4DCE7;
+$mediumbluegray: #C0CDDC;
+$darkbluegray: #5A6480;
+$black: #333;
+
 body {
   font-family: helvetica;
   font-weight: 100;
   margin: auto;
   margin-bottom: 50px;
+}
+
+#top-banner {
+  height:6px;
+  background-color:$darkbluegray;
 }
 
 .container {
@@ -25,57 +39,61 @@ body {
   border-radius: 100%;
 }
 
-.editable {
-  display:inline-block;
+#header-google-img {
+  width:30px;
+  border-radius:10%;
 }
 
-#meeting-id {
-  display:none;
-}
-
-
-
-
-
-
-
-
-#top-banner {
-  height:12px;
-  background-color:#df4a32;
-}
-
-#sign-in-banner {
-  background-color: lightgray;
-  overflow:auto;
-  div {
-    display:block;
+header {
+  height:50px;
+  margin-bottom:50px;
+  background: -webkit-linear-gradient($lightbluegray, #ADB8C6); 
+  background: -o-linear-gradient($lightbluegray, #ADB8C6); 
+  background: -moz-linear-gradient($lightbluegray, #ADB8C6); 
+  background: linear-gradient($lightbluegray, #ADB8C6);
+  img {
+    margin-top:-22px;
+    border:1px solid $darkbluegray;
   };
-  #about {
-    padding:10px;
-    font-size:1.3em;
-    line-height:1.5em;
+  a {
+    color:$darkbluegray;
+    display:inline-block;
+    margin-top:5px;
+    &:hover {
+      color:#515A73;
+    };
   };
-  #sign-in {
-    text-align:center;
-    margin-bottom:30px;
-  }
 }
 
-#how-it-works {
+
+#nav-bar-icons {
+  float:left
+}
+
+#nav-bar-greeting {
+  img {
+    margin-right:15px;
+  };
+  p {
+    display:inline-block;
+    vertical-align:bottom;
+  };
+  font-weight:600;
+  float:right
+}
+
+.error {
+  font-weight:900;
+  color:red;
   text-align:center;
-  .tile {
-    margin-bottom:50px;
-  }
 }
 
-.tile {
-  background-color:#E6E6E6;
-  line-height:1.3em;
-  width:200px;  
-  display:inline-block;
-  vertical-align:top;
-  border-radius:5px;
-  padding:15px 10px 10px 10px;
-  margin:5px;
+h1, h2 {
+  text-align: center;
 }
+
+#logo {
+  margin:40px 0px;
+  text-align:center;
+}
+

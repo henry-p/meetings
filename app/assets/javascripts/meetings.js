@@ -1,3 +1,21 @@
+$(document).ready(function() {
+  $('body').on('mouseenter', '.agenda img', function(event) {
+    $(this).first().next().css({
+      'display':'inline-block', 
+      'position':'absolute',
+      'background-color':'white',
+      'font-weight':'900',
+      'padding':'5px',
+      'opacity':'0.8'
+    });
+    $(this).on('mouseleave', function() {
+      $(this).first().next().css('display', 'none');
+    })
+  });
+});
+
+
+
 function Meeting() {
   this.emails = [];
 }
@@ -171,7 +189,6 @@ function getContactsData() {
 
 function makeWholeBoxClickable() {
   $("div.panel-body").on("click", function(event) {
-    console.log("hey");
     $(".pull-left").trigger("focus");
   });
 }

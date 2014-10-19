@@ -1,4 +1,7 @@
 class MeetingsController < ApplicationController
+  skip_before_action :require_login, only: [:show, :check_invited]
+  before_filter(only: [:update, :destroy]) { |filter| filter.check_if_meeting_is_closed(params[:id]) }
+
   def new
     @meeting = Meeting.new
   end
@@ -12,6 +15,29 @@ class MeetingsController < ApplicationController
 
   def show
     @meeting = Meeting.find_by_id(params[:id])
+    if logged_in?
+      if current_user != @meeting.creator
+        unless @meeting.invitees.include?(current_user)
+          flash[:error] = "You don't have access to this meeting."
+          redirect_to profile_path
+        end
+      end
+    else
+      render :invited
+    end
+  end
+
+  def check_invited
+    @meeting = Meeting.find_by_id(params[:meeting_id])
+    @invitee_emails = @meeting.invitees.pluck(:email)
+
+    if @invitee_emails.include?(params[:email])
+      session[:user_id] = User.find_by_email(params[:email]).id
+      render :show
+    else
+      flash[:error] = "This email address is not on the list of the people invited to this meeting."
+      render :invited
+    end
   end
 
   def create

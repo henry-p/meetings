@@ -1,8 +1,5 @@
-<% if flash[:error] %>
-  <%= flash[:error] %>
-<% end %>
-
-<div id="top-banner">
+<div id='logo'><%= image_tag('logo.jpg') %></div>
+<div id='top-banner'>
 </div>
 
 <div id='sign-in-banner'>
@@ -10,9 +7,14 @@
     <div id='about'>
       <h1>Meetings suck.</h1>
       <p>
-        MEETINGZ helps make them better. We believe collaborative preparation allows for more effective meetings. Share what you think should be discussed in advance and get clear feedback from other meeting members. Spend less time documenting and organizing information and more time solving problems.   
+        <b>Standup</b> helps make them better. We believe collaborative preparation allows for more effective meetings. Share what you think should be discussed in advance and get clear feedback from other meeting members. Spend less time documenting and organizing information and more time solving problems.   
       </p>
     </div>
+
+    <% if flash[:error] %>
+      <p class='error'><%= flash[:error] %></p>
+    <% end %>
+
     <div id='sign-in'>
       <%= link_to image_tag('google.png', :onmouseover => "this.src='#{asset_path('google-hover.png')}'", :onmouseout => "this.src='#{asset_path('google.png')}'"), '/auth/google_oauth2' %>
     </div>

@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 
-
+ruby '2.0.0' 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.6'
 # Use postgresql as the database for Active Record
@@ -41,18 +41,21 @@ gem 'redis'
 
 gem 'twitter-bootstrap-rails'
 
+gem 'canonical-emails'
+
 # socket gems
 gem 'faye'
 gem 'thin'
 gem 'private_pub'
 
-
+gem 'httparty'
 gem 'normalize-rails'
 gem "font-awesome-rails"
 gem 'rails_12factor', group: :production
 
 
 group :development, :test do
+  gem 'timecop'
   gem 'rspec-rails', '~> 2.14.1'
   gem 'capybara', '~> 2.2.1'
   gem 'database_cleaner', '~> 1.2.0'

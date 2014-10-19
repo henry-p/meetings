@@ -84,3 +84,20 @@ a.label-default.active {
 .popover-content .col-lg-4, .popover-content .col-lg-8 {
   padding: 0 5px
 }
+
+.editable {
+  display:inline-block;
+}
+
+#meeting-id {
+  display:none;
+}
+
+.name-tag {
+  display:none;
+}
+
+.agenda {
+  line-height:2.5em;
+  margin-bottom: 20px;
+}

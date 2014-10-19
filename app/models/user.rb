@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+  include HTTParty
   has_many :responsibilities
   has_many :assigned_actionables, through: :responsibilities, source: :actionable
 
@@ -14,9 +15,12 @@ class User < ActiveRecord::Base
 
   has_many :agenda_topics, foreign_key: :creator_id
 
+  validates :email, presence: true, uniqueness: true
+
   def google_api_client
     client = Google::APIClient.new
     client.authorization.access_token = self.token
+    client.auto_refresh_token = true
     client
   end
 
@@ -51,6 +55,17 @@ class User < ActiveRecord::Base
     OAuth2::AccessToken.new(self.oauth2_client, self.token)
   end
 
+  def refresh_access_token
+    if self.token_expires_soon?
+      response = HTTParty.post('https://accounts.google.com/o/oauth2/token', body: { client_id: ENV['CLIENT_ID'], client_secret: ENV['CLIENT_SECRET'], grant_type: 'refresh_token', refresh_token: self.refresh_token})
+      self.update(token: response['access_token'], token_expires_at: Time.now.to_i + response['expires_in'])
+    end
+  end
+
+  def token_expires_soon?
+    (self.token_expires_at - Time.now.to_i) / 60 <= 30
+  end
+
   def load_contacts
     google_contacts_user = GoogleContactsApi::User.new(self.oauth2_token_object)
 
@@ -61,5 +76,13 @@ class User < ActiveRecord::Base
     end.flatten.to_json
 
     $redis.set("#{self.id}", contact_data)
-  end  
+  end
+
+  def full_name_or_email
+    if self.first_name && self.last_name
+      "#{self.first_name} #{self.last_name}"
+    else
+      "#{self.email}"
+    end
+  end
 end

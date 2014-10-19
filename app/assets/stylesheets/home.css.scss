@@ -1,3 +1,49 @@
 // Place all the styles related to the home controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+$lightbluegray: #D4DCE7;
+$mediumbluegray: #C0CDDC;
+$darkbluegray: #5A6480;
+$black: #333;
+
+#sign-in-banner {
+  background: -webkit-linear-gradient($lightbluegray, $mediumbluegray); 
+  background: -o-linear-gradient($lightbluegray, $mediumbluegray); 
+  background: -moz-linear-gradient($lightbluegray, $mediumbluegray); 
+  background: linear-gradient($lightbluegray, $mediumbluegray);
+  div {
+    display:block;
+  };
+  #about {
+    padding:10px;
+    font-size:1.3em;
+    line-height:1.5em;
+  };
+  #sign-in {
+    text-align:center;
+    margin-bottom:30px;
+    img {
+      max-width:70%;
+    }
+  }
+}
+
+#how-it-works {
+  text-align:center;
+  .tile {
+    margin-bottom:50px;
+  }
+}
+
+.tile {
+  background-color:$lightbluegray;
+  line-height:1.3em;
+  width:200px;  
+  display:inline-block;
+  vertical-align:top;
+  border-radius:5px;
+  padding:15px 10px 10px 10px;
+  margin:5px;
+}
