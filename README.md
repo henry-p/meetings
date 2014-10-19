@@ -43,12 +43,12 @@ You have two options:
   * Go to your Profile page
   * Click on "attend meeting"
 
-2. In the Invitation you received (Email / Google Calendar):
+2. In the invitation you received (Email / Google Calendar):
   * Click on the invite link
   * If you have a GMail account, click on "log in". Otherwise enter your email address to log in.
 
 ##### Before a meeting
-* Once you created a meeting, you can add agenda Topics and actionables to it.
+* Once you created a meeting, you can add agenda topics and actionables to it.
 
 ##### During a meeting
 * Add agenda topics
