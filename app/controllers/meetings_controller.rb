@@ -69,6 +69,13 @@ class MeetingsController < ApplicationController
   end
 
   def update
+    if params[:close]
+      @meeting = Meeting.find_by_id(params[:id]) 
+      @meeting.update(is_done: true)
+      return redirect_to root_path
+    end
+
+
   	if Meeting.empty_datetime(params)
   		@meeting = Meeting.new(meeting_params_without_time)
   		flash.now[:error] = "Please give a start and end time to edit an event."
