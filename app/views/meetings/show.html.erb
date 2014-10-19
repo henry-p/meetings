@@ -1,29 +1,37 @@
-<h1><%= @meeting.title %></h1>
+<div class='container'>
 
-<h2>Agenda Topics</h2>
+  <h1><%= @meeting.title %></h1>
 
-<div id="agendas">
-<%= render @meeting.agenda_topics %>
+  <h2>Agenda Topics</h2>
+
+  <div id="agendas">
+    <%= render @meeting.agenda_topics %>
+  </div>
+
+  <% if !@meeting.is_done %>
+    <%= link_to "Add agenda item", new_meeting_agenda_topic_path(@meeting), remote:true, id: "new-agenda-link" %>
+  <% end %>
+
+  <div id="new-agenda-form"></div>
+  <span id="agenda-error"></span>
+
+  <div id="actionables">
+    <h2>Actionables</h2>
+    <%= render @meeting.actionables %>
+  </div>
+
+  <% if !@meeting.is_done %>
+    <%= form_for [@meeting, Actionable.new], :html => {:remote => true} do |f| %>
+      <%= f.text_field :content %>
+      <%= f.submit "Send" %>
+    <% end %> 
+  <% end %>
+  <span id="actionables-error"></span>
+
+  <h2>Notes</h2>
+
+  <span id="meeting-id"><%= @meeting.id %></span>
+  <% if !@meeting.is_done %>
+    <%= subscribe_to "/meetings/#{@meeting.id}/actionables" %>
+  <% end %>
 </div>
-
-<%= link_to "Add agenda item", new_meeting_agenda_topic_path(@meeting), remote:true, id: "new-agenda-link" %>
-
-<div id="new-agenda-form"></div>
-<span id="agenda-error"></span>
-
-<div id="actionables">
-<h2>Actionables</h2>
-<%= render @meeting.actionables %>
-</div>
-
-<%= form_for [@meeting, Actionable.new], :html => {:remote => true} do |f| %>
-  <%= f.text_field :content %>
-  <%= f.submit "Send" %>
-<% end %> 
-<span id="actionables-error"></span>
-
-<h2>Notes</h2>
-<%= subscribe_to "/meetings/#{@meeting.id}/actionables" %>
-
-<span id="meeting-id"><%= @meeting.id %></span>
-
