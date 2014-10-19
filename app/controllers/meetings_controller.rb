@@ -15,15 +15,19 @@ class MeetingsController < ApplicationController
   end
 
   def create
-  	@event = Meeting.new(meeting_params.merge(creator: current_user))
-  	Invite.create_invites(params[:attendees], @event)
-		response = current_user.create_event(Meeting.event_hash(@event))
-		if response.status == 200
-			@event.update(calendar_event_id: response.data.id)
-			redirect_to root_path
-		else
-			@event.invites.destroy_all
-			render 'meetings/new'
+  	if params[:meeting][:start_time].empty? || params[:meeting][:end_time].empty?
+  		redirect_to new_meeting_path, flash: { error: "Please give a start and end time to create an event." }
+  	else
+	  	@meeting = Meeting.new(meeting_params.merge(creator: current_user))
+	  	Invite.create_invites(params[:attendees], @meeting)
+			response = current_user.create_event(Meeting.event_hash(@meeting))
+			if response.status == 200
+				@meeting.update(calendar_event_id: response.data.id)
+				redirect_to root_path, flash: { success: "Your event was successfully created." }
+			else
+				@meeting.invites.destroy_all
+				render 'meetings/new'
+			end
 		end
   end
 
@@ -32,23 +36,27 @@ class MeetingsController < ApplicationController
   end
 
   def update
-  	@event = Meeting.find_by_id(params[:id])
-  	@event.invites.destroy_all
-  	Invite.create_invites(params[:attendees], @event)
-  	unsaved_event = @event.clone
-  	response = current_user.update_event(Meeting.event_hash(unsaved_event), @event.calendar_event_id)
-  	if response.status == 200
-  		@event.update(meeting_params)
-  		redirect_to root_path
+  	if params[:meeting][:start_time].empty? || params[:meeting][:end_time].empty?
+  		redirect_to edit_meeting_path, flash: { error: "Please give a start and end time to edit an event." }
   	else
-  		render 'meetings/edit'
-  	end
+	  	@meeting = Meeting.find_by_id(params[:id])
+	  	@meeting.invites.destroy_all
+	  	Invite.create_invites(params[:attendees], @meeting)
+	  	unsaved_event = @meeting.clone
+	  	response = current_user.update_event(Meeting.event_hash(unsaved_event), @meeting.calendar_event_id)
+	  	if response.status == 200
+	  		@meeting.update(meeting_params)
+	  		redirect_to root_path, flash: { success: "Your event was successfully edited." }
+	  	else
+	  		render 'meetings/edit'
+	  	end
+	  end
   end
 
   def destroy
-  	@event = Meeting.find_by_id(params[:id])
-  	response = current_user.delete_event(@event.calendar_event_id)
-  	@event.destroy if response.status == 204
+  	@meeting = Meeting.find_by_id(params[:id])
+  	response = current_user.delete_event(@meeting.calendar_event_id)
+  	@meeting.destroy if response.status == 204
   	redirect_to root_path
   end
 

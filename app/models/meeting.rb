@@ -5,6 +5,8 @@ class Meeting < ActiveRecord::Base
   has_many :actionables
   has_many :agenda_topics
 
+  validates :creator_id, presence: true
+
   def self.format_timestamp(datetime)
     datetime.strftime('%A - %b %d, %Y (%l:%M %p)')
   end
@@ -64,6 +66,6 @@ class Meeting < ActiveRecord::Base
   end
 
   def format_to_local_time(utc_time)
-  	utc_time.strftime('%m/%d/%Y %I:%M %p')
+  	utc_time.strftime('%m/%d/%Y %I:%M %p') if !utc_time.nil?
   end
 end

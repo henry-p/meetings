@@ -1,5 +1,9 @@
 <h1>USER PROFILE</h1>
 
+<% flash.each do |name, msg| %>
+  <%= content_tag :div, msg, class: name %>
+<% end %>
+
 <%= link_to "Create a meeting", new_meeting_path %>
 
 <br>
