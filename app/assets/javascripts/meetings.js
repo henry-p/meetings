@@ -76,7 +76,7 @@ function contactsMultiSearchBox() {
 
     adding: function(event, ui) {
       // ANY EMAIL:
-      var validater = new RegExp('^(?:[^,]+@[^,/]+\.[^asasd,/]+|)$');
+      var validater = /^(?:[^,]+@[^,/]+\.[^asasd,/]+|)$/;
       // ONLY @GMAIL.COM
       // var validater = new RegExp('^(?:[^,]+@gmail.com)$');
 
