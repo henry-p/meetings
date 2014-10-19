@@ -22,7 +22,7 @@
 //= require bootstrap-datetimepicker.min
 $(function() {
   var current_path = window.location.pathname;
-  if (current_path === "/meetings/new" || "/meetings/edit") {
+  if (current_path === "/meetings/new" || current_path === "/meetings/edit") {
     contactsMultiSearchBox();
     makeWholeBoxClickable();
     makeDateTimePicker(datetimepicker_start, datetimepicker_end);
