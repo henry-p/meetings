@@ -1,4 +1,4 @@
-[ ![Codeship Status for inoda/meetings](https://www.codeship.io/projects/ae492720-3981-0132-a05a-4664fd0eaf1d/status)](https://www.codeship.io/projects/42219)
+[ ![Codeship Status for inoda/meetings](https://www.codeship.io/projects/ae492720-3981-0132-a05a-4664fd0eaf1d/status)](https://www.codeship.io/projects/42219) [![Coverage Status](https://img.shields.io/coveralls/inoda/meetings.svg)](https://coveralls.io/r/inoda/meetings)
 
 # [Standup](http://meetingz.herokuapp.com/)
 #### Version 1.0 _beta_
