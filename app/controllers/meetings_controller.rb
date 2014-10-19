@@ -51,7 +51,10 @@ class MeetingsController < ApplicationController
   		render :new
   	else
 	  	@meeting = Meeting.new(meeting_params.merge(creator: current_user))
-	  	Invite.create_invites(params[:attendees], @meeting)
+      if @meeting.save
+  	  	Invite.create_invites(params[:attendees], @meeting)
+      end
+      
 			response = current_user.create_event(Meeting.event_hash(@meeting))
 			if response.status == 200
 				@meeting.update(calendar_event_id: response.data.id)
