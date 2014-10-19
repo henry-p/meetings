@@ -1,7 +1,4 @@
 class MeetingsController < ApplicationController
-  
-  def index
-  end
 
   def new
     @meeting = Meeting.new
@@ -27,6 +24,13 @@ class MeetingsController < ApplicationController
 		else
 			render 'meetings/new'
 		end
+  end
+
+  def update_notes
+    @meeting = Meeting.find_by_id(params[:id])
+    @meeting.update_attributes(notes: params[:notes])
+    p params
+    render 'update_notes'
   end
 
   private

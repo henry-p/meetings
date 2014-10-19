@@ -22,6 +22,17 @@
 
 
 <h2>Notes</h2>
+<div id = 'notes-container'>
+<% if @meeting.notes.strip == '' || @meeting.notes == nil %>
+  <button id = "add-notes-link">Add Notes</button>
+<% else %>
+  <div id = "notes">
+    <%= render partial: "notes" %>
+  </div>
+  <% end %>
+</div>
+
+
 <%= subscribe_to "/meetings/#{@meeting.id}/actionables" %>
 
 <span id="meeting-id"><%= @meeting.id %></span>
