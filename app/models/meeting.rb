@@ -38,7 +38,7 @@ class Meeting < ActiveRecord::Base
   end
 
   def email_array_for_mailer
-    self.invitees.map { |invitee| invitee.email }
+    self.invitees.map { |invitee| invitee.email } + [@meeting.creator.email]
   end
 
   def self.format_params(meeting_params)

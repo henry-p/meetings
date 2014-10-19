@@ -1,6 +1,8 @@
 <h2><%= @meeting.title  %></h2>
 <h3><%= Meeting.format_timestamp @meeting.start_time %></h3>
 
+<br>
+
 <h4>Agenda Topics</h4>
 <ul>
   <% @meeting.agenda_topics.each do |agenda_topic| %>
@@ -8,7 +10,7 @@
       <%= agenda_topic.content %>
       <br>
       <% if agenda_topic.conclusion %>
-        <pre>  Conclusion: <%= agenda_topic.conclusion.content %><pre>
+        <%= "    #{agenda_topic.conclusion.content}" %>
       <% end %>
     </li>
   <% end %>
