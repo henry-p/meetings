@@ -37,6 +37,10 @@ class Meeting < ActiveRecord::Base
   	emails_array
   end
 
+  def email_array_for_mailer
+    self.invitees.map { |invitee| invitee.email }
+  end
+
   def self.format_params(meeting_params)
   	meeting_params[:start_time] = DateTime.strptime(meeting_params[:start_time], '%m/%d/%Y %H:%M %P') if !meeting_params[:start_time].nil?
   	meeting_params[:end_time] = DateTime.strptime(meeting_params[:end_time], '%m/%d/%Y %H:%M %P') if !meeting_params[:end_time].nil?

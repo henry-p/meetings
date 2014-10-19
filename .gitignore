@@ -21,4 +21,3 @@
 /dump.rdb
 dump.rdb
 .DS_Store
-/config/initializers/sendgrid.rb
