@@ -1,32 +1,51 @@
-<h1><%= @meeting.title %></h1>
+<div class = "container">
 
-<h2>Agenda Topics</h2>
 
-<div id="agendas">
-<%= render @meeting.agenda_topics %>
+  <h1><%= @meeting.title %></h1>
+  <h2><small><%= Meeting.format_timestamp @meeting.start_time %></small></h2>
+
+  <% if !@meeting.is_done %>
+    <button><%= link_to "Close Meeting", meeting_path(@meeting, close: true), method: :patch, id: "close-meeting" %></button>
+  <% end %>
+
+  <br><br><br>
+
+  <h2>Agenda Topics</h2>
+  <div id="agendas">
+    <%= render @meeting.agenda_topics.order('updated_at DESC') %>
+  </div>
+
+   <% if !@meeting.is_done %>
+    <%= link_to "Add agenda item", new_meeting_agenda_topic_path(@meeting), remote:true, id: "new-agenda-link" %>
+   <% end %>
+
+  <div id="new-agenda-form"></div>
+
+  <div id="actionables">
+  <h2>Actionables</h2>
+    <%= render @meeting.actionables.order('updated_at DESC') %>
+  </div>
+
+  <% if !@meeting.is_done %>
+    <%= form_for [@meeting, Actionable.new], :html => {:remote => true} do |f| %>
+      <%= f.text_field :content %>
+      <%= f.submit "Send" %>
+    <% end %> 
+  <% end %>
+  <span id="actionables-error"></span>
+
+  <h2>Notes</h2>
+  <% if !@meeting.is_done %>
+    <div id = "notes" contenteditable = 'true'><%= render partial: "notes" %></div>
+  <% else %>
+    <div id = "notes"><%= render partial: "notes" %></div>
+  <% end %>
+
+  <% if !@meeting.is_done %>
+    <%= subscribe_to "/meetings/#{@meeting.id}" %>
+  <% end %>
+
+  <span id="meeting-id"><%= @meeting.id %></span>
+
+
 </div>
-
-<%= link_to "Add agenda item", new_meeting_agenda_topic_path(@meeting), remote:true, id: "new-agenda-link" %>
-
-<div id="new-agenda-form"></div>
-
-<div id="actionables">
-<h2>Actionables</h2>
-<%= render @meeting.actionables %>
-</div>
-
-<%= form_for [@meeting, Actionable.new], :html => {:remote => true} do |f| %>
-  <%= f.text_field :content %>
-  <%= f.submit "Send" %>
-<% end %> 
-
-
-<h2>Notes</h2>
-<div id = "notes" contenteditable = 'true'>
-  <%= render partial: "notes" %>
-</div>
-
-<%= subscribe_to "/meetings/#{@meeting.id}" %>
-
-<span id="meeting-id"><%= @meeting.id %></span>
-

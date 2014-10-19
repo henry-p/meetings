@@ -1,4 +1,5 @@
 class ConclusionsController < ApplicationController
+  before_filter { |filter| filter.check_if_meeting_is_closed(params[:meeting_id]) }
 
   def create
     @conclusion = Conclusion.create(content: 'What am I?')
