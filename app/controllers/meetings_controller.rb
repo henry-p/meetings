@@ -16,8 +16,9 @@ class MeetingsController < ApplicationController
 	def show
 		@meeting = Meeting.find_by_id(params[:id])
 		if logged_in?
-			if current_user != @meeting.creator
-				unless @meeting.invitees.include?(current_user)
+			if current_user.email.downcase != @meeting.creator.email.downcase
+				@invitee_emails = @meeting.invitees.pluck(:email).map(&:downcase)
+				unless @invitee_emails.include?(current_user.email.downcase)
 					flash[:error] = "You don't have access to this meeting."
 					redirect_to profile_path
 				end
@@ -29,9 +30,9 @@ class MeetingsController < ApplicationController
 
 	def check_invited
 		@meeting = Meeting.find_by_id(params[:meeting_id])
-		@invitee_emails = @meeting.invitees.pluck(:email)
+		@invitee_emails = @meeting.invitees.pluck(:email).map(&:downcase)
 
-		if @invitee_emails.include?(params[:email])
+		if @invitee_emails.include?(params[:email].downcase)
 			session[:user_id] = User.find_by_email(params[:email]).id
 			render :show
 		else
