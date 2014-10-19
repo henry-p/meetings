@@ -1,28 +1,32 @@
-#Welcome to [StandUp]
+# Welcome to [StandUp]
 > Meetings suck!
 
 Because they are not efficient.
 
-#####Problems:
-* Team members want to have a say regarding the agenda
+##### Problems:
+* Team members want to **have a say** regarding the agenda
   * ...but how to **organize** that?
 * There is no **good** structure in meetings
 * Team members don't know the structure of the meeting **beforehand**
 * How to **analyze** efficiency and effectiveness?
 
-#####Solution:
+##### Solution:
 * Organize:
-  * a
-* Analyse:
+  * Add agenda topics beforehand
+  * Let team members add and upvote agenda items
+  * Assign team members to actionables
+  * Create Follow Ups
+  
+* Analyze:
   * b
 
-####Code Status
+#### Code Status
 [Code Climate / ... Badge]
 
-####Version
-1.0 beta
+#### Version
+1.0 _beta_
 
-#How does it work?
+# How does it work?
 
 ##### To create a meeting
 
@@ -55,7 +59,7 @@ You have two options:
 * Get a report email
 * **Create "Follow Up"**
 
-#Team
+# Team
 
 We are four highly comitted [DBC](http://devbootcamp.com/) grads:
 
