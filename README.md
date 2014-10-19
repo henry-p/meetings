@@ -3,17 +3,18 @@
 
 Because they are not efficient.
 
-Problems:
+#####Problems:
 * Team members want to have a say regarding the agenda
   * ...but how to **organize** that?
 * There is no **good** structure in meetings
 * Team members don't know the structure of the meeting **beforehand**
-* How to **analyse** efficiency and effectiveness?
+* How to **analyze** efficiency and effectiveness?
 
-Here is how we solve the problem:
-- a
-- b
-- c
+#####Solution:
+* Organize:
+  * a
+* Analyse:
+  * b
 
 ####Code Status
 [Code Climate / ... Badge]
@@ -21,7 +22,7 @@ Here is how we solve the problem:
 ####Version
 1.0 beta
 
-#Getting Started
+#How does it work?
 
 ##### To create a meeting
 
