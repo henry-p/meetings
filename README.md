@@ -22,7 +22,7 @@ Because they are not efficient.
   * Actionable analytics
   * Team analytics
 
-#### Code Status
+#### Code status
 [Code Climate / ... Badge]
 
 #### Version
@@ -47,16 +47,16 @@ You have two options:
   * Click on the invite link
   * If you have a GMail account, click on "log in". Otherwise enter your email address to log in.
 
-##### Before a Meeting
+##### Before a meeting
 * Once you created a meeting, you can add agenda Topics and actionables to it.
 
-##### During a Meeting
+##### During a meeting
 * Add agenda topics
 * Add actionables and an (optional) conclusion to an agenda topic
 * Assign tasks to meeting members, by dragging and dropping them on an actionable.
 * Take general notes
 
-##### After a Meeting
+##### After a meeting
 * View results and analysis of the meeting
 * Get a report email
 * **Create "Follow Up"**
