@@ -18,5 +18,5 @@ $(document).ready(function() {
     } else {
       $("#agenda-error").text('');
     }
-  });    
+  });
 });

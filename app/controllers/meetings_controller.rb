@@ -6,13 +6,6 @@ class MeetingsController < ApplicationController
 		@meeting = Meeting.new
 	end
 
-	def contacts
-		contacts = $redis.get(current_user.id)
-		respond_to do |format|
-			format.json { render json: contacts }
-		end
-	end
-
 	def show
 		@meeting = Meeting.find_by_id(params[:id])
 		if logged_in?
@@ -26,6 +19,17 @@ class MeetingsController < ApplicationController
 		else
 			render :invited
 		end
+	end
+
+	def attendees
+		@meeting = Meeting.find(params[:meeting_id])
+		@invitees = @meeting.invitees
+		contact_data = @invitees.map do |invitee|
+			{ full_name: invitee.full_name, email: invitee.email }
+		end
+		respond_to do |format|
+      format.json { render json: contact_data }
+    end
 	end
 
 	def check_invited

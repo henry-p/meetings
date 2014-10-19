@@ -85,4 +85,12 @@ class User < ActiveRecord::Base
       "#{self.email}"
     end
   end
+
+  def full_name
+    if self.first_name && self.last_name
+      "#{self.first_name} #{self.last_name}"
+    else
+      nil
+    end
+  end
 end

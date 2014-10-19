@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   delete "/logout" => "sessions#destroy", as: "logout"
 
   get "/profile" => "users#show", as: :profile
+  get "/profile/contacts" => "users#contacts"
 
   resources :meetings, except: :index do
     resources :agenda_topics do
@@ -17,7 +18,6 @@ Rails.application.routes.draw do
     end
 
     get "/invited" => "meetings#check_invited"
-  end
-  
-  get "/contacts" => "meetings#contacts"
+    get "/attendees" => "meetings#attendees"
+  end  
 end

@@ -1,27 +1,11 @@
 function Meeting() {
-  this.emails = [];
+  this.allEmails = [];
+  this.selectedEmails = [];
 }
 
 var meeting = new Meeting();
 
 function contactsMultiSearchBox() {
-  var localData = [];
-  $.ajax({
-    async: false,
-    type: "GET",
-    url: "/contacts",
-    success: function(response) {
-      // localData = response;
-      $.each(response, function(index, element) {
-        var tmp = {
-          full_name: element["full_name"] === null ? "no name" : element["full_name"],
-          email: element["email"] === null ? "no email" : element["email"]
-        };
-        localData.push(tmp);
-      });
-    }
-  });
-
   // Make 'Mustache Syntax' Underscore's default script syntax
   _.templateSettings = {
     interpolate: /\{\{\=(.+?)\}\}/g,
@@ -55,7 +39,7 @@ function contactsMultiSearchBox() {
     })
   // Maka div a 'multisearch' box
   .multisearch({
-    source: localData,
+    source: meeting.allEmails,
 
     maxShowOptions: 100,
 
@@ -90,11 +74,11 @@ function contactsMultiSearchBox() {
     },
 
     added: function(event, ui) {
-      meeting.emails.push(ui.data.email);
+      meeting.selectedEmails.push(ui.data.email);
     },
 
     removed: function(event, ui) {
-      meeting.emails.removeByValue(ui.data.email);
+      meeting.selectedEmails.removeByValue(ui.data.email);
     },
 
     // Popover box
@@ -124,7 +108,25 @@ function contactsMultiSearchBox() {
   });
 }
 
-function makeDateTimePicker(picker1, picker2) {
+function getAllContacts() {
+  $.ajax({
+    async: false,
+    type: "GET",
+    url: "/profile/contacts",
+    success: function(response) {
+      // meeting.allEmails = response;
+      $.each(response, function(index, element) {
+        var tmp = {
+          full_name: element["full_name"] === null ? "no name" : element["full_name"],
+          email: element["email"] === null ? "no email" : element["email"]
+        };
+        meeting.allEmails.push(tmp);
+      });
+    }
+  });
+}
+
+function makeDateTimePicker(picker1, picker2, callback) {
   $(picker1)
     .datetimepicker()
     .on("dp.change", function(e) {
@@ -146,15 +148,15 @@ function submitFormEventHandler() {
       type: 'hidden',
       id: "attendees",
       name: "attendees",
-      value: getContactsData()
+      value: prepareSelectedContacts()
     }));
   });
 }
 
-function getContactsData() {
+function prepareSelectedContacts() {
   var emails = "";
-  for (var i = 0; i < meeting.emails.length; i++) {
-    emails += meeting.emails[i] + ",";
+  for (var i = 0; i < meeting.selectedEmails.length; i++) {
+    emails += meeting.selectedEmails[i] + ",";
   }
   return emails.substring(0, emails.length - 1);
 }
@@ -210,3 +212,26 @@ Array.prototype.removeByValue = function() {
   }
   return this;
 };
+
+function fillContactsBoxWithAttendees() {
+  for (var i = 0; i < meeting.selectedEmails.length; i++) {
+    $('[data-control="multisearch"]').children().multisearch('add', meeting.selectedEmails[i]);
+  }
+}
+
+function getInvitedContacts(path) {
+  $.ajax({
+    async: false,
+    type: "GET",
+    url: path,
+    success: function(response) {
+      $.each(response, function(index, element) {
+        var tmp = {
+          full_name: element["full_name"] === null ? "no name" : element["full_name"],
+          email: element["email"] === null ? "no email" : element["email"]
+        };
+        meeting.selectedEmails.push(tmp);
+      });
+    }
+  });
+}
