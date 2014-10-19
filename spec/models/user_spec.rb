@@ -73,6 +73,18 @@ describe User do
       expect(user.google_api_client).to be_a Google::APIClient
     end
   end   
+
+  describe "#full_name_or_email" do
+    it 'returns the full name if possible' do
+      user = User.new(first_name: "Isaac", last_name: "Noda")
+      expect(user.full_name_or_email).to eq "Isaac Noda"
+    end
+
+    it 'returns the email if full name is not possible' do
+      user = User.new(first_name: "Isaac", email: "isaacnoda@yahoo.com")
+      expect(user.full_name_or_email).to eq "isaacnoda@yahoo.com"
+    end
+  end     
 end
 
 

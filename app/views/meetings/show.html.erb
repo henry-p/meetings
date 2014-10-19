@@ -1,26 +1,28 @@
-<div class='container'>
+<div class = "container">
+
 
   <h1><%= @meeting.title %></h1>
   <h2><small><%= Meeting.format_timestamp @meeting.start_time %></small></h2>
-  <button><%= link_to "Close Meeting", remote:true %></button>
+
+  <% if !@meeting.is_done %>
+    <button><%= link_to "Close Meeting", meeting_path(@meeting, close: true), method: :patch, id: "close-meeting" %></button>
+  <% end %>
+
   <br><br><br>
 
-
   <h2>Agenda Topics</h2>
-
   <div id="agendas">
     <%= render @meeting.agenda_topics.order('updated_at DESC') %>
   </div>
 
-  <% if !@meeting.is_done %>
+   <% if !@meeting.is_done %>
     <%= link_to "Add agenda item", new_meeting_agenda_topic_path(@meeting), remote:true, id: "new-agenda-link" %>
-  <% end %>
+   <% end %>
 
   <div id="new-agenda-form"></div>
-  <span id="agenda-error"></span>
 
-  <h2>Actionables</h2>
   <div id="actionables">
+  <h2>Actionables</h2>
     <%= render @meeting.actionables.order('updated_at DESC') %>
   </div>
 
@@ -33,9 +35,17 @@
   <span id="actionables-error"></span>
 
   <h2>Notes</h2>
+  <% if !@meeting.is_done %>
+    <div id = "notes" contenteditable = 'true'><%= render partial: "notes" %></div>
+  <% else %>
+    <div id = "notes"><%= render partial: "notes" %></div>
+  <% end %>
+
+  <% if !@meeting.is_done %>
+    <%= subscribe_to "/meetings/#{@meeting.id}" %>
+  <% end %>
 
   <span id="meeting-id"><%= @meeting.id %></span>
-  <% if !@meeting.is_done %>
-    <%= subscribe_to "/meetings/#{@meeting.id}/actionables" %>
-  <% end %>
+
+
 </div>

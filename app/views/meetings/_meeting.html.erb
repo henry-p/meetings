@@ -1,3 +1,5 @@
+<%= link_to "Edit", edit_meeting_path(meeting) %> |
+<%= link_to "Delete", meeting_path(meeting), method: :delete %>
 <%= Meeting.format_timestamp(meeting.start_time) %>
 <%= meeting.duration %> hours
 <%= link_to "#{meeting.title}", meeting_path(meeting) %>

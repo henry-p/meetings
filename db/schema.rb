@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141019020714) do
+ActiveRecord::Schema.define(version: 20141019185922) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -65,7 +65,7 @@ ActiveRecord::Schema.define(version: 20141019020714) do
     t.datetime "start_time"
     t.datetime "end_time"
     t.string   "time_zone"
-    t.text     "notes"
+    t.text     "notes",             default: ""
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "calendar_event_id"
@@ -76,6 +76,12 @@ ActiveRecord::Schema.define(version: 20141019020714) do
   add_index "meetings", ["end_time"], name: "index_meetings_on_end_time", using: :btree
   add_index "meetings", ["start_time"], name: "index_meetings_on_start_time", using: :btree
   add_index "meetings", ["time_zone"], name: "index_meetings_on_time_zone", using: :btree
+
+  create_table "messages", force: true do |t|
+    t.text     "content"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "responsibilities", force: true do |t|
     t.integer  "actionable_id"

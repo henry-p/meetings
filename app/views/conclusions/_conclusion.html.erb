@@ -1,0 +1,11 @@
+<div class = "conclusion" id = "<%= conclusion.id%>">
+  <% if !@meeting.is_done %>
+    <div placeholder = 'text me' class = "editable edit_conclusion" contenteditable = 'true'>
+      <%= conclusion.content %>
+    </div>
+  <% else %>
+    <div placeholder = 'text me' class = "editable edit_conclusion">
+      <%= conclusion.content %>
+    </div>
+  <% end %>
+</div>

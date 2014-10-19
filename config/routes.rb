@@ -20,4 +20,6 @@ Rails.application.routes.draw do
   end
   
   get "/contacts" => "meetings#contacts"
+
+  match "/meetings/:id/update_notes" => "meetings#update_notes", as: :update_notes, via: :PATCH
 end
