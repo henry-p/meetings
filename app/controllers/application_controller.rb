@@ -21,4 +21,12 @@ class ApplicationController < ActionController::Base
       redirect_to root_path
     end
   end
+
+  def check_if_meeting_is_closed(id)
+    @meeting = Meeting.find_by_id(id)
+
+    if @meeting.is_done
+      redirect_to meeting_path(@meeting)
+    end
+  end
 end

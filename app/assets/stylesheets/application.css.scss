@@ -39,6 +39,11 @@ body {
   border-radius: 100%;
 }
 
+#header-google-img {
+  width:30px;
+  border-radius:10%;
+}
+
 header {
   height:50px;
   margin-bottom:50px;
@@ -48,6 +53,7 @@ header {
   background: linear-gradient($lightbluegray, #ADB8C6);
   img {
     margin-top:-22px;
+    border:1px solid $darkbluegray;
   };
   a {
     color:$darkbluegray;
@@ -79,6 +85,15 @@ header {
 .error {
   font-weight:900;
   color:red;
+  text-align:center;
+}
+
+h1, h2 {
+  text-align: center;
+}
+
+#logo {
+  margin:40px 0px;
   text-align:center;
 }
 
