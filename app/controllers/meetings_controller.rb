@@ -26,7 +26,7 @@ class MeetingsController < ApplicationController
 				redirect_to root_path, flash: { success: "Your event was successfully created." }
 			else
 				@meeting.invites.destroy_all
-				render 'meetings/new'
+				redirect_to new_meeting_path, flash: { error: "Google was not able to create your event. Please try again." }
 			end
 		end
   end
@@ -48,7 +48,7 @@ class MeetingsController < ApplicationController
 	  		@meeting.update(meeting_params)
 	  		redirect_to root_path, flash: { success: "Your event was successfully edited." }
 	  	else
-	  		render 'meetings/edit'
+	  		redirect_to edit_meeting_path, flash: { error: "Google was not able to update your event. Please try again." }
 	  	end
 	  end
   end
@@ -56,8 +56,12 @@ class MeetingsController < ApplicationController
   def destroy
   	@meeting = Meeting.find_by_id(params[:id])
   	response = current_user.delete_event(@meeting.calendar_event_id)
-  	@meeting.destroy if response.status == 204
-  	redirect_to root_path
+  	if response.status == 204
+  		@meeting.destroy 
+  		redirect_to root_path, flash: { success: "Your event was successfully deleted." }
+  	else
+  		redirect_to root_path, flash: { error: "Google was not able to delete your event. Please try again." }
+  	end
   end
 
   private
