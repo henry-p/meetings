@@ -87,8 +87,14 @@ function contactsMultiSearchBox() {
           return false;
         }
       }
+    },
 
+    added: function(event, ui) {
       meeting.emails.push(ui.data.email);
+    },
+
+    removed: function(event, ui) {
+      meeting.emails.removeByValue(ui.data.email);
     },
 
     // Popover box
@@ -190,3 +196,17 @@ function showNameOnHover() {
     });
   });
 }
+
+Array.prototype.removeByValue = function() {
+  var what;
+  var a = arguments;
+  var l = a.length;
+  var ax;
+  while (l && this.length) {
+    what = a[--l];
+    while ((ax = this.indexOf(what)) !== -1) {
+      this.splice(ax, 1);
+    }
+  }
+  return this;
+};
