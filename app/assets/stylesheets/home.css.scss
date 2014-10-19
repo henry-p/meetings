@@ -3,9 +3,16 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 
+$lightbluegray: #D4DCE7;
+$mediumbluegray: #C0CDDC;
+$darkbluegray: #5A6480;
+$black: #333;
+
 #sign-in-banner {
-  background-color: lightgray;
-  overflow:auto;
+  background: -webkit-linear-gradient($lightbluegray, $mediumbluegray); 
+  background: -o-linear-gradient($lightbluegray, $mediumbluegray); 
+  background: -moz-linear-gradient($lightbluegray, $mediumbluegray); 
+  background: linear-gradient($lightbluegray, $mediumbluegray);
   div {
     display:block;
   };
@@ -28,7 +35,7 @@
 }
 
 .tile {
-  background-color:#E6E6E6;
+  background-color:$lightbluegray;
   line-height:1.3em;
   width:200px;  
   display:inline-block;

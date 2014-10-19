@@ -41,6 +41,7 @@ body {
 
 header {
   height:50px;
+  margin-bottom:50px;
   background: -webkit-linear-gradient($lightbluegray, #ADB8C6); 
   background: -o-linear-gradient($lightbluegray, #ADB8C6); 
   background: -moz-linear-gradient($lightbluegray, #ADB8C6); 
@@ -73,5 +74,11 @@ header {
   };
   font-weight:600;
   float:right
+}
+
+.error {
+  font-weight:900;
+  color:red;
+  text-align:center;
 }
 
