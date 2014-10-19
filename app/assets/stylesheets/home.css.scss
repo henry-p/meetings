@@ -4,10 +4,15 @@
 
 
 $lightbluegray: #D4DCE7;
+$mediumbluegray: #C0CDDC;
+$darkbluegray: #5A6480;
+$black: #333;
 
 #sign-in-banner {
-  background-color: lightgray;
-  overflow:auto;
+  background: -webkit-linear-gradient($lightbluegray, $mediumbluegray); 
+  background: -o-linear-gradient($lightbluegray, $mediumbluegray); 
+  background: -moz-linear-gradient($lightbluegray, $mediumbluegray); 
+  background: linear-gradient($lightbluegray, $mediumbluegray);
   div {
     display:block;
   };

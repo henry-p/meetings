@@ -8,9 +8,9 @@
     </div>
 
     <% if flash[:error] %>
-      <%= flash[:error] %>
+      <p class='error'><%= flash[:error] %></p>
     <% end %>
-    
+
     <div id='sign-in'>
       <%= link_to image_tag('google.png', :onmouseover => "this.src='#{asset_path('google-hover.png')}'", :onmouseout => "this.src='#{asset_path('google.png')}'"), '/auth/google_oauth2' %>
     </div>
