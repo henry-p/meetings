@@ -9,7 +9,7 @@
   <h2>Agenda Topics</h2>
 
   <div id="agendas">
-    <%= render @meeting.agenda_topics %>
+    <%= render @meeting.agenda_topics.order('updated_at DESC') %>
   </div>
 
   <% if !@meeting.is_done %>
@@ -21,7 +21,7 @@
 
   <h2>Actionables</h2>
   <div id="actionables">
-    <%= render @meeting.actionables %>
+    <%= render @meeting.actionables.order('updated_at DESC') %>
   </div>
 
   <% if !@meeting.is_done %>

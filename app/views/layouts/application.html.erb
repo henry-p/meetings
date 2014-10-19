@@ -17,7 +17,7 @@
       </span>
       <span id='nav-bar-greeting'>
         <p><%= current_user.first_name %></p>
-        <%= image_tag current_user.image_path, class: 'google-circle-sm' %>
+        <%= image_tag current_user.image_path, id: 'header-google-img' %>
         <%= link_to (fa_icon 'sign-out 3x'), logout_path, method: :delete %>
       </span>
     </div>
