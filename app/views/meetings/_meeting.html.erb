@@ -1,3 +1,7 @@
 <%= Meeting.format_timestamp(meeting.start_time) %>
 <%= meeting.duration %> hours
 <%= link_to "#{meeting.title}", meeting_path(meeting) %>
+<% if meeting.is_done %>
+  <span id="meeting-finished">Closed</span>
+<% end %>
+<br>

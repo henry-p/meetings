@@ -1,10 +1,5 @@
 <div class='container'>
-
-<h1>My Meetings <small><%= current_user.email %></small></h1>
-
-<%= link_to "Create a meeting", new_meeting_path %>
-
-<br>
-<%= render @meetings %>
-
+  <h1>My Meetings <small><%= current_user.email %></small></h1>
+  <%= link_to "Create a meeting", new_meeting_path %><br>
+  <%= render @meetings %>
 </div>
