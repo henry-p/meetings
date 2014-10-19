@@ -77,12 +77,6 @@ ActiveRecord::Schema.define(version: 20141019185922) do
   add_index "meetings", ["start_time"], name: "index_meetings_on_start_time", using: :btree
   add_index "meetings", ["time_zone"], name: "index_meetings_on_time_zone", using: :btree
 
-  create_table "messages", force: true do |t|
-    t.text     "content"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "responsibilities", force: true do |t|
     t.integer  "actionable_id"
     t.integer  "user_id"

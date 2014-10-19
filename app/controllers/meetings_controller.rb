@@ -79,6 +79,7 @@ class MeetingsController < ApplicationController
 		if params[:close]
 			@meeting = Meeting.find_by_id(params[:id]) 
 			@meeting.update(is_done: true)
+			SendGridMailer.send_summary_emails.deliver
 			return redirect_to root_path
 		end
 
