@@ -5,7 +5,7 @@
 <ul>
   <% @meeting.agenda_topics.each do |agenda_topic| %>
     <li>
-      <h5><%= agenda_topic.content %></h5>
+      <%= agenda_topic.content %>
       <br>
       <% if agenda_topic.conclusion %>
         <%= agenda_topic.conclusion.content %>
@@ -20,7 +20,11 @@
 <ul>
   <% @meeting.actionables.each do |actionable| %>
     <li>
-      <h5><%= actionable.content %></h5>
+      <%= actionable.content %>
+      <br>
+      <% if actionable.conclusion %>
+        <%= actionable.conclusion.content %>
+      <% end %>
     </li>
   <% end %>
 </ul>
@@ -28,6 +32,6 @@
 <br>
 
 <h4>Notes</h4>
-<%= @meeting.notes %>
+<%= simple_format(@meeting.notes.gsub(/\n/, '<br>') %>
 
 
