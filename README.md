@@ -39,13 +39,13 @@ Because they are not efficient.
 
 You have two options:
 
-1. Log in with your Google Account,
+1. Log in with your GMail Account,
   * Go to your Profile page
   * Click on "attend meeting"
 
 2. In the Invitation you received (Email / Google Calendar):
   * Click on the invite link
-  * Enter your email address
+  * If you have a GMail account, click on "log in". Otherwise enter your email address to log in.
 
 ##### Before a Meeting
 * Once you created a meeting, you can add agenda Topics and actionables to it.
