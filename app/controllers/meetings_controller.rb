@@ -1,5 +1,6 @@
 class MeetingsController < ApplicationController
   skip_before_action :require_login, only: [:show, :check_invited]
+  before_filter(only: [:update, :destroy]) { |filter| filter.check_if_meeting_is_closed(params[:id]) }
 
   def new
     @meeting = Meeting.new
