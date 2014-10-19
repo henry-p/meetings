@@ -1,5 +1,5 @@
 class MeetingsController < ApplicationController
-
+include ActionView::Helpers::SanitizeHelper
   def new
     @meeting = Meeting.new
   end
@@ -28,8 +28,14 @@ class MeetingsController < ApplicationController
 
   def update_notes
     @meeting = Meeting.find_by_id(params[:id])
-    @meeting.update_attributes(notes: params[:notes])
-    p params
+    notes = params[:notes]
+    p notes
+    notes.gsub!(/(<br>|<p>|<div>)/, "\n")
+    notes = strip_tags(notes)
+    notes.strip!
+    notes.gsub!(/(\n+\s*){3,}/, "\n\n")
+    p notes
+    @meeting.update_attributes(notes: notes)
     render 'update_notes'
   end
 
