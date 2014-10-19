@@ -1,11 +1,4 @@
 Rails.application.routes.draw do
-
-  get 'votes/create'
-
-  get 'agenda_topics/new'
-
-  get 'meetings/new'
-
   root 'home#index'
 
   get "/auth/google_oauth2/callback" => "sessions#create", as: :create_session
@@ -13,7 +6,7 @@ Rails.application.routes.draw do
 
   get "/profile" => "users#show", as: :profile
 
-  resources :meetings do
+  resources :meetings, except: :index do
     resources :agenda_topics do
       resources :conclusions
       resources :votes, only: :create
@@ -22,6 +15,8 @@ Rails.application.routes.draw do
     resources :actionables do
       resources :responsibilities, except: [:edit, :update]
     end
+
+    get "/invited" => "meetings#check_invited"
   end
   
   get "/contacts" => "meetings#contacts"

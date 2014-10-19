@@ -9,6 +9,7 @@ $(document).ready(function() {
       data: { 'content': agendaContent }
     });
   });
+  
   $('body').on('click', '#new-agenda-link',function() {
     event.preventDefault();
     $("#new-agenda-form").show();
@@ -17,4 +18,13 @@ $(document).ready(function() {
     $(this).hide();
   });
 
+  $("#new-agenda-form").on('ajax:beforeSend', function(event, xhr) {
+    var agendaContent = $("#new-agenda-form #content_").val();
+    if (agendaContent.trim().length < 1) {
+      xhr.abort();
+      $("#agenda-error").text('An agenda topic cannot be blank!');
+    } else {
+      $("#agenda-error").text('');
+    }
+  });    
 });

@@ -26,7 +26,7 @@
   <%= render partial: "notes" %>
 </div>
 
-<%= subscribe_to "/meetings/#{@meeting.id}/actionables" %>
+<%= subscribe_to "/meetings/#{@meeting.id}" %>
 
 <span id="meeting-id"><%= @meeting.id %></span>
 

@@ -1,20 +1,24 @@
 <div id="<%= agenda_topic.id %>" class='agenda'>
   <%= image_tag("#{agenda_topic.creator.image_path}", class: "google-circle-sm") %>
+  <span class='name-tag'><%= agenda_topic.creator.full_name_or_email %></span>
 
-  <% if agenda_topic.creator == current_user %>
+  <% if !agenda_topic.meeting.is_done %>
     <%= link_to "Delete", meeting_agenda_topic_path(agenda_topic.meeting, agenda_topic), method: :delete, remote: true, data: { confirm: "Are you sure? This cannot be undone" } %>
   <% end %>
 
-  <span class='content'><div class='editable edit_agenda' contenteditable='true'><%= agenda_topic.content %></div></span>
+  <% if !agenda_topic.meeting.is_done %>
+    <span class='content'><div class='editable edit_agenda' contenteditable='true'><%= agenda_topic.content %></div></span>
+  <% else %>
+    <span class='content'><span><%= agenda_topic.content %></span></span>
+  <% end %>
 
-
-  <%= link_to "Upvote", meeting_agenda_topic_votes_path(agenda_topic.meeting, agenda_topic), remote: true, method: :post %>
+  <% if !agenda_topic.meeting.is_done %>
+    <%= link_to (fa_icon 'thumbs-up 2x'), meeting_agenda_topic_votes_path(agenda_topic.meeting, agenda_topic), remote: true, method: :post %>
+  <% end %>
   <span id="vote"><%= agenda_topic.votes.count %></span>
 
   <span id="agenda-voter-pictures">
-    <% agenda_topic.votes.each do |vote| %>
-      <%= image_tag("#{vote.voter.image_path}", class: "google-circle-sm") %>
-    <% end %>
+    <%= render agenda_topic.votes %>
   </span>
 
   <div>

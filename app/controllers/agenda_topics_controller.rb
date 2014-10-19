@@ -1,6 +1,7 @@
 class AgendaTopicsController < ApplicationController
+  before_filter { |filter| filter.check_if_meeting_is_closed(params[:meeting_id]) }
+
   def new
-    @meeting = Meeting.find_by_id(params[:meeting_id])
     @agenda = AgendaTopic.new(meeting: @meeting)
 
     respond_to do |format|
@@ -9,11 +10,7 @@ class AgendaTopicsController < ApplicationController
     end
   end
 
-
-
   def create
-    @meeting = Meeting.find_by_id(params[:meeting_id])
-
     @agenda = AgendaTopic.new(meeting: @meeting, content: params[:content][0], creator: current_user)
     @agenda.save
 
@@ -24,8 +21,6 @@ class AgendaTopicsController < ApplicationController
   end
 
   def destroy
-    @meeting = Meeting.find_by_id(params[:meeting_id])
-
     @agenda_topic = AgendaTopic.find_by_id(params[:id])
     @agenda_topic.destroy
 
@@ -36,8 +31,6 @@ class AgendaTopicsController < ApplicationController
   end
 
   def update
-    @meeting = Meeting.find_by_id(params[:meeting_id])
-
     @agenda_topic = AgendaTopic.find_by_id(params[:id])
 
     @agenda_topic.update(content: params[:content])

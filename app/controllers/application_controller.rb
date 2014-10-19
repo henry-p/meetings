@@ -15,12 +15,18 @@ class ApplicationController < ActionController::Base
     @current_user ||= User.find_by_id(session[:user_id])
   end
  
-  private
- 
   def require_login
     unless logged_in?
       flash[:error] = "You must be logged in to view this page"
       redirect_to root_path
+    end
+  end
+
+  def check_if_meeting_is_closed(id)
+    @meeting = Meeting.find_by_id(id)
+
+    if @meeting.is_done
+      redirect_to meeting_path(@meeting)
     end
   end
 end

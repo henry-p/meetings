@@ -32,11 +32,6 @@ function contactsMultiSearchBox() {
   var multiSearch = _.template($('#multisearch').html()),
     infoBox = _.template($('#contact-info').html());
 
-  // Since you can use tab to go to next field, trigger a click event on box focus
-  $(document.body).on('focusin', 'input, textarea', function(event) {
-    $(event.target).trigger('click');
-  });
-
   // Make div look like a form input
   $('[data-control="multisearch"]').append(multiSearch())
     .children()
@@ -75,15 +70,13 @@ function contactsMultiSearchBox() {
       return {
         id: null,
         full_name: text,
-        organization: '',
-        primary_phone: '',
         email: text
       };
     },
 
     adding: function(event, ui) {
       // ANY EMAIL:
-      var validater = new RegExp('^(?:[^,]+@[^,/]+\.[^asasd,/]+|)$');
+      var validater = /^(?:[^,]+@[^,/]+\.[^asasd,/]+|)$/;
       // ONLY @GMAIL.COM
       // var validater = new RegExp('^(?:[^,]+@gmail.com)$');
 
@@ -94,8 +87,14 @@ function contactsMultiSearchBox() {
           return false;
         }
       }
+    },
 
+    added: function(event, ui) {
       meeting.emails.push(ui.data.email);
+    },
+
+    removed: function(event, ui) {
+      meeting.emails.removeByValue(ui.data.email);
     },
 
     // Popover box
@@ -140,7 +139,7 @@ function makeDateTimePicker(picker1, picker2) {
 
 function submitFormEventHandler() {
   var form = $("form#new_meeting");
-  form.submit( function(event) {
+  form.submit(function(event) {
     // var formData = prepareFormData(getFormData());
 
     $("button[type=submit]").before($('<input/>', {
@@ -150,20 +149,6 @@ function submitFormEventHandler() {
       value: getContactsData()
     }));
   });
-  // $('button[type="submit"]').on("click", function(event) {
-  //   event.preventDefault();
-
-  //   // var formData = prepareFormData(getFormData());
-
-  //   var form = $("form#new_meeting");
-  //   form.append($('<input/>', {
-  //     type: 'hidden',
-  //     id: "contacts",
-  //     value: getContactsData()
-  //   }));
-
-  //   form.submit();
-  // });
 }
 
 function getContactsData() {
@@ -189,3 +174,39 @@ function getContactsData() {
 //   }
 //   return { meetings: formattedData };
 // }
+
+function makeWholeBoxClickable() {
+  $("div.panel-body").on("click", function(event) {
+    $(".pull-left").trigger("focus");
+  });
+}
+
+function showNameOnHover() {
+  $('body').on('mouseenter', '.agenda img', function(event) {
+    $(this).first().next().css({
+      'display': 'inline-block',
+      'position': 'absolute',
+      'background-color': 'white',
+      'font-weight': '900',
+      'padding': '5px',
+      'opacity': '0.8'
+    });
+    $(this).on('mouseleave', function() {
+      $(this).first().next().css('display', 'none');
+    });
+  });
+}
+
+Array.prototype.removeByValue = function() {
+  var what;
+  var a = arguments;
+  var l = a.length;
+  var ax;
+  while (l && this.length) {
+    what = a[--l];
+    while ((ax = this.indexOf(what)) !== -1) {
+      this.splice(ax, 1);
+    }
+  }
+  return this;
+};
