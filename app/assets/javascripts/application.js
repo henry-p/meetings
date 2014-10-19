@@ -27,4 +27,8 @@ $(function() {
     makeDateTimePicker(datetimepicker_start, datetimepicker_end);
     submitFormEventHandler();
   }
+
+  if (/\/meetings\/\d+/.test(window.location.pathname)) {
+    showNameOnHover();
+  }
 });
