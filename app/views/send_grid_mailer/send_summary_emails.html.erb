@@ -8,7 +8,7 @@
       <%= agenda_topic.content %>
       <br>
       <% if agenda_topic.conclusion %>
-        <%= agenda_topic.conclusion.content %>
+        <pre>  Conclusion: <%= agenda_topic.conclusion.content %><pre>
       <% end %>
     </li>
   <% end %>
@@ -28,4 +28,4 @@
 <br>
 
 <h4>Notes</h4>
-<%= @meeting.notes.gsub(/\n/, '<br>') %>
+<%= simple_format(@meeting.notes.gsub(/\n/, '<br>')) %>
