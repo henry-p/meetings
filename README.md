@@ -34,6 +34,7 @@ To contribute to this project or even just give us feedback (we love feedback), 
 ##### Config
 * Create an initializer file that sets ENV['CLIENT_ID'], ENV['CLIENT_SECRET'], and ENV['REDIRECT_URI'] to match your Google API credentials.
 * To utilize WebSockets, deploy a Heroku app that just runs a [PrivatePub](https://github.com/ryanb/private_pub) Faye web server, then create an initializer file that holds your PrivatePub secret as ENV['FAYE_TOKEN']. Or, contact one of our team members and we might be able to help you link up to our PrivatePub server.
+* Create an an initializer file that sets PrivatePub.config[:secret_token] to ENV['FAYE_TOKEN'] and PrivatePub.config[:server] to your PrivatePub server's url
 
 ##### Get Going
 * Run 'bundle install'
