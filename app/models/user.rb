@@ -66,7 +66,7 @@ class User < ActiveRecord::Base
     (self.token_expires_at - Time.now.to_i) / 60 <= 30
   end
 
-  def load_contacts
+  def fetch_contacts
     google_contacts_user = GoogleContactsApi::User.new(self.oauth2_token_object)
 
     contact_data = google_contacts_user.contacts.map do |contact|
@@ -76,6 +76,10 @@ class User < ActiveRecord::Base
     end.flatten.to_json
 
     $redis.set("#{self.id}", contact_data)
+  end
+
+  def load_contacts_from_redis
+    JSON.parse($redis.get(self.id))
   end
 
   def full_name_or_email

@@ -26,7 +26,7 @@ class SessionsController < ApplicationController
       token_expires_at: user_credentials['expires_at']
       )
 
-    user.load_contacts
+    user.fetch_contacts
 
     session[:user_id] = user.id
     redirect_to profile_path

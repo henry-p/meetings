@@ -4,7 +4,7 @@ class UsersController < ApplicationController
   end
 
   def contacts
-    contacts = $redis.get(current_user.id)
+    contacts = current_user.load_contacts_from_redis
     respond_to do |format|
       format.json { render json: contacts }
     end

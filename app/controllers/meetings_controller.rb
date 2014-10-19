@@ -1,5 +1,4 @@
 class MeetingsController < ApplicationController
-
 	skip_before_action :require_login, only: [:show, :check_invited]
 	before_filter(only: [:update, :destroy]) { |filter| filter.check_if_meeting_is_closed(params[:id]) }
 	include ActionView::Helpers::SanitizeHelper
@@ -59,7 +58,7 @@ class MeetingsController < ApplicationController
 		else
 			@meeting = Meeting.new(meeting_params.merge(creator: current_user))
 			if @meeting.save
-				Invite.create_invites(params[:attendees], @meeting)
+				Invite.create_invites(current_user, params[:attendees], @meeting)
 			end
 			
 			response = current_user.create_event(Meeting.event_hash(@meeting))
@@ -85,7 +84,6 @@ class MeetingsController < ApplicationController
 			@meeting.update(is_done: true)
 			return redirect_to root_path
 		end
-
 		
 		if Meeting.empty_datetime(params)
 			@meeting = Meeting.new(meeting_params_without_time)
@@ -98,7 +96,7 @@ class MeetingsController < ApplicationController
 		else
 			@meeting = Meeting.find_by_id(params[:id])
 			@meeting.invites.destroy_all
-			Invite.create_invites(params[:attendees], @meeting)
+			Invite.create_invites(current_user, params[:attendees], @meeting)
 			unsaved_event = @meeting.clone
 			response = current_user.update_event(Meeting.event_hash(unsaved_event), @meeting.calendar_event_id)
 			if response.status == 200
@@ -126,12 +124,10 @@ class MeetingsController < ApplicationController
   def update_notes
     @meeting = Meeting.find_by_id(params[:id])
     notes = params[:notes]
-    p notes
     notes.gsub!(/(<br>|<p>|<div>)/, "\n")
     notes = strip_tags(notes)
     notes.strip!
     notes.gsub!(/(\n+\s*){3,}/, "\n\n")
-    p notes
     @meeting.update_attributes(notes: notes)
     render 'update_notes'
   end
