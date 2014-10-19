@@ -1,6 +1,10 @@
 <div class='container'>
 
   <h1><%= @meeting.title %></h1>
+  <h2><small><%= Meeting.format_timestamp @meeting.start_time %></small></h2>
+  <button><%= link_to "Close Meeting", remote:true %></button>
+  <br><br><br>
+
 
   <h2>Agenda Topics</h2>
 
@@ -15,8 +19,8 @@
   <div id="new-agenda-form"></div>
   <span id="agenda-error"></span>
 
+  <h2>Actionables</h2>
   <div id="actionables">
-    <h2>Actionables</h2>
     <%= render @meeting.actionables %>
   </div>
 

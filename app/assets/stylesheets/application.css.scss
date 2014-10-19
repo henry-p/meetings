@@ -48,6 +48,7 @@ header {
   background: linear-gradient($lightbluegray, #ADB8C6);
   img {
     margin-top:-22px;
+    border:1px solid $black;
   };
   a {
     color:$darkbluegray;
@@ -81,4 +82,9 @@ header {
   color:red;
   text-align:center;
 }
+
+h1, h2 {
+  text-align: center;
+}
+
 

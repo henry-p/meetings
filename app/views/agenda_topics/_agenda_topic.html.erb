@@ -17,9 +17,7 @@
   <span id="vote"><%= agenda_topic.votes.count %></span>
 
   <span id="agenda-voter-pictures">
-    <% agenda_topic.votes.each do |vote| %>
-      <%= image_tag("#{vote.voter.image_path}", class: "google-circle-sm") %>
-    <% end %>
+    <%= render agenda_topic.votes %>
   </span>
 </div>
 

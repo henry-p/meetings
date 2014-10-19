@@ -1,3 +1,22 @@
+$(document).ready(function() {
+  $('body').on('mouseenter', '#agenda-voter-pictures img', function(event) {
+    $(this).first().next().css({
+      'display':'inline-block', 
+      'position':'absolute',
+      'background-color':'white',
+      'border':'1px solid black',
+      'font-weight':'400',
+      'padding':'2px 5px',
+      'opacity':'0.8'
+    });
+    $(this).on('mouseleave', function() {
+      $(this).first().next().css('display', 'none');
+    })
+  });
+});
+
+
+
 function Meeting() {
   this.emails = [];
 }

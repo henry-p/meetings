@@ -65,6 +65,14 @@ class User < ActiveRecord::Base
 
     $redis.set("#{self.id}", contact_data)
   end
+
+  def full_name_or_email
+    if self.first_name && self.last_name
+      "#{self.first_name} #{self.last_name}"
+    else
+      "#{self.email}"
+    end
+  end
 end
 
 
