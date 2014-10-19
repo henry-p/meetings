@@ -21,10 +21,6 @@
   <% @meeting.actionables.each do |actionable| %>
     <li>
       <%= actionable.content %>
-      <br>
-      <% if actionable.conclusion %>
-        <%= actionable.conclusion.content %>
-      <% end %>
     </li>
   <% end %>
 </ul>
