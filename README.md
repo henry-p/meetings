@@ -1,7 +1,14 @@
-#Welcome to <StandUp>
+#Welcome to [StandUp]
 > Meetings suck!
 
 Because they are not efficient.
+
+Problems:
+* Team members want to have a say regarding the agenda
+  * ...but how to **organize** that?
+* There is no **good** structure in meetings
+* Team members don't know the structure of the meeting **beforehand**
+* How to **analyse** efficiency and effectiveness?
 
 Here is how we solve the problem:
 - a
