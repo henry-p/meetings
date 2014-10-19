@@ -21,10 +21,15 @@
 //= require moment.min
 //= require bootstrap-datetimepicker.min
 $(function() {
-  if (window.location.pathname === "/meetings/new") {
+  var current_path = window.location.pathname;
+  if (current_path === "/meetings/new" || current_path === "/meetings/edit") {
     contactsMultiSearchBox();
     makeWholeBoxClickable();
     makeDateTimePicker(datetimepicker_start, datetimepicker_end);
     submitFormEventHandler();
+  }
+
+  if (/\/meetings\/\d+/.test(current_path)) {
+    showNameOnHover();
   }
 });

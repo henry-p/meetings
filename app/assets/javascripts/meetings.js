@@ -1,21 +1,3 @@
-$(document).ready(function() {
-  $('body').on('mouseenter', '.agenda img', function(event) {
-    $(this).first().next().css({
-      'display':'inline-block', 
-      'position':'absolute',
-      'background-color':'white',
-      'font-weight':'900',
-      'padding':'5px',
-      'opacity':'0.8'
-    });
-    $(this).on('mouseleave', function() {
-      $(this).first().next().css('display', 'none');
-    })
-  });
-});
-
-
-
 function Meeting() {
   this.emails = [];
 }
@@ -94,7 +76,7 @@ function contactsMultiSearchBox() {
 
     adding: function(event, ui) {
       // ANY EMAIL:
-      var validater = new RegExp('^(?:[^,]+@[^,/]+\.[^asasd,/]+|)$');
+      var validater = /^(?:[^,]+@[^,/]+\.[^asasd,/]+|)$/;
       // ONLY @GMAIL.COM
       // var validater = new RegExp('^(?:[^,]+@gmail.com)$');
 
@@ -105,8 +87,14 @@ function contactsMultiSearchBox() {
           return false;
         }
       }
+    },
 
+    added: function(event, ui) {
       meeting.emails.push(ui.data.email);
+    },
+
+    removed: function(event, ui) {
+      meeting.emails.removeByValue(ui.data.email);
     },
 
     // Popover box
@@ -192,3 +180,33 @@ function makeWholeBoxClickable() {
     $(".pull-left").trigger("focus");
   });
 }
+
+function showNameOnHover() {
+  $('body').on('mouseenter', '.agenda img', function(event) {
+    $(this).first().next().css({
+      'display': 'inline-block',
+      'position': 'absolute',
+      'background-color': 'white',
+      'font-weight': '900',
+      'padding': '5px',
+      'opacity': '0.8'
+    });
+    $(this).on('mouseleave', function() {
+      $(this).first().next().css('display', 'none');
+    });
+  });
+}
+
+Array.prototype.removeByValue = function() {
+  var what;
+  var a = arguments;
+  var l = a.length;
+  var ax;
+  while (l && this.length) {
+    what = a[--l];
+    while ((ax = this.indexOf(what)) !== -1) {
+      this.splice(ax, 1);
+    }
+  }
+  return this;
+};

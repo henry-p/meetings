@@ -2,7 +2,11 @@
 
   <h1><%= @meeting.title %></h1>
   <h2><small><%= Meeting.format_timestamp @meeting.start_time %></small></h2>
-  <button><%= link_to "Close Meeting", remote:true %></button>
+
+  <% if !@meeting.is_done %>
+    <button><%= link_to "Close Meeting", meeting_path(@meeting, close: true), method: :patch %></button>
+  <% end %>
+
   <br><br><br>
 
 
