@@ -5,7 +5,7 @@ Because they are not efficient.
 
 ##### Problems:
 * Team members want to **have a say** regarding the agenda
-  * ...but how to **organize** that?
+  * ...how to **organize** that?
 * There is no **good** structure in meetings
 * Team members don't know the structure of the meeting **beforehand**
 * How to **analyze** efficiency and effectiveness?
