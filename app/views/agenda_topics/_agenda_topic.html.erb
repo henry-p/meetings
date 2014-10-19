@@ -1,5 +1,6 @@
 <div id="<%= agenda_topic.id %>" class='agenda'>
   <%= image_tag("#{agenda_topic.creator.image_path}", class: "google-circle-sm") %>
+  <span class='name-tag'><%= agenda_topic.creator.full_name_or_email %></span>
 
   <% if !agenda_topic.meeting.is_done %>
     <%= link_to "Delete", meeting_agenda_topic_path(agenda_topic.meeting, agenda_topic), method: :delete, remote: true, data: { confirm: "Are you sure? This cannot be undone" } %>

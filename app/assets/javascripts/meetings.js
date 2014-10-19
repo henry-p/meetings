@@ -1,12 +1,11 @@
 $(document).ready(function() {
-  $('body').on('mouseenter', '#agenda-voter-pictures img', function(event) {
+  $('body').on('mouseenter', '.agenda img', function(event) {
     $(this).first().next().css({
       'display':'inline-block', 
       'position':'absolute',
       'background-color':'white',
-      'border':'1px solid black',
-      'font-weight':'400',
-      'padding':'2px 5px',
+      'font-weight':'900',
+      'padding':'5px',
       'opacity':'0.8'
     });
     $(this).on('mouseleave', function() {
