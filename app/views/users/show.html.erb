@@ -2,6 +2,10 @@
 
 <h1>My Meetings <small><%= current_user.email %></small></h1>
 
+<% if flash[:error] %>
+  <p class='error'><%= flash[:error] %></p>
+<% end %>
+
 <%= link_to "Create a meeting", new_meeting_path %>
 
 <br>

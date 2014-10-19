@@ -41,6 +41,8 @@ gem 'redis'
 
 gem 'twitter-bootstrap-rails'
 
+gem 'canonical-emails'
+
 # socket gems
 gem 'faye'
 gem 'thin'
