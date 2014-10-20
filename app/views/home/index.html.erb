@@ -11,8 +11,8 @@
       </p>
     </div>
 
-    <% if flash[:error] %>
-      <p class='error'><%= flash[:error] %></p>
+    <% flash.each do |name, msg| %>
+      <%= content_tag :div, msg, class: "flash #{name}" %>
     <% end %>
 
     <div id='sign-in'>
