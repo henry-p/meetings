@@ -6,6 +6,7 @@ class GoogleWorker
 
     if user
       user.fetch_contacts
+      user.contacts_jid 
     end
   end  
 end
