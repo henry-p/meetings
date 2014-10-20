@@ -2,24 +2,30 @@
   <%= content_tag :div, msg, class: "flash #{name}"%>
 <% end %>
 
-<%= render "underscore_templates" %>
-<%= render "add_contacts" %>
 
-<%= form_for @meeting do |f| %>
-  <%= f.label :title %><br>
-  <%= f.text_field :title %><br>
+<div id="meeting-form">
+  <%= render "underscore_templates" %>
+  <%= render "add_contacts" %>
 
-  <%= f.label :location %><br>
-  <%= f.text_field :location %><br>
+  <%= form_for @meeting do |f| %>
+    <%= f.label :title %><br>
+    <%= f.text_field :title %><br>
 
-  <%= f.label :description %><br>
-  <%= f.text_area :description %><br>
+    <%= f.label :location %><br>
+    <%= f.text_field :location %><br>
 
-  <%= f.label :time_zone %><br>
-  <%= render "timezone_select" %><br>
+    <%= f.label :description %><br>
+    <%= f.text_area :description %><br><br>
 
-  <%= f.label :meeting_time %><br>
-  <%= render "datetimepickers" %>
+    <%= render "timezone_select" %><br>
 
-  <%= button_tag "Submit" %>
-<% end %>
+    <%= f.label :start_time %><br>
+    <%= render "datetimepicker_start" %>
+
+    <%= f.label :end_time %><br>
+    <%= render "datetimepicker_end" %><br>
+
+    <%= button_tag "Submit" %>
+  <% end %>
+</div>
+

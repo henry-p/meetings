@@ -1,8 +1,11 @@
 table {
   border-collapse: collapse;
-  margin: ($base-spacing / 2) 0;
   table-layout: fixed;
-  width: 100%;
+  
+  // these mess with datetimepicker
+
+  // margin: ($base-spacing / 2) 0;
+  // width: 100%;
 }
 
 th {

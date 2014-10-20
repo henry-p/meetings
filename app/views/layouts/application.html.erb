@@ -8,7 +8,19 @@
 </head>
 <body>
 <% if logged_in? %>
-  <%= render "refills/navigation" %>
+    <div id="top-banner">
+  </div>
+  <header>
+    <div class='container'>
+      <span id='nav-bar-icons'>
+      </span>
+      <span id='nav-bar-greeting'>
+        <%= image_tag current_user.image_path, id: 'header-google-img' %>
+        <%= link_to "Logout", logout_path, method: :delete %> |
+        <%= link_to "Profile", profile_path %>
+      </span>
+    </div>
+  </header>
 <% end %>
 
 <%= yield %>
