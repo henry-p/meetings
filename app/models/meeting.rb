@@ -57,7 +57,7 @@ class Meeting < ActiveRecord::Base
   end
 
   def empty_title?
-  	self.title.empty?
+  	!self.title || self.title.empty? 
   end
 
   def close_meeting_and_send_email
