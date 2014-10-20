@@ -11,7 +11,10 @@ class MeetingsController < ApplicationController
 
 			@meeting = previous_meeting.dup
 			@meeting.invitees = previous_meeting.invitees
-			@meeting.update(start_time: local_time, end_time: local_time + previous_meeting.duration_in_seconds)
+			day_after_meeting = previous_meeting.start_time + 86400
+			start_time = day_after_meeting < local_time ? local_time : day_after_meeting
+			end_time = start_time + previous_meeting.duration_in_seconds
+			@meeting.update(start_time: start_time, end_time: end_time)
 		else
 			@meeting = Meeting.new
 		end
