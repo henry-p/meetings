@@ -42,17 +42,27 @@ class Meeting < ActiveRecord::Base
   end
 
   def self.format_params(meeting_params)
-  	meeting_params[:start_time] = DateTime.strptime(meeting_params[:start_time], '%m/%d/%Y %H:%M %P') if !meeting_params[:start_time].nil?
-  	meeting_params[:end_time] = DateTime.strptime(meeting_params[:end_time], '%m/%d/%Y %H:%M %P') if !meeting_params[:end_time].nil?
+  	meeting_params[:start_time] = DateTime.strptime(meeting_params[:start_time], '%m/%d/%Y %H:%M %P') if !meeting_params[:start_time].empty?
+  	meeting_params[:end_time] = DateTime.strptime(meeting_params[:end_time], '%m/%d/%Y %H:%M %P') if !meeting_params[:end_time].empty?
   	meeting_params
   end
 
-  def self.empty_datetime(params)
-  	params[:meeting][:start_time].empty? || params[:meeting][:end_time].empty?
+  def destroy_self_and_invites
+    self.invites.destroy_all
+    self.destroy
+  end  
+
+  def empty_datetime?
+  	!(self.start_time && self.end_time)
   end
 
-  def self.empty_title(params)
-  	params[:meeting][:title].empty?
+  def empty_title?
+  	self.title.empty?
+  end
+
+  def close_meeting_and_send_email
+    self.update(is_done: true)
+    SendGridMailer.send_summary_emails(self).deliver
   end
 
   def to_google_time_zone
