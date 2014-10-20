@@ -6,7 +6,12 @@ class MeetingsController < ApplicationController
 	def new
 		id = params[:id]
 		if id
-			@meeting = Meeting.find(id)
+			previous_meeting = Meeting.find(id)
+			local_time = Time.now
+
+			@meeting = previous_meeting.dup
+			@meeting.invitees = previous_meeting.invitees
+			@meeting.update(start_time: local_time, end_time: local_time + previous_meeting.duration_in_seconds)
 		else
 			@meeting = Meeting.new
 		end
