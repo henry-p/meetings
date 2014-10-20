@@ -38,4 +38,8 @@ $(function() {
   if (/\/meetings\/\d+/.test(current_path)) {
     showNameOnHover();
   }
+
+  if (current_path === "/profile") {
+    startContactLoad();
+  }
 });
