@@ -2,6 +2,7 @@ class MeetingsController < ApplicationController
 
 	skip_before_action :require_login, only: [:show, :check_invited]
 	before_filter(only: [:update, :destroy]) { |filter| filter.check_if_meeting_is_closed(params[:id]) }
+	before_filter :find_meeting_by_id, only: [:show, :check_invited, :edit, :destroy, :update_notes]
 	include ActionView::Helpers::SanitizeHelper
 
 	def new
@@ -16,7 +17,6 @@ class MeetingsController < ApplicationController
 	end
 
 	def show
-		@meeting = Meeting.find_by_id(params[:id])
 		if logged_in?
 			if current_user.email.downcase != @meeting.creator.email.downcase
 				@invitee_emails = @meeting.invitees.pluck(:email).map(&:downcase)
@@ -31,7 +31,6 @@ class MeetingsController < ApplicationController
 	end
 
 	def check_invited
-		@meeting = Meeting.find_by_id(params[:meeting_id])
 		@invitee_emails = @meeting.invitees.pluck(:email).map(&:downcase)
 
 		if @invitee_emails.include?(params[:email].downcase)
@@ -72,12 +71,11 @@ class MeetingsController < ApplicationController
 	end
 
 	def edit
-		@meeting = Meeting.find_by_id(params[:id])
 	end
 
 	def update
 		if params[:close]
-			@meeting = Meeting.find_by_id(params[:id]) 
+			find_meeting_by_id
 			@meeting.update(is_done: true)
 			return redirect_to root_path
 		end
@@ -92,7 +90,7 @@ class MeetingsController < ApplicationController
 			flash.now[:error] = "Please include a title to edit an event."
 			render :edit
 		else
-			@meeting = Meeting.find_by_id(params[:id])
+			find_meeting_by_id
 			@meeting.invites.destroy_all
 			Invite.create_invites(params[:attendees], @meeting)
 			unsaved_event = @meeting.clone
@@ -109,7 +107,6 @@ class MeetingsController < ApplicationController
 	end
 
 	def destroy
-		@meeting = Meeting.find_by_id(params[:id])
 		response = current_user.delete_event(@meeting.calendar_event_id)
 		if response.status == 204
 			@meeting.destroy 
@@ -120,23 +117,31 @@ class MeetingsController < ApplicationController
 	end
 
   def update_notes
-    @meeting = Meeting.find_by_id(params[:id])
     notes = params[:notes]
-    p notes
     notes.gsub!(/(<br>|<p>|<div>)/, "\n")
     notes = strip_tags(notes)
     notes.strip!
     notes.gsub!(/(\n+\s*){3,}/, "\n\n")
-    p notes
     @meeting.update_attributes(notes: notes)
     render 'update_notes'
   end
+
+	def assign_actionable
+
+
+		# render partial: "assignments"
+	end
 
 	private
 	
 	def meeting_params
 		Meeting.format_params(params.require(:meeting).permit(:title, :description, :location, :start_time, :end_time, :time_zone, :notes))
 	end
+
+	def find_meeting_by_id
+		@meeting = Meeting.find_by_id(params[:id])
+	end
+
 
 	def meeting_params_without_time
 		if params[:meeting][:start_time].empty? && params[:meeting][:end_time].empty?

@@ -41,6 +41,8 @@
     <div id = "notes"><%= render partial: "notes" %></div>
   <% end %>
 
+  <div id = "invitees"><%= render partial: "invitees" %></div>
+  
   <% if !@meeting.is_done %>
     <%= subscribe_to "/meetings/#{@meeting.id}" %>
   <% end %>

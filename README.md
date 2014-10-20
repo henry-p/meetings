@@ -49,5 +49,5 @@ We are four super-rad [Dev Bootcamp Chicago](http://devbootcamp.com/) grads.
 
 * Isaac Noda - [LinkedIn](https://www.linkedin.com/profile/view?id=344664589) | [GitHub](https://github.com/inoda)
 * Joseph Timmer - [LinkedIn](https://www.linkedin.com/in/jtimmer89) | [GitHub](https://github.com/jtimmer89)
-* Samuel Spread - [Google+](https://plus.google.com/117925567488555774987/) | [GitHub](https://github.com/sspread)
+* Samuel Spread - [LinkedIn](https://www.linkedin.com/profile/view?id=68221986&trk) | [GitHub](https://github.com/sspread)
 * Henry Perschk - [Henry Perschk](https://www.linkedin.com/profile/view?id=76929566) | [GitHub](https://github.com/henry-p)

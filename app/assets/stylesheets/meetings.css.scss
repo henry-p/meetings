@@ -51,6 +51,19 @@ a.label-default.active {
   text-decoration: none;
 }
 
+#invitees {
+  position: absolute;
+  right: 25px;
+  top: 150px;
+}
+
+.dragon-drop {
+  padding: 3px;
+  border: 1px solid green;
+  list-style-type: none;
+  margin: 8px;
+}
+
 #notes {
   width: 300px;
   text-align: left;
