@@ -1,4 +1,3 @@
-<label for="meeting_time_zone">Time zone</label><br>
 <select id="meeting_time_zone" name="meeting[time_zone]">
     <option disabled="disabled" value="">-------------</option>
     <option <%= "selected" if @meeting.time_zone == "Hawaii" %> value="Hawaii">(GMT-10:00) Hawaii</option>

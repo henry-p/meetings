@@ -16,6 +16,7 @@ class User < ActiveRecord::Base
   has_many :agenda_topics, foreign_key: :creator_id
 
   validates :email, presence: true, uniqueness: true
+  validates_format_of :email, with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i
 
   def google_api_client
     client = Google::APIClient.new
