@@ -1,5 +1,6 @@
 function Meeting() {
-  this.allEmails = [];
+  this.allContacts = [];
+  this.selectedContacts = [];
   this.selectedEmails = [];
 }
 
@@ -39,7 +40,7 @@ function contactsMultiSearchBox() {
     })
   // Maka div a 'multisearch' box
   .multisearch({
-    source: meeting.allEmails,
+    source: meeting.allContacts,
 
     maxShowOptions: 100,
 
@@ -114,13 +115,12 @@ function getAllContacts() {
     type: "GET",
     url: "/profile/contacts",
     success: function(response) {
-      // meeting.allEmails = response;
       $.each(response, function(index, element) {
-        var tmp = {
+        var contact = {
           full_name: element["full_name"] === null ? "no name" : element["full_name"],
           email: element["email"] === null ? "no email" : element["email"]
         };
-        meeting.allEmails.push(tmp);
+        meeting.allContacts.push(contact);
       });
     }
   });
@@ -140,7 +140,7 @@ function makeDateTimePicker(picker1, picker2, callback) {
 }
 
 function submitFormEventHandler() {
-  var form = $("form#new_meeting");
+  var form = $("form#new_meeting, form.edit_meeting");
   form.submit(function(event) {
     // var formData = prepareFormData(getFormData());
 
@@ -148,12 +148,12 @@ function submitFormEventHandler() {
       type: 'hidden',
       id: "attendees",
       name: "attendees",
-      value: prepareSelectedContacts()
+      value: prepareSelectedEmails()
     }));
   });
 }
 
-function prepareSelectedContacts() {
+function prepareSelectedEmails() {
   var emails = "";
   for (var i = 0; i < meeting.selectedEmails.length; i++) {
     emails += meeting.selectedEmails[i] + ",";
@@ -215,7 +215,7 @@ Array.prototype.removeByValue = function() {
 
 function fillContactsBoxWithAttendees() {
   for (var i = 0; i < meeting.selectedEmails.length; i++) {
-    $('[data-control="multisearch"]').children().multisearch('add', meeting.selectedEmails[i]);
+    $('[data-control="multisearch"]').children().multisearch('add', meeting.selectedContacts[i]);
   }
 }
 
@@ -226,11 +226,14 @@ function getInvitedContacts(path) {
     url: path,
     success: function(response) {
       $.each(response, function(index, element) {
-        var tmp = {
+        var contact = {
           full_name: element["full_name"] === null ? "no name" : element["full_name"],
           email: element["email"] === null ? "no email" : element["email"]
         };
-        meeting.selectedEmails.push(tmp);
+        meeting.selectedContacts.push(contact);
+
+        var email = element["email"] === null ? "no email" : element["email"];
+        meeting.selectedEmails.push(email);
       });
     }
   });
