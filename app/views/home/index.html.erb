@@ -1,23 +1,35 @@
-<div id='logo'><%= image_tag('logo.jpg') %></div>
 <div id='top-banner'>
 </div>
 
 <div id='sign-in-banner'>
   <div class='container'>
     <div id='about'>
+
+      <br><br>
+
       <h1>Meetings suck.</h1>
+
+      <br><br>
+
       <p>
         <b>Standup</b> helps make them better. We believe collaborative preparation allows for more effective meetings. Share what you think should be discussed in advance and get clear feedback from other meeting members. Spend less time documenting and organizing information and more time solving problems.   
       </p>
+
+      <br>
+
     </div>
 
-    <% if flash[:error] %>
-      <p class='error'><%= flash[:error] %></p>
+    <% flash.each do |name, msg| %>
+      <%= content_tag :div, msg, class: "flash #{name}" %>
     <% end %>
 
     <div id='sign-in'>
       <%= link_to image_tag('google.png', :onmouseover => "this.src='#{asset_path('google-hover.png')}'", :onmouseout => "this.src='#{asset_path('google.png')}'"), '/auth/google_oauth2' %>
     </div>
+
+    <br><br>
+
+    <div id='meeting-img'><%= image_tag('meeting.png') %></div>
   </div>
 </div>
 

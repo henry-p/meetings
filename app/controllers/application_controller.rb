@@ -29,4 +29,14 @@ class ApplicationController < ActionController::Base
       redirect_to meeting_path(@meeting)
     end
   end
+
+  def google_api_call_success?(response)
+    return true if response.status.to_s =~ /20/
+    false
+  end
+
+  def google_api_call_404(response)
+    return true if response.status.to_s =~ /40/
+    false
+  end  
 end
