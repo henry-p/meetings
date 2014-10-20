@@ -62,7 +62,7 @@ class Meeting < ActiveRecord::Base
 
   def close_meeting_and_send_email
     self.update(is_done: true)
-    SendGridWorker.perform_async(self)
+    SendGridWorker.perform_async(self.id)
   end
 
   def to_google_time_zone
