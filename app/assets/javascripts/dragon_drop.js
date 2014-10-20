@@ -9,14 +9,6 @@ function makeDraggable(els) {
     revert: "invalid"
   });
 }
-// function displayPlaceholder(actionable) {
-//   var list = $(actionable).children('.responsible-users-list')
-//   var assignees = $(list).children(".dragon-drop")
-//   var assigneesCount = $(assignees).length
-//   if (assigneesCount > 0) {
-//     $(list).children('.placeholder').remove();
-//   }
-// }
 
 function makeDroppable(els) {
   var draggable

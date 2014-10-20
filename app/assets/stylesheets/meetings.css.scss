@@ -12,7 +12,10 @@ input[data-role="input"] {
   padding: 3px 4px;
   margin: 3px;
 }
-
+#notes p {
+  margin: 0px;
+  line-height: 1.2em;
+}
 input.error {
   color: #a7a7a7;
 }

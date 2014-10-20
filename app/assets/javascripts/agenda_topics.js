@@ -10,15 +10,7 @@ $(document).ready(function() {
     });
   });
   
-  $('body').on('click', '#new-agenda-link',function() {
-    event.preventDefault();
-    $("#new-agenda-form").show();
-  });
-  $("body").on("submit", "#new-agenda-form", function() {
-    $(this).hide();
-  });
-
-  $("#new-agenda-form").on('ajax:beforeSend', function(event, xhr) {
+  $("#new-agenda-topic").on('ajax:beforeSend', function(event, xhr) {
     var agendaContent = $("#new-agenda-form #content_").val();
     if (agendaContent.trim().length < 1) {
       xhr.abort();

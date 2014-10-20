@@ -79,7 +79,6 @@ class MeetingsController < ApplicationController
 			@meeting.update(is_done: true)
 			return redirect_to root_path
 		end
-
 		
 		if Meeting.empty_datetime(params)
 			@meeting = Meeting.new(meeting_params_without_time)
@@ -118,6 +117,7 @@ class MeetingsController < ApplicationController
 
   def update_notes
     notes = params[:notes]
+    notes.strip!
     notes.gsub!(/(<br>|<p>|<div>)/, "\n")
     notes = strip_tags(notes)
     notes.strip!
@@ -125,8 +125,6 @@ class MeetingsController < ApplicationController
     @meeting.update_attributes(notes: notes)
     render 'update_notes'
   end
-
-
 
 	private
 	
@@ -137,7 +135,6 @@ class MeetingsController < ApplicationController
 	def find_meeting_by_id
 		@meeting = Meeting.find_by_id(params[:id])
 	end
-
 
 	def meeting_params_without_time
 		if params[:meeting][:start_time].empty? && params[:meeting][:end_time].empty?

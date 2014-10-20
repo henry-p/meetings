@@ -16,10 +16,13 @@
   </div>
 
    <% if !@meeting.is_done %>
-    <%= link_to "Add agenda item", new_meeting_agenda_topic_path(@meeting), remote:true, id: "new-agenda-link" %>
-   <% end %>
 
-  <div id="new-agenda-form"></div>
+    <%= form_for [@meeting, AgendaTopic.new], remote: true do |f| %>
+      <%= f.text_field :content %>
+    <%= f.submit "Send" %>
+    <% end %>
+
+   <% end %>
 
   <h2>Actionables</h2>
   <div id="actionables">
@@ -27,7 +30,7 @@
   </div>
 
   <% if !@meeting.is_done %>
-    <%= form_for [@meeting, Actionable.new], :html => {:remote => true} do |f| %>
+    <%= form_for [@meeting, Actionable.new], remote: true do |f| %>
       <%= f.text_field :content %>
       <%= f.submit "Send" %>
     <% end %> 
