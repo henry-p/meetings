@@ -1,4 +1,4 @@
 <% publish_to "/meetings/#{@meeting.id}" do %>
-  $('.responsible-user#<%= @user.id %>').fadeOut(function() {
+  $('.responsible-user#<%= @user.id %>').fadeOut(200, function() {
     $(this).remove()});
 <% end %>

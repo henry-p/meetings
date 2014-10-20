@@ -58,17 +58,30 @@ a.label-default.active {
 }
 
 .dragon-drop {
+  position: relative;
   cursor: move;
   padding: 3px;
   border: 1px solid green;
   list-style-type: none;
-  margin: 8px;
+  margin: 8px auto;
+  width: 220px;
 }
 
 .responsible-user{
   cursor: auto;
 }
+.placeholder {
+  list-style-type: none;
+  margin: 0px;
+  color: #888;
+}
 
+#invitees-list, .responsible-users-list{
+  padding: 0px;
+  margin: 0px;
+  margin: auto;
+  text-align: center;
+}
 #notes {
   width: 300px;
   text-align: left;

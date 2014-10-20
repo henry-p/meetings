@@ -9,8 +9,9 @@
     <%= link_to("Delete", meeting_actionable_path(actionable.meeting, actionable), class: "delete_actionable", method: :delete, remote: true, data: {confirm: "are u sure bro"}) %>
   <% end %>
 
-  <div id = "responsible-users-list">
+  <ul class = "responsible-users-list">
+    <li class="placeholder">Drag members to assign</li>
     <%= render actionable.responsible_users, actionable: actionable %>
-  </div>
+  </class>
 
 </div>

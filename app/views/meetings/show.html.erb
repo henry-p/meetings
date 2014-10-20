@@ -21,9 +21,9 @@
 
   <div id="new-agenda-form"></div>
 
-  <div id="actionables">
   <h2>Actionables</h2>
-    <%= render @meeting.actionables.order('updated_at DESC') %>
+  <div id="actionables">
+    <%= render @meeting.actionables.order('created_at ASC') %>
   </div>
 
   <% if !@meeting.is_done %>

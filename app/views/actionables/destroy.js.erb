@@ -1,4 +1,4 @@
 <% publish_to "/meetings/#{@meeting.id}" do %>
-  $('#<%= @actionable.id %>.actionable').fadeOut(function() {
+  $('#<%= @actionable.id %>.actionable').fadeOut(200, function() {
     $(this).remove()});
 <% end %>
