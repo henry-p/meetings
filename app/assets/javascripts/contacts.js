@@ -1,16 +1,13 @@
 function startContactLoad() {
-  displayWaitMsg();
-
   var ajax = $.ajax({
     url: '/contacts/start_job',
     type: 'get'
   });
   ajax.success(function(data) {
     if (data.jid) {
+      displayWaitMsg();
       checkOnContacts(data.jid);
-    } else {
-      displaySuccessMsg();
-    }
+    } 
   });
   ajax.fail(function() {
     displayFailureMsg();
