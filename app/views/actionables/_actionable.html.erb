@@ -10,7 +10,9 @@
   <% end %>
 
   <ul class = "responsible-users-list">
-    <li class="placeholder">Drag members to assign</li>
+    <% if !actionable.meeting.is_done %>
+      <li class="placeholder">Drag members to assign</li>
+    <% end %>
     <%= render actionable.responsible_users, actionable: actionable %>
   </class>
 

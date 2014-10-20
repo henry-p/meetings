@@ -2,9 +2,13 @@ class ResponsibilitiesController < ApplicationController
   before_filter :find_goodies
 
   def create
-    @user = User.find_by_id(params[:user_id])
-    @responsibility = Responsibility.new(user_id: params[:user_id], actionable_id: @actionable.id)
-    unless @responsibility.save
+    if !@meeting.is_done
+      @user = User.find_by_id(params[:user_id])
+      @responsibility = Responsibility.new(user_id: params[:user_id], actionable_id: @actionable.id)
+      unless @responsibility.save
+        redirect_to meeting_path(@meeting)
+      end
+    else
       redirect_to meeting_path(@meeting)
     end
   end

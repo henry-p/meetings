@@ -60,16 +60,17 @@ a.label-default.active {
   top: 450px;
 }
 
-.dragon-drop {
+.dragon-drop, .dragon-drop-disabled {
   position: relative;
-  cursor: move;
   padding: 3px;
   border: 1px solid green;
   list-style-type: none;
   margin: 8px auto;
   width: 220px;
 }
-
+.dragon-drop {
+  cursor: move;
+}
 .responsible-user{
   cursor: auto;
 }
