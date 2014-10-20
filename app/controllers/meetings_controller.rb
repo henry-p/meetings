@@ -7,14 +7,17 @@ class MeetingsController < ApplicationController
 		id = params[:id]
 		if id
 			previous_meeting = Meeting.find(id)
-			local_time = Time.now
-
-			@meeting = previous_meeting.dup
-			@meeting.invitees = previous_meeting.invitees
-			day_after_meeting = previous_meeting.start_time + 86400
-			start_time = day_after_meeting < local_time ? local_time : day_after_meeting
-			end_time = start_time + previous_meeting.duration_in_seconds
-			@meeting.update(start_time: start_time, end_time: end_time)
+			if previous_meeting.creator == current_user || previous_meeting.invitees.include?(current_user)
+				local_time = Time.now
+				@meeting = previous_meeting.dup
+				@meeting.invitees = previous_meeting.invitees
+				day_after_meeting = previous_meeting.start_time + 86400
+				start_time = day_after_meeting < local_time ? local_time : day_after_meeting
+				end_time = start_time + previous_meeting.duration_in_seconds
+				@meeting.assign_attributes(start_time: start_time, end_time: end_time)
+			else
+				@meeting = Meeting.new
+			end
 		else
 			@meeting = Meeting.new
 		end
@@ -42,8 +45,8 @@ class MeetingsController < ApplicationController
 			{ full_name: invitee.full_name, email: invitee.email }
 		end
 		respond_to do |format|
-      format.json { render json: contact_data }
-    end
+			format.json { render json: contact_data }
+		end
 	end
 
 	def check_invited
@@ -96,14 +99,14 @@ class MeetingsController < ApplicationController
 			@meeting.close_meeting_and_send_email
 			return redirect_to root_path
 		end
-		
+
 		unsaved_event = @meeting.clone # we only update the db if google calendar gets updated
 
 		response = current_user.update_event(Meeting.event_hash(unsaved_event), @meeting.calendar_event_id)
 		if google_api_call_success?(response)
 			@meeting.update(meeting_params)
 			@meeting.invites.destroy_all
-			Invite.create_invites(current_user, params[:attendees], @meeting)			
+			Invite.create_invites(current_user, params[:attendees], @meeting)
 			redirect_to root_path, flash: { success: "Your event was successfully edited." }
 		else
 			flash.now[:error] = "Google was not able to update your event. Please try again."
@@ -123,19 +126,19 @@ class MeetingsController < ApplicationController
 		end
 	end
 
-  def update_notes
-    @meeting = Meeting.find_by_id(params[:id])
-    notes = params[:notes]
-    notes.gsub!(/(<br>|<p>|<div>)/, "\n")
-    notes = strip_tags(notes)
-    notes.strip!
-    notes.gsub!(/(\n+\s*){3,}/, "\n\n")
-    @meeting.update_attributes(notes: notes)
-    render 'update_notes'
-  end
+	def update_notes
+		@meeting = Meeting.find_by_id(params[:id])
+		notes = params[:notes]
+		notes.gsub!(/(<br>|<p>|<div>)/, "\n")
+		notes = strip_tags(notes)
+		notes.strip!
+		notes.gsub!(/(\n+\s*){3,}/, "\n\n")
+		@meeting.update_attributes(notes: notes)
+		render 'update_notes'
+	end
 
 	private
-	
+
 	def meeting_params
 		Meeting.format_params(params.require(:meeting).permit(:title, :description, :location, :start_time, :end_time, :time_zone, :notes))
 	end
