@@ -18,6 +18,7 @@ class UsersController < ApplicationController
         render json: { jid: job_id } and return
       else
         render json: { jid: current_user.contacts_jid } and return
+      end
     else
       render json: { jid: false } and return
     end
