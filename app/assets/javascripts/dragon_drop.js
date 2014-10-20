@@ -2,6 +2,7 @@ $(document).ready(function() {
   $('#invitees .dragon-drop').draggable({helper: "clone"});
 
   $('body').on('dragstart', '.dragon-drop', function() {
+    // $(this).css({width:this.width()})
     $('.actionable').droppable({
       drop: function( event, ui ) {
         $('.draggable').draggable('disabled');
