@@ -126,14 +126,4 @@ class MeetingsController < ApplicationController
 	def meeting_params
 		Meeting.format_params(params.require(:meeting).permit(:title, :description, :location, :start_time, :end_time, :time_zone, :notes))
 	end
-
-	def meeting_params_without_time
-		if params[:meeting][:start_time].empty? && params[:meeting][:end_time].empty?
-			params.require(:meeting).permit(:title, :description, :location, :start_time, :end_time, :time_zone, :notes)
-		elsif params[:meeting][:start_time].empty?
-			Meeting.format_params(params.require(:meeting).permit(:title, :description, :location, :end_time, :time_zone, :notes))
-		else params[:meeting][:end_time].empty?
-			Meeting.format_params(params.require(:meeting).permit(:title, :description, :location, :start_time, :time_zone, :notes))
-		end
-	end
 end
