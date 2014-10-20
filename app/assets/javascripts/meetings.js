@@ -126,7 +126,7 @@ function getAllContacts() {
   });
 }
 
-function makeDateTimePicker(picker1, picker2, callback) {
+function makeDateTimePicker(picker1, picker2) {
   $(picker1)
     .datetimepicker()
     .on("dp.change", function(e) {
