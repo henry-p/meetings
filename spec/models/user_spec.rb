@@ -84,7 +84,19 @@ describe User do
       user = User.new(first_name: "Isaac", email: "isaacnoda@yahoo.com")
       expect(user.full_name_or_email).to eq "isaacnoda@yahoo.com"
     end
-  end     
+  end    
+
+  describe "#full_name" do 
+    it 'returns the full name if possible' do
+      user = User.new(first_name: "Isaac", last_name: "Noda")
+      expect(user.full_name).to eq "Isaac Noda"      
+    end
+
+    it 'returns nil if not possible' do
+      user = User.new()
+      expect(user.full_name).to eq nil
+    end
+  end
 end
 
 
