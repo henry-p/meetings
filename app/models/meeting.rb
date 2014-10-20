@@ -67,12 +67,12 @@ class Meeting < ActiveRecord::Base
   end
 
   def empty_title?
-    self.title.empty?
+  	!self.title || self.title.empty? 
   end
 
   def close_meeting_and_send_email
     self.update(is_done: true)
-    SendGridMailer.send_summary_emails(self).deliver
+    SendGridWorker.perform_async(self)
   end
 
   def to_google_time_zone

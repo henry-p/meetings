@@ -127,11 +127,7 @@ function makeDateTimePicker(picker1, picker2) {
   $(picker1)
     .datetimepicker()
     .on("dp.change", function(e) {
-      var today = new Date();
-      today = (new Date(today.getTime() - 60000));
-      $(picker1).data("DateTimePicker").setMinDate(today);
-      $(picker2).data("DateTimePicker").setDate(new Date(new Date(e.date._i).getTime() + 120000));
-      $(picker2).data("DateTimePicker").setMinDate(new Date(new Date(e.date._i).getTime() + 120000));
+      $(picker2).data("DateTimePicker").setMinDate(e.date);
     });
   $(picker2)
     .datetimepicker()

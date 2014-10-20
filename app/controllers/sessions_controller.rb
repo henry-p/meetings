@@ -26,9 +26,14 @@ class SessionsController < ApplicationController
       token_expires_at: user_credentials['expires_at']
       )
 
-    user.fetch_contacts
+    if user.token
+      job_id = GoogleWorker.perform_async(user.id)
+    end
 
     session[:user_id] = user.id
     redirect_to profile_path
   end
 end
+
+
+

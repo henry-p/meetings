@@ -9,4 +9,6 @@ class UsersController < ApplicationController
       format.json { render json: contacts }
     end
   end
+
+  
 end
