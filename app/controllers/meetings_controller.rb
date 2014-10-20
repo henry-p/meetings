@@ -4,7 +4,12 @@ class MeetingsController < ApplicationController
 	include ActionView::Helpers::SanitizeHelper
 
 	def new
-		@meeting = Meeting.new
+		id = params[:id]
+		if id
+			@meeting = Meeting.find(id)
+		else
+			@meeting = Meeting.new
+		end
 	end
 
 	def show
