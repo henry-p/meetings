@@ -53,6 +53,8 @@ gem 'normalize-rails'
 gem "font-awesome-rails"
 gem 'rails_12factor', group: :production
 
+gem 'sidekiq', '~> 2.17.0'
+
 
 group :development, :test do
   gem 'timecop'
