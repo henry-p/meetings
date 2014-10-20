@@ -1,7 +1,7 @@
 <h1>INVITED PAGE</h1>
 
-<% if flash[:error] %>
-  <%= flash[:error] %>
+<% flash.each do |name, msg| %>
+  <%= content_tag :div, msg, class: "flash #{name}" %>
 <% end %>
 
 <%= form_tag meeting_invited_path(@meeting), method: :get do %>

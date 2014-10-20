@@ -5,6 +5,10 @@ Rails.application.routes.draw do
   delete "/logout" => "sessions#destroy", as: "logout"
 
   get "/profile" => "users#show", as: :profile
+  get "/profile/contacts" => "users#contacts"
+
+  get "/contacts/start_job" => "users#init_contacts_load"
+  get "/contacts/job_status" => "users#check_on_contacts_loading"
 
   resources :meetings, except: :index do
     resources :agenda_topics do
@@ -17,9 +21,8 @@ Rails.application.routes.draw do
     end
 
     get "/invited" => "meetings#check_invited"
+    get "/attendees" => "meetings#attendees"
   end
-  
-  get "/contacts" => "meetings#contacts"
 
   match "/meetings/:id/update_notes" => "meetings#update_notes", as: :update_notes, via: :PATCH
 end

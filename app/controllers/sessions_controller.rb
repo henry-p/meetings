@@ -8,6 +8,7 @@ class SessionsController < ApplicationController
 
   def destroy
     $redis.del(current_user.id.to_s)
+    # current_user.update(contacts_jid: '')
     session.clear
     redirect_to root_url
   end
@@ -26,9 +27,10 @@ class SessionsController < ApplicationController
       token_expires_at: user_credentials['expires_at']
       )
 
-    user.load_contacts
-
     session[:user_id] = user.id
-    redirect_to profile_path
+    redirect_to profile_path 
   end
 end
+
+
+

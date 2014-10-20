@@ -1,2 +1,7 @@
-<h1>NEW MEETING</h1>
+<% if @meeting.title %>
+  <h1>Follow up: <%= @meeting.title %></h1>
+<% else %>
+  <h1>New Meeting</h1>
+<% end %>
+
 <%= render "meeting_form" %>

@@ -1,0 +1,7 @@
+<div class="container">
+    <div class="row">
+        <div class='col-sm-6' id='datetimepicker_start'>
+            <input type='datetime' class="form-control" name="meeting[start_time]" value="<%= @meeting.format_to_local_time(@meeting.start_time) %>"/>
+        </div>
+    </div>
+</div>

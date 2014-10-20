@@ -1,0 +1,12 @@
+<select id="meeting_time_zone" name="meeting[time_zone]" class="form-control">
+    <option disabled="disabled" value="">-------------</option>
+    <option <%= "selected" if @meeting.time_zone == "Hawaii" %> value="Hawaii">(GMT-10:00) Hawaii</option>
+    <option <%= "selected" if @meeting.time_zone == "Alaska" %> value="Alaska">(GMT-09:00) Alaska</option>
+    <option <%= "selected" if @meeting.time_zone == "Pacific Time (US & Canada)" %> value="Pacific Time (US &amp; Canada)">(GMT-08:00) Pacific Time (US &amp; Canada)</option>
+    <option <%= "selected" if @meeting.time_zone == "Arizona" %> value="Arizona">(GMT-07:00) Arizona</option>
+    <option <%= "selected" if @meeting.time_zone == "Mountain Time (US & Canada)" %> value="Mountain Time (US &amp; Canada)">(GMT-07:00) Mountain Time (US &amp; Canada)</option>
+    <option <%= "selected" if @meeting.time_zone == "Central Time (US & Canada)" %> value="Central Time (US &amp; Canada)">(GMT-06:00) Central Time (US &amp; Canada)</option>
+    <option <%= "selected" if @meeting.time_zone == "Eastern Time (US & Canada)" %> value="Eastern Time (US &amp; Canada)">(GMT-05:00) Eastern Time (US &amp; Canada)</option>
+    <option <%= "selected" if @meeting.time_zone == "Indiana (East)" %> value="Indiana (East)">(GMT-05:00) Indiana (East)</option>
+    <option disabled="disabled" value="">-------------</option>
+</select>

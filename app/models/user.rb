@@ -16,6 +16,7 @@ class User < ActiveRecord::Base
   has_many :agenda_topics, foreign_key: :creator_id
 
   validates :email, presence: true, uniqueness: true
+  validates_format_of :email, with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i
 
   def google_api_client
     client = Google::APIClient.new
@@ -66,7 +67,7 @@ class User < ActiveRecord::Base
     (self.token_expires_at - Time.now.to_i) / 60 <= 30
   end
 
-  def load_contacts
+  def fetch_contacts
     google_contacts_user = GoogleContactsApi::User.new(self.oauth2_token_object)
 
     contact_data = google_contacts_user.contacts.map do |contact|
@@ -78,11 +79,23 @@ class User < ActiveRecord::Base
     $redis.set("#{self.id}", contact_data)
   end
 
+  def load_contacts_from_redis
+    JSON.parse($redis.get(self.id))
+  end
+
   def full_name_or_email
     if self.first_name && self.last_name
       "#{self.first_name} #{self.last_name}"
     else
       "#{self.email}"
+    end
+  end
+
+  def full_name
+    if self.first_name && self.last_name
+      "#{self.first_name} #{self.last_name}"
+    else
+      nil
     end
   end
 end

@@ -1,27 +1,12 @@
 function Meeting() {
-  this.emails = [];
+  this.allContacts = [];
+  this.selectedContacts = [];
+  this.selectedEmails = [];
 }
 
 var meeting = new Meeting();
 
 function contactsMultiSearchBox() {
-  var localData = [];
-  $.ajax({
-    async: false,
-    type: "GET",
-    url: "/contacts",
-    success: function(response) {
-      // localData = response;
-      $.each(response, function(index, element) {
-        var tmp = {
-          full_name: element["full_name"] === null ? "no name" : element["full_name"],
-          email: element["email"] === null ? "no email" : element["email"]
-        };
-        localData.push(tmp);
-      });
-    }
-  });
-
   // Make 'Mustache Syntax' Underscore's default script syntax
   _.templateSettings = {
     interpolate: /\{\{\=(.+?)\}\}/g,
@@ -55,7 +40,7 @@ function contactsMultiSearchBox() {
     })
   // Maka div a 'multisearch' box
   .multisearch({
-    source: localData,
+    source: meeting.allContacts,
 
     maxShowOptions: 100,
 
@@ -75,10 +60,7 @@ function contactsMultiSearchBox() {
     },
 
     adding: function(event, ui) {
-      // ANY EMAIL:
-      var validater = /^(?:[^,]+@[^,/]+\.[^asasd,/]+|)$/;
-      // ONLY @GMAIL.COM
-      // var validater = new RegExp('^(?:[^,]+@gmail.com)$');
+      var validater = /^([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x22([^\x0d\x22\x5c\x80-\xff]|\x5c[\x00-\x7f])*\x22)(\x2e([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x22([^\x0d\x22\x5c\x80-\xff]|\x5c[\x00-\x7f])*\x22))*\x40([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x5b([^\x0d\x5b-\x5d\x80-\xff]|\x5c[\x00-\x7f])*\x5d)(\x2e([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x5b([^\x0d\x5b-\x5d\x80-\xff]|\x5c[\x00-\x7f])*\x5d))*$/;
 
       $(this).find('input').removeClass('error');
       if (ui.notfound) {
@@ -90,11 +72,11 @@ function contactsMultiSearchBox() {
     },
 
     added: function(event, ui) {
-      meeting.emails.push(ui.data.email);
+      meeting.selectedEmails.push(ui.data.email);
     },
 
     removed: function(event, ui) {
-      meeting.emails.removeByValue(ui.data.email);
+      meeting.selectedEmails.removeByValue(ui.data.email);
     },
 
     // Popover box
@@ -124,6 +106,23 @@ function contactsMultiSearchBox() {
   });
 }
 
+function getAllContacts() {
+  $.ajax({
+    async: false,
+    type: "GET",
+    url: "/profile/contacts",
+    success: function(response) {
+      $.each(response, function(index, element) {
+        var contact = {
+          full_name: element["full_name"] === null ? "no name" : element["full_name"],
+          email: element["email"] === null ? "no email" : element["email"]
+        };
+        meeting.allContacts.push(contact);
+      });
+    }
+  });
+}
+
 function makeDateTimePicker(picker1, picker2) {
   $(picker1)
     .datetimepicker()
@@ -138,7 +137,7 @@ function makeDateTimePicker(picker1, picker2) {
 }
 
 function submitFormEventHandler() {
-  var form = $("form#new_meeting");
+  var form = $("form#new_meeting, form.edit_meeting");
   form.submit(function(event) {
     // var formData = prepareFormData(getFormData());
 
@@ -146,15 +145,15 @@ function submitFormEventHandler() {
       type: 'hidden',
       id: "attendees",
       name: "attendees",
-      value: getContactsData()
+      value: prepareSelectedEmails()
     }));
   });
 }
 
-function getContactsData() {
+function prepareSelectedEmails() {
   var emails = "";
-  for (var i = 0; i < meeting.emails.length; i++) {
-    emails += meeting.emails[i] + ",";
+  for (var i = 0; i < meeting.selectedEmails.length; i++) {
+    emails += meeting.selectedEmails[i] + ",";
   }
   return emails.substring(0, emails.length - 1);
 }
@@ -210,3 +209,29 @@ Array.prototype.removeByValue = function() {
   }
   return this;
 };
+
+function fillContactsBoxWithAttendees() {
+  for (var i = 0; i < meeting.selectedEmails.length; i++) {
+    $('[data-control="multisearch"]').children().multisearch('add', meeting.selectedContacts[i]);
+  }
+}
+
+function getInvitedContacts(path) {
+  $.ajax({
+    async: false,
+    type: "GET",
+    url: path,
+    success: function(response) {
+      $.each(response, function(index, element) {
+        var contact = {
+          full_name: element["full_name"] === null ? "no name" : element["full_name"],
+          email: element["email"] === null ? "no email" : element["email"]
+        };
+        meeting.selectedContacts.push(contact);
+
+        var email = element["email"] === null ? "no email" : element["email"];
+        meeting.selectedEmails.push(email);
+      });
+    }
+  });
+}

@@ -1,6 +1,6 @@
 [ ![Codeship Status for inoda/meetings](https://www.codeship.io/projects/ae492720-3981-0132-a05a-4664fd0eaf1d/status)](https://www.codeship.io/projects/42219)
-
 # [Standup](http://meetingz.herokuapp.com/)
+
 #### Version 1.0 _beta_
 ###Meetings suck.
 **Standup** helps make them better. We believe collaborative preparation allows for more effective meetings. Share what you think should be discussed in advance and get clear feedback from other meeting members. Spend less time documenting and organizing information and more time solving problems.
@@ -32,20 +32,20 @@ To contribute to this project or even just give us feedback (we love feedback), 
 * Google API credentials 
 
 ##### Config
-* Create an initializer file that sets ENV['CLIENT_ID'], ENV['CLIENT_SECRET'], and ENV['REDIRECT_URI'] to match your Google API credentials.
-* To utilize WebSockets, deploy a Heroku app that just runs a [PrivatePub](https://github.com/ryanb/private_pub) Faye web server, then create an initializer file that holds your PrivatePub secret as ENV['FAYE_TOKEN']. Or, contact one of our team members and we might be able to help you link up to our PrivatePub server.
-* Create an an initializer file that sets PrivatePub.config[:secret_token] to ENV['FAYE_TOKEN'] and PrivatePub.config[:server] to your PrivatePub server's url
+* Create an initializer file that sets `ENV['CLIENT_ID']`, `ENV['CLIENT_SECRET']`, and `ENV['REDIRECT_URI']` to match your Google API credentials.
+* To utilize WebSockets, deploy a Heroku app that just runs a [PrivatePub](https://github.com/ryanb/private_pub) Faye web server, then create an initializer file that holds your PrivatePub secret as `ENV['FAYE_TOKEN']`. Or, contact one of our team members and we might be able to help you link up to our PrivatePub server.
+* Create an an initializer file that sets `PrivatePub.config[:secret_token]` to `ENV['FAYE_TOKEN']` and `PrivatePub.config[:server]` to your PrivatePub server's url
 
 ##### Get Going
-* Run 'bundle install'
-* Run 'bundle exec rake db:create' and 'bundle exec rake db:migrate'
-* Start your Redis server on port 6379
-* Run 'rails s'
-* Go to 'http://localhost:3000/' in your browser
+* Run `bundle install`
+* Run `bundle exec rake db:create` and `bundle exec rake db:migrate`
+* Start your Redis server on port 6379 with `redis-server`
+* Run `rails s`
+* Go to`'http://localhost:3000/` in your browser
 
 
 ### The Standup Team
-We are four super-rad [Dev Bootcamp Chicago](http://devbootcamp.com/) grads.
+We are four highly committed [Dev Bootcamp Chicago](http://devbootcamp.com/) grads.
 
 * Isaac Noda - [LinkedIn](https://www.linkedin.com/profile/view?id=344664589) | [GitHub](https://github.com/inoda)
 * Joseph Timmer - [LinkedIn](https://www.linkedin.com/in/jtimmer89) | [GitHub](https://github.com/jtimmer89)

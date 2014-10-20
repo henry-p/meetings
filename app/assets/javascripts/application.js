@@ -21,15 +21,26 @@
 //= require moment.min
 //= require bootstrap-datetimepicker.min
 $(function() {
-  var current_path = window.location.pathname;
-  if (current_path === "/meetings/new" || current_path === "/meetings/edit") {
+  var current_path = window.location.pathname + location.search;
+  if (current_path === "/meetings/new" || /\/meetings\/\d+\/edit/.test(current_path) || /\/meetings\/new\?id=\d+/.test(current_path) || current_path === '/meetings') {
+    getAllContacts();
     contactsMultiSearchBox();
     makeWholeBoxClickable();
     makeDateTimePicker(datetimepicker_start, datetimepicker_end);
     submitFormEventHandler();
   }
 
+  if (/\/meetings\/\d+\/edit/.test(current_path) || /\/meetings\/new\?id=\d+/.test(current_path)) {
+    console.log("/meetings/" + /\d+/.exec(current_path)[0] + "/attendees")
+    getInvitedContacts("/meetings/" + /\d+/.exec(current_path)[0] + "/attendees");
+    fillContactsBoxWithAttendees();
+  }
+
   if (/\/meetings\/\d+/.test(current_path)) {
     showNameOnHover();
+  }
+
+  if (current_path === "/profile") {
+    startContactLoad();
   }
 });
