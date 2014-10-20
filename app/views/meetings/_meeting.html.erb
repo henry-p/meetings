@@ -1,9 +1,20 @@
-<%= link_to "Edit", edit_meeting_path(meeting) %> |
-<%= link_to "Delete", meeting_path(meeting), method: :delete %>
-<%= Meeting.format_timestamp(meeting.start_time) %>
-<%= meeting.duration %> hours
-<%= link_to "#{meeting.title}", meeting_path(meeting) %>
-<% if meeting.is_done %>
-  <span id="meeting-finished">Closed</span>
-<% end %>
-<br>
+  <div class="card">
+    <div class="card-header">
+      <%= link_to meeting.title, meeting_path(meeting) %> - <%= link_to "Edit", edit_meeting_path(meeting) %> | <%= link_to "Delete", meeting_path(meeting), method: :delete %>
+      <% if meeting.is_done %>
+			  - <span id="meeting-finished">Closed</span>
+			<% end %>
+    </div>
+    <div class="card-copy">
+      <p><%= meeting.description %></p>
+      <p><%= Meeting.format_timestamp(meeting.start_time) %></p>
+    </div>
+    <div class="card-stats">
+      <ul>
+        <li><%= meeting.invites.count %><span>Invites</span></li>
+        <li><%= meeting.location %><span>Location</span></li>
+        <li><%= meeting.duration %> hours<span>Duration</span></li>
+      </ul>
+    </div>
+  </div>
+

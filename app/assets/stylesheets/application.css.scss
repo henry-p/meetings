@@ -1,3 +1,10 @@
+@import "bourbon";
+@import "base/grid-settings";
+@import "neat";
+@import "base/base";
+@import "refills/refills_dir";
+@import "layouts/layouts_dir";
+
 /*
  * 
  * http://www.htmlhexcolor.com/be2f1f
@@ -5,7 +12,6 @@
  *
  *= require normalize-rails
  *= require font-awesome
- *= require_tree .
  *= require_self
  *= require bootstrap
  *= require bootstrap-datetimepicker.min
@@ -40,7 +46,7 @@ body {
 }
 
 #header-google-img {
-  width:30px;
+  width:40px;
   border-radius:10%;
 }
 
@@ -90,6 +96,7 @@ header {
 
 h1, h2 {
   text-align: center;
+  padding: 10px;
 }
 
 

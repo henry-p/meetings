@@ -1,0 +1,17 @@
+<header class="centered-navigation">
+  <div class="centered-navigation-wrapper">
+    <a href="javascript:void(0)" class="mobile-logo">
+      <%= image_tag current_user.image_path, id: 'header-google-img' %>
+    </a>
+    <a href="" class="centered-navigation-menu-button">MENU</a>
+    <ul class="centered-navigation-menu">
+      <li class="nav-link"><%= link_to "Profile", profile_path  %></li>
+      <li class="nav-link logo">
+        <a href="javascript:void(0)" class="logo">
+          <img src="http://2.bp.blogspot.com/-wgZ1P_NC_yk/Ufkf64JEozI/AAAAAAAAHtE/9nORsxbxs-w/s1600/front_angle.jpg">
+        </a>
+      </li>
+      <li class="nav-link"><%= link_to "Sign out", logout_path, method: :delete  %></li>
+    </ul>
+  </div>
+</header>
