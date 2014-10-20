@@ -126,11 +126,7 @@ class MeetingsController < ApplicationController
     render 'update_notes'
   end
 
-	def assign_actionable
 
-
-		# render partial: "assignments"
-	end
 
 	private
 	

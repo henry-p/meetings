@@ -5,11 +5,12 @@
     <div class = "editable"><%= actionable.content %></div>
   <% end %>
 
-<ul id = "responsible-users-list">
-  <%= render actionable.responsible_users %>
-</ul>
-
   <% if !actionable.meeting.is_done %>
     <%= link_to("Delete", meeting_actionable_path(actionable.meeting, actionable), class: "delete_actionable", method: :delete, remote: true, data: {confirm: "are u sure bro"}) %>
   <% end %>
+
+  <div id = "responsible-users-list">
+    <%= render actionable.responsible_users %>
+  </div>
+
 </div>
