@@ -17,9 +17,10 @@ class UsersController < ApplicationController
   end
 
   def init_contacts_load
-    if current_user.token && !$redis.exists(current_user.id.to_s) 
+    if current_user.token && !$redis.exists(current_user.google_contacts_key) 
       if current_user.contacts_jid.nil?
         job_id = GoogleWorker.perform_async(current_user.id)
+        $redis.set("workers:#{job_id}", "working")
         current_user.update(contacts_jid: job_id)
         render json: { jid: job_id } and return
       else
