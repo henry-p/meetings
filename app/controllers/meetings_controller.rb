@@ -102,6 +102,11 @@ class MeetingsController < ApplicationController
 			return redirect_to profile_archive_path
 		end
 
+		if params[:start]
+			@meeting.start
+			return redirect_to meeting_path(@meeting)
+		end
+
 		unsaved_event = @meeting.clone # we only update the db if google calendar gets updated
 
 		response = current_user.update_event(Meeting.event_hash(unsaved_event), @meeting.calendar_event_id)

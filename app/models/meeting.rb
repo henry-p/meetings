@@ -99,4 +99,8 @@ class Meeting < ActiveRecord::Base
   def format_to_local_time(utc_time)
     utc_time.strftime('%m/%d/%Y %I:%M %p') unless utc_time.nil?
   end
+
+  def start
+    self.update(is_live: true)
+  end
 end
