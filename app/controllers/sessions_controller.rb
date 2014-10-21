@@ -7,8 +7,7 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    $redis.del(current_user.id.to_s)
-    current_user.update(contacts_jid: nil) 
+    current_user.logout
     session.clear
     redirect_to root_url
   end

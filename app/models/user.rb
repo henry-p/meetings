@@ -70,17 +70,20 @@ class User < ActiveRecord::Base
   def fetch_contacts
     google_contacts_user = GoogleContactsApi::User.new(self.oauth2_token_object)
 
-    contact_data = google_contacts_user.contacts.map do |contact|
-      contact.emails.map do |email|
-        { full_name: contact.full_name, email: email } if email
+    contact_data = google_contacts_user.contacts.each do |contact|
+      contact.emails.each do |email|
+        $redis.rpush(google_contacts_key, { full_name: contact.full_name, email: email }.to_json) if email
       end
-    end.flatten.to_json
+    end
+  end
 
-    $redis.set("#{self.id}", contact_data)
+  def google_contacts_key
+    "users:#{self.id}:google_contacts"
   end
 
   def load_contacts_from_redis
-    JSON.parse($redis.get(self.id))
+    data = $redis.lrange(google_contacts_key, 0, -1)
+    data.map { |json| JSON.parse(json) }
   end
 
   def full_name_or_email
@@ -89,6 +92,11 @@ class User < ActiveRecord::Base
     else
       "#{self.email}"
     end
+  end
+
+  def logout
+    $redis.del(self.google_contacts_key)
+    self.update(contacts_jid: nil)     
   end
 
   def full_name
