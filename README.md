@@ -41,7 +41,7 @@ To contribute to this project or even just give us feedback (we love feedback), 
 * Run `bundle exec rake db:create` and `bundle exec rake db:migrate`
 * Start your Redis server on port 6379 with `redis-server`
 * Run `rails s`
-* Go to`'http://localhost:3000/` in your browser
+* Go to `http://localhost:3000/` in your browser
 
 
 ### The Standup Team
@@ -50,4 +50,4 @@ We are four highly committed [Dev Bootcamp Chicago](http://devbootcamp.com/) gra
 * Isaac Noda - [LinkedIn](https://www.linkedin.com/profile/view?id=344664589) | [GitHub](https://github.com/inoda)
 * Joseph Timmer - [LinkedIn](https://www.linkedin.com/in/jtimmer89) | [GitHub](https://github.com/jtimmer89)
 * Samuel Spread - [LinkedIn](https://www.linkedin.com/profile/view?id=68221986&trk) | [GitHub](https://github.com/sspread)
-* Henry Perschk - [Henry Perschk](https://www.linkedin.com/profile/view?id=76929566) | [GitHub](https://github.com/henry-p)
+* Henry Perschk - [LinkedIn](https://www.linkedin.com/profile/view?id=76929566) | [GitHub](https://github.com/henry-p)
