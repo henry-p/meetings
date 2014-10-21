@@ -1,7 +1,6 @@
 class UsersController < ApplicationController
   def show
-    @created_meetings = current_user.meetings
-    @invited_meetings = current_user.invited_meetings
+    @meetings = current_user.all_meetings_chronologically.reverse
   end
 
   def contacts
@@ -32,5 +31,4 @@ class UsersController < ApplicationController
       render json: { done: false }
     end
   end
-
 end

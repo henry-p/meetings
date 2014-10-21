@@ -98,4 +98,9 @@ class User < ActiveRecord::Base
       nil
     end
   end
+
+  def all_meetings_chronologically
+    all_meetings = (self.meetings + self.invited_meetings).select { |meeting| meeting.is_done == false }
+    all_meetings.sort_by { |meeting| meeting.start_time }
+  end
 end

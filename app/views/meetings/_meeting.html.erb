@@ -4,7 +4,11 @@
 <% if meeting.is_done %>
   <span id="meeting-finished">Closed</span>
 <% end %>
-<%= link_to "Follow Up / Schedule again", new_meeting_path(id: meeting.id) %> | 
-<%= link_to "Edit", edit_meeting_path(meeting) %> |
-<%= link_to "Delete", meeting_path(meeting), method: :delete %>
+<% if current_user == meeting.creator %>
+	<%= link_to "Follow Up / Schedule again", new_meeting_path(id: meeting.id) %> | 
+	<%= link_to "Edit", edit_meeting_path(meeting) %> |
+	<%= link_to "Delete", meeting_path(meeting), method: :delete %>
+<% else %>
+	<%= link_to "Decline", new_meeting_path(id: meeting.id) %>
+<% end %>
 <br>

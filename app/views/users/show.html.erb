@@ -4,7 +4,5 @@
     <%= content_tag :div, msg, class: "flash #{name}" %>
   <% end %>
   <%= link_to "Create a meeting", new_meeting_path %><br>
-  <%= render @created_meetings.where('is_done = false').order('start_time') %>
-
-  <%= render @invited_meetings.where('is_done = false').order('start_time') %>
+  <%= render @meetings %>
 </div>
