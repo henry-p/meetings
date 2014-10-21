@@ -55,15 +55,15 @@ a.label-default.active {
 }
 
 #invitees {
-  position: absolute;
+  position: fixed;
   right: 25px;
-  top: 450px;
+  top: 100px;
 }
 
 .dragon-drop, .dragon-drop-disabled {
   position: relative;
   padding: 3px;
-  border: 1px solid green;
+  /*border: 1px solid green;*/
   list-style-type: none;
   margin: 8px auto;
   width: 220px;
@@ -84,7 +84,9 @@ a.label-default.active {
   padding: 0px;
   margin: 0px;
   margin: auto;
-  text-align: center;
+  color: darkblue;
+  font-weight: bold; 
+  /*text-align: center;*/
 }
 #notes {
   width: 300px;
@@ -143,6 +145,6 @@ a.label-default.active {
 }
 
 .agenda {
-  line-height:2.5em;
+  line-height:1.2em;
   margin-bottom: 20px;
 }

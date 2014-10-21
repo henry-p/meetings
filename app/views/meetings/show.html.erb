@@ -1,6 +1,5 @@
 <div class = "container">
 
-
   <h1><%= @meeting.title %></h1>
   <h2><small><%= Meeting.format_timestamp @meeting.start_time %></small></h2>
 
@@ -44,13 +43,15 @@
     <div id = "notes"><%= render partial: "notes" %></div>
   <% end %>
 
-  <div id = "invitees"><%= render partial: "invitees" %></div>
+  <div id = "invitees">
+    <h3>Members</h3>
+    <%= render partial: "invitees" %>
+  </div>
   
   <% if !@meeting.is_done %>
     <%= subscribe_to "/meetings/#{@meeting.id}" %>
   <% end %>
 
   <span id="meeting-id"><%= @meeting.id %></span>
-
 
 </div>
