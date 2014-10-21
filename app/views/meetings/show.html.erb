@@ -8,37 +8,43 @@
   <% end %>
 
   <br><br><br>
-<div class = 'meeting-container'>
-  <h2>Agenda Topics</h2>
-  <div id="agendas">
-    <%= render @meeting.agenda_topics.order('updated_at DESC') %>
-  </div>
+  <div class = 'meeting-container'>
+    <h2>Agenda Topics</h2>
+    <div id="agendas">
+      <%= render @meeting.agenda_topics.order('updated_at DESC') %>
+    </div>
 
-   <% if !@meeting.is_done %>
+     <% if !@meeting.is_done %>
 
-    <%= form_for [@meeting, AgendaTopic.new], remote: true do |f| %>
-      <%= f.text_field :content %>
-    <%= f.submit "Send" %>
-    <% end %>
-
-   <% end %>
- </div>
-
-<div class = 'meeting-container'>
-  <h2>Actionables</h2>
-  <div id="actionables">
-    <%= render @meeting.actionables.order('created_at ASC') %>
-  </div>
-
-  <% if !@meeting.is_done %>
-    <%= form_for [@meeting, Actionable.new], remote: true do |f| %>
-      <%= f.text_field :content %>
+      <%= form_for [@meeting, AgendaTopic.new], remote: true do |f| %>
+        <%= f.text_field :content %>
       <%= f.submit "Send" %>
-    <% end %> 
-  <% end %>
-  <span id="actionables-error"></span>
- </div>
+      <% end %>
 
+     <% end %>
+  </div>
+
+  <div class = 'meeting-container'>
+    <h2>Actionables</h2>
+    <div id="actionables">
+      <%= render @meeting.actionables.order('created_at ASC') %>
+    </div>
+
+    <% if !@meeting.is_done %>
+      <%= form_for [@meeting, Actionable.new], remote: true do |f| %>
+        <%= f.text_field :content %>
+        <%= f.submit "Send" %>
+      <% end %> 
+    <% end %>
+    <span id="actionables-error"></span>
+  </div>
+
+  <div class = 'meeting-container'>
+    <h2>Members</h2>
+    <div id = "invitees">
+      <%= render partial: "invitees" %>
+    </div>
+  </div>  
 
   <h2>Notes</h2>
   <% if !@meeting.is_done %>
@@ -47,11 +53,6 @@
     <div id = "notes"><%= render partial: "notes" %></div>
   <% end %>
 
-  <div id = "invitees">
-  <h3>Members</h3>
-    <%= render partial: "invitees" %>
-  </div>
-  
   <% if !@meeting.is_done %>
     <%= subscribe_to "/meetings/#{@meeting.id}" %>
   <% end %>

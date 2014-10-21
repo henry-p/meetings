@@ -19,6 +19,9 @@ input[data-role="input"] {
 input.error {
   color: #a7a7a7;
 }
+form.meeting-container{
+  margin: auto;
+}
 [data-role="picker"] {
   z-index: 1080;
   max-height: 375px;
@@ -54,13 +57,14 @@ a.label-default.active {
 }
 .meeting-container {
   display:inline-block;
-  width: 35%;
-  margin: 2%;
+  width: 30%;
+  text-align: center;
 }
 #invitees {
-  position: fixed;
-  right: 25px;
-  top: 100px;
+  /*position: absolute;*/
+  /*right: 25px;*/
+  /*top: 25px;*/
+  overflow: scroll;
 }
 .actionable {
   margin: 10px 5px;
@@ -71,8 +75,8 @@ a.label-default.active {
   box-shadow: -2px 2px 5px #555;
   overflow: hidden;
 }
-#actionables {
-  width: 300px;
+#actionables, #agendas {
+  width: 100%;
   padding: 7px;
 }
 .conclusion {
@@ -92,10 +96,7 @@ a.label-default.active {
   line-height:1.2em;
   margin-bottom: 20px;
 }
-#agendas {
-  width: 300px;
-  padding: 7px;
-}
+
 .dragon-drop, .dragon-drop-disabled {
   position: relative;
   padding: 3px;
@@ -126,9 +127,10 @@ a.label-default.active {
   /*text-align: center;*/
 }
 #notes {
-  width: 300px;
+  width: 50%;
   text-align: left;
-  margin: 10px 5px;
+  margin: auto;
+  /*margin: 10px 5px;*/
   border: 1px solid brown;
   min-height: 30px;
   border-radius: 4px;
