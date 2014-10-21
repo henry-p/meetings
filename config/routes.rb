@@ -9,6 +9,7 @@ Rails.application.routes.draw do
 
   get "/profile" => "users#show", as: :profile
   get "/profile/contacts" => "users#contacts"
+  get "/profile/archive" => "users#archive"
 
   get "/contacts/start_job" => "users#init_contacts_load"
   get "/contacts/job_status" => "users#check_on_contacts_loading"

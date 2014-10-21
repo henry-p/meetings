@@ -1,6 +1,12 @@
 class UsersController < ApplicationController
   def show
-    @meetings = current_user.meetings
+    @created_meetings = current_user.meetings
+    @invited_meetings = current_user.invited_meetings
+  end
+
+  def archive
+    @created_meetings = current_user.meetings
+    @invited_meetings = current_user.invited_meetings
   end
 
   def contacts
@@ -32,5 +38,4 @@ class UsersController < ApplicationController
       render json: { done: false }
     end
   end
-
 end

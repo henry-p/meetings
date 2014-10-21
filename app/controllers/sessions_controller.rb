@@ -16,7 +16,7 @@ class SessionsController < ApplicationController
     user_info = request.env["omniauth.auth"]['info']
     user_credentials = request.env["omniauth.auth"]['credentials']
 
-    user = User.find_or_create_by(email: CanonicalEmails::GMail.transform(user_info['email']).address)
+    user = User.find_or_create_by(email: CanonicalEmails::GMail.transform(user_info['email']).address.downcase)
     user.update(
       image_path: user_info['image'], 
       first_name: user_info['first_name'], 

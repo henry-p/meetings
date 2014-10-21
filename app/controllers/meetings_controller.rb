@@ -1,7 +1,7 @@
 class MeetingsController < ApplicationController
 	skip_before_action :require_login, only: [:show, :check_invited]
 	before_filter(only: [:update, :destroy]) { |filter| filter.check_if_meeting_is_closed(params[:id]) }
-	before_filter :find_meeting_by_id, only: [:show, :check_invited, :edit, :destroy, :update_notes]
+	before_filter :find_meeting_by_id, only: [:show, :edit, :destroy, :update_notes]
 	include ActionView::Helpers::SanitizeHelper
 
 	def new
@@ -55,6 +55,7 @@ class MeetingsController < ApplicationController
 	end
 
 	def check_invited
+		@meeting = Meeting.find_by_id(params[:meeting_id])
 		@invitee_emails = @meeting.invitees.pluck(:email).map(&:downcase)
 
 		if @invitee_emails.include?(params[:email].downcase)
