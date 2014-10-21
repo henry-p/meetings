@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
   has_many :voted_agenda_topics, through: :votes, source: :agenda_topic
 
   has_many :invites, foreign_key: :invitee_id
-  has_many :meetings, through: :invites
+  has_many :invited_meetings, through: :invites, source: :meeting
 
   has_many :meetings, foreign_key: :creator_id
 
@@ -69,18 +69,22 @@ class User < ActiveRecord::Base
 
   def fetch_contacts
     google_contacts_user = GoogleContactsApi::User.new(self.oauth2_token_object)
-
-    contact_data = google_contacts_user.contacts.map do |contact|
-      contact.emails.map do |email|
-        { full_name: contact.full_name, email: email } if email
+    contact_data = google_contacts_user.contacts.each do |contact|
+      contact.emails.each do |email|
+        if email
+          $redis.rpush(google_contacts_key, { full_name: contact.full_name, email: email }.to_json)
+        end
       end
-    end.flatten.to_json
+    end
+  end
 
-    $redis.set("#{self.id}", contact_data)
+  def google_contacts_key
+    "users:#{self.id}:google_contacts:#{self.updated_at.to_i}"
   end
 
   def load_contacts_from_redis
-    JSON.parse($redis.get(self.id))
+    data = $redis.lrange(google_contacts_key, 0, -1)
+    data.map { |json| JSON.parse(json) }
   end
 
   def full_name_or_email
@@ -91,11 +95,22 @@ class User < ActiveRecord::Base
     end
   end
 
+  def logout
+    $redis.keys("users:#{self.id}:google_contacts:*").each { |key| $redis.del(key) }
+    self.update_attribute(:contacts_jid, nil)
+    $redis.del(self.google_contacts_key)
+  end
+
   def full_name
     if self.first_name && self.last_name
       "#{self.first_name} #{self.last_name}"
     else
       nil
     end
+  end
+
+  def all_meetings_chronologically
+    all_meetings = (self.meetings + self.invited_meetings).select { |meeting| meeting.is_done == false }
+    all_meetings.sort_by { |meeting| meeting.start_time }
   end
 end

@@ -42,9 +42,7 @@ class Meeting < ActiveRecord::Base
   end
 
   def invitees_array
-    emails_array = []
-    self.invitees.map { |invitee| emails_array << { 'email' => invitee.email } }
-    emails_array
+    self.invitees.map { |invitee| { 'email' => invitee.email } }
   end
 
   def email_array_for_mailer
