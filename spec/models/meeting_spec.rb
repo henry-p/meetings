@@ -53,7 +53,6 @@ describe Meeting do
       end     
     end         
   end
-
 end
 
 
