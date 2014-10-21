@@ -47,10 +47,6 @@ GEM
       rack (>= 0.9.0)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
-    bitters (0.10.1)
-      bourbon (>= 3.2)
-      sass (>= 3.2)
-      thor
     bootstrap3-datetimepicker-rails (3.1.3)
       momentjs-rails (>= 2.8.1)
     bourbon (3.2.3)
@@ -204,7 +200,6 @@ GEM
     redis (3.1.0)
     redis-namespace (1.5.1)
       redis (~> 3.0, >= 3.0.4)
-    refills (0.0.2)
     retriable (1.4.1)
     rspec-core (2.14.8)
     rspec-expectations (2.14.5)
@@ -282,7 +277,6 @@ PLATFORMS
 DEPENDENCIES
   better_errors
   binding_of_caller
-  bitters
   bootstrap3-datetimepicker-rails (~> 3.1.3)
   bourbon
   canonical-emails
@@ -309,7 +303,6 @@ DEPENDENCIES
   rails (= 4.1.6)
   rails_12factor
   redis
-  refills
   rspec-rails (~> 2.14.1)
   sass-rails (~> 4.0.3)
   sdoc (~> 0.4.0)

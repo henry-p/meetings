@@ -8,26 +8,6 @@ $mediumbluegray: #C0CDDC;
 $darkbluegray: #5A6480;
 $black: #333;
 
-.bullets {
-  padding : 20px 0;
-  @include outer-container;
-}
-
-.bullet-content {
-  background: $lightbluegray;
-  border: solid 1px #AAA;
-  margin: 20px 0;
-  padding: 7px 12px;
-  border-radius: (6px);
-  @include transition(all, 600ms, ease-in-out);
-  
-  &:hover { background-color: $mediumbluegray; }
-  
-  h2 {
-    padding: 5px;
-  }
-}
-
 #sign-in-banner {
   background: -webkit-linear-gradient($lightbluegray, $mediumbluegray); 
   background: -o-linear-gradient($lightbluegray, $mediumbluegray); 
