@@ -6,7 +6,6 @@ class GoogleWorker
 
     if user
       user.fetch_contacts
-      user.update(contacts_jid: nil) 
     end
   end  
 end
