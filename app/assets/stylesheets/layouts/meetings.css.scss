@@ -34,7 +34,6 @@ a.list-group-item.hover {
   color: #ffffff;
   text-decoration: none;
 }
-
 a.label-default {
   cursor: pointer;
   font-size: 12px;
@@ -53,19 +52,57 @@ a.label-default.active {
   box-shadow: none;
   text-decoration: none;
 }
-
-#invitees {
-  position: absolute;
-  right: 25px;
-  top: 450px;
+.meeting-container {
+  display:inline-block;
+  width: 35%;
+  margin: 2%;
 }
-
+#invitees {
+  position: fixed;
+  right: 25px;
+  top: 100px;
+}
+.actionable {
+  margin: 10px 5px;
+  min-height: 30px;
+  border-radius: 4px;
+  text-align: center;
+  background-color: #E0FFE0;
+  box-shadow: -2px 2px 5px #555;
+  overflow: hidden;
+}
+#actionables {
+  width: 300px;
+  padding: 7px;
+}
+.conclusion {
+  border: 2px solid lightblue;
+  border-radius: 6px;
+  background-color: #CCFFFF;
+  border-style:inset;
+}
+.agenda {
+  margin: 10px 5px;
+  min-height: 30px;
+  border-radius: 4px;
+  text-align: center;
+  background-color: #FFFFBF;
+  box-shadow: -2px 2px 5px #555;
+  overflow: hidden;
+  line-height:1.2em;
+  margin-bottom: 20px;
+}
+#agendas {
+  width: 300px;
+  padding: 7px;
+}
 .dragon-drop, .dragon-drop-disabled {
   position: relative;
   padding: 3px;
-  border: 1px solid green;
+  border: 1px solid blue;
+  border-radius: 8px;
   list-style-type: none;
-  margin: 8px auto;
+  margin: 5px auto;
   width: 220px;
 }
 .dragon-drop {
@@ -84,7 +121,9 @@ a.label-default.active {
   padding: 0px;
   margin: 0px;
   margin: auto;
-  text-align: center;
+  color: darkblue;
+  font-weight: bold; 
+  /*text-align: center;*/
 }
 #notes {
   width: 300px;
@@ -142,7 +181,4 @@ a.label-default.active {
   display:none;
 }
 
-.agenda {
-  line-height:2.5em;
-  margin-bottom: 20px;
-}
+

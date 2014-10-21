@@ -12,24 +12,24 @@ function makeDraggable(els) {
 
 function makeDroppable(els) {
   var draggable
+  var draggableId
+  var meetingId 
+  var actionableId
   els.droppable({
     helper: "clone",
-    hoverClass: "ui-state-hover",
     over: function(event, ui) {
-      var draggable = ui.draggable.clone()
+      draggable = ui.draggable.clone()
       draggable.addClass("hover-drop")
       $(this).append(draggable);
     },
     out: function(event, ui) {
-      $(this).find($('.placeholder')).show();
       $(".hover-drop").remove();
     },
     drop: function(event, ui) {
-      console.log($(event.target))
-      var draggableId = $(".hover-drop").attr('id');
+      draggableId = $(".hover-drop").attr('id');
       $('.draggable').draggable('disabled');
-      var meetingId = $('#meeting-id').text();
-      var actionableId = $(event.target).attr('id');
+      meetingId = $('#meeting-id').text();
+      actionableId = $(event.target).attr('id');
       $.ajax({
         url: "/meetings/"+meetingId+"/actionables/"+actionableId+"/responsibilities",
         type: "POST",

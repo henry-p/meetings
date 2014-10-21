@@ -1,6 +1,5 @@
 <div class = "container">
 
-
   <h1><%= @meeting.title %></h1>
   <h2><small><%= Meeting.format_timestamp @meeting.start_time %></small></h2>
 
@@ -9,7 +8,7 @@
   <% end %>
 
   <br><br><br>
-
+<div class = 'meeting-container'>
   <h2>Agenda Topics</h2>
   <div id="agendas">
     <%= render @meeting.agenda_topics.order('updated_at DESC') %>
@@ -23,7 +22,9 @@
     <% end %>
 
    <% end %>
+ </div>
 
+<div class = 'meeting-container'>
   <h2>Actionables</h2>
   <div id="actionables">
     <%= render @meeting.actionables.order('created_at ASC') %>
@@ -36,6 +37,8 @@
     <% end %> 
   <% end %>
   <span id="actionables-error"></span>
+ </div>
+
 
   <h2>Notes</h2>
   <% if !@meeting.is_done %>
@@ -44,13 +47,15 @@
     <div id = "notes"><%= render partial: "notes" %></div>
   <% end %>
 
-  <div id = "invitees"><%= render partial: "invitees" %></div>
+  <div id = "invitees">
+  <h3>Members</h3>
+    <%= render partial: "invitees" %>
+  </div>
   
   <% if !@meeting.is_done %>
     <%= subscribe_to "/meetings/#{@meeting.id}" %>
   <% end %>
 
   <span id="meeting-id"><%= @meeting.id %></span>
-
 
 </div>

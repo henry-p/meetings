@@ -25,4 +25,6 @@ Rails.application.routes.draw do
   end
 
   match "/meetings/:id/update_notes" => "meetings#update_notes", as: :update_notes, via: :PATCH
+
+  match ':not_found' => 'home#index', :constraints => { :not_found => /.*/ }, via: [:get, :post]
 end
