@@ -125,15 +125,15 @@ function getAllContacts() {
 
 function makeDateTimePicker(picker1, picker2) {
   $(picker1)
-    .datetimepicker()
-    .on("dp.change", function(e) {
-      $(picker2).data("DateTimePicker").setMinDate(e.date);
-    });
+    .datetimepicker();
+    // .on("dp.change", function(e) {
+    //   $(picker2).data("DateTimePicker").setMinDate(e.date);
+    // });
   $(picker2)
-    .datetimepicker()
-    .on("dp.change", function(e) {
-      $(picker1).data("DateTimePicker").setMaxDate(e.date);
-    });
+    .datetimepicker();
+    // .on("dp.change", function(e) {
+    //   $(picker1).data("DateTimePicker").setMaxDate(e.date);
+    // });
 }
 
 function submitFormEventHandler() {

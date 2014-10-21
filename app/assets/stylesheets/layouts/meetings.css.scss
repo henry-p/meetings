@@ -201,8 +201,14 @@ a.label-default.active {
   box-shadow: none;
   text-decoration: none;
 }
+
 [data-role="picker"] {
   z-index: 1080;
   max-height: 375px;
   overflow: auto;
+}
+
+/* Datetimepicker clock icon */
+.glyphicon-time {
+  font-size: 500%;
 }
