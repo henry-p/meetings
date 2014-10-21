@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   get "/contacts/job_status" => "users#check_on_contacts_loading"
 
   resources :meetings, except: :index do
+    resources :invites, only: :destroy
     resources :agenda_topics do
       resources :conclusions
       resources :votes, only: :create
