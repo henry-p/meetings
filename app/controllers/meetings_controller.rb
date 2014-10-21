@@ -55,6 +55,7 @@ class MeetingsController < ApplicationController
 	end
 
 	def check_invited
+		@meeting = Meeting.find_by_id(params[:meeting_id])
 		@invitee_emails = @meeting.invitees.pluck(:email).map(&:downcase)
 
 		if @invitee_emails.include?(params[:email].downcase)

@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
   has_many :voted_agenda_topics, through: :votes, source: :agenda_topic
 
   has_many :invites, foreign_key: :invitee_id
-  has_many :meetings, through: :invites
+  has_many :invited_meetings, through: :invites, source: :meeting
 
   has_many :meetings, foreign_key: :creator_id
 
