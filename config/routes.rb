@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  require 'sidekiq/web'
+  mount Sidekiq::Web => '/sidekiq'
+  
   root 'home#index'
 
   get "/auth/google_oauth2/callback" => "sessions#create", as: :create_session
@@ -27,4 +30,5 @@ Rails.application.routes.draw do
   match "/meetings/:id/update_notes" => "meetings#update_notes", as: :update_notes, via: :PATCH
 
   match ':not_found' => 'home#index', :constraints => { :not_found => /.*/ }, via: [:get, :post]
+
 end

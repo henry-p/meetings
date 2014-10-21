@@ -54,6 +54,8 @@ gem "font-awesome-rails"
 gem 'rails_12factor', group: :production
 
 gem 'sidekiq', '~> 2.17.0'
+# sinatra for sidekiq dashboard https://github.com/mperham/sidekiq/wiki/Monitoring
+gem 'sinatra', '>= 1.3.0', :require => nil
 
 # sass mixins
 gem 'bourbon'
