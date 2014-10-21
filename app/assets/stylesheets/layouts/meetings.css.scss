@@ -6,7 +6,6 @@
 .meeting-container {
   max-width:1000px;
   margin:auto;
-  /*background-color: lightblue;*/
 }
 
 .meeting-header {
@@ -18,14 +17,17 @@
   margin: 0px;
   line-height: 1.2em;
 }
-
+.editable {
+  display:block;
+  font-size: 1.5em;
+  line-height: 1.5em;
+}
 input.error {
   color: #a7a7a7;
 }
 a:focus {
   outline: none;
 }
-
 a.list-group-item.hover {
   background-color: #6cb1e9;
   color: #ffffff;
@@ -36,17 +38,10 @@ a.list-group-item.hover {
   margin: auto;
 }
 
-.meeting-content {
+/*.meeting-content {
   overflow: hidden;
-}
-.blur-edge {
-/*     -moz-box-shadow:    inset 0 0 10px #000000;
-   -webkit-box-shadow: inset 0 0 10px #000000;
-  /*background-color: #fff;*/
-  box-shadow: inset 0 0 20px #000;
-  /*-webkit-border-image: -webkit-gradient(linear, left top, left bottom, from(#00abeb), to(#fff), color-stop(0.5, #fff), color-stop(0.5, #66cc00)) 21 30 30 21 repeat repeat;*/
+}*/
 
-}
 .meeting-column {
   vertical-align: top;
   display:inline-block;
@@ -55,19 +50,31 @@ a.list-group-item.hover {
   padding: 7px;
   overflow-y: hidden;
 }
+.not-live input[type='text'] {
+  width: 80%;
+}
+.meeting-column-not-live {
+  vertical-align: top;
+  display:inline-block;
+  width: 80%;
+  text-align: center;
+  padding: 7px;
+  overflow-y: hidden;
+}
+
 #actionables, #agendas {
   width: 100%;
   height: 550px;
   position: relative;
   overflow-y: scroll;
-  /*background-color: grey;*/
 }
- #members-notes {
-  /*height: 550px;*/
+
+.not-live {
+  height: auto !important;
+  overflow-y: auto !important;
 }
 
 #invitees-list {
-  /*background-color: grey;*/
   height: 247px;
   overflow-y: scroll;
 }
@@ -80,7 +87,6 @@ a.list-group-item.hover {
   box-shadow: -2px 2px 5px #555;
   padding: 5px;
 }
-
 .agenda, .actionable {
   margin: 10px 5px;
   min-height: 30px;
@@ -108,13 +114,10 @@ a.list-group-item.hover {
     font-size: 1.1em;
   };
 }
-
 .actionable {
   padding: 5px;
   background-color: #E0FFE0;
 }
-
-
 .dragon-drop, .dragon-drop-disabled {
   position: relative;
   padding: 3px;
@@ -136,56 +139,40 @@ a.list-group-item.hover {
   margin: 0px;
   color: #999;
 }
-
 #invitees-list, .responsible-users-list{
   padding: 0px;
   margin: 0px;
   margin: auto;
 }
-
 .glyphicon-remove:hover {
   color: #333333;
 }
-
 .panel {
   margin: 0;
   transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s;
 }
-
 .panel.focus {
   border-color: #66AFE9;
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(102, 175, 233, 0.6);
   outline: 0 none;
 }
-
 .panel-body {
   padding: 3px 6px;
 }
-
 .popover {
   max-width: 347px;
   min-width: 276px;
 }
-
 .popover-content {
   overflow: hidden;
   font-size: 90%;
 }
-
 .popover-content .col-lg-4, .popover-content .col-lg-8 {
   padding: 0 5px
 }
-
-.editable {
-  display:block;
-  font-size: 1.5em;
-  line-height: 1.5em;
-}
-
 #meeting-id {
   display:none;
 }
-
 .name-tag {
   display:none;
 }
@@ -198,7 +185,6 @@ input[data-role="input"] {
   padding: 3px 4px;
   margin: 3px;
 }
-
 a.label-default {
   cursor: pointer;
   font-size: 12px;
@@ -207,12 +193,10 @@ a.label-default {
   background-color: #6cb1e9;
   text-decoration: none;
 }
-
 a.label-default.hover {
   box-shadow: 0 0 5px #a9a9a9;
   text-decoration: none;
 }
-
 a.label-default.active {
   box-shadow: none;
   text-decoration: none;
