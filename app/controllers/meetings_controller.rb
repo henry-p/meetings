@@ -99,7 +99,7 @@ class MeetingsController < ApplicationController
 	def update
 		if params[:close]
 			@meeting.close_meeting_and_send_email
-			return redirect_to root_path
+			return redirect_to profile_archive_path
 		end
 
 		unsaved_event = @meeting.clone # we only update the db if google calendar gets updated
