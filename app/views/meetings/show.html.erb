@@ -2,8 +2,10 @@
 
   <div class = 'meeting-header'>
     <h1><%= @meeting.title %></h1>
-    <% if !@meeting.is_done %>
+    <% if !@meeting.is_done && @meeting.is_live %>
       <%= link_to "Close Meeting", meeting_path(@meeting, close: true), method: :patch, id: "close-meeting" %>
+    <% elsif !@meeting.is_done %>
+      <%= link_to "Start", meeting_path(@meeting, start: true), method: :patch %>
     <% end %>
     <h2><small><%= Meeting.format_timestamp @meeting.start_time %></small></h2>
   </div>
