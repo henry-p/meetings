@@ -4,8 +4,7 @@ class UsersController < ApplicationController
   end
 
   def archive
-    @created_meetings = current_user.meetings
-    @invited_meetings = current_user.invited_meetings
+    @meetings = current_user.all_finished_meetings.reverse
   end
 
   def contacts

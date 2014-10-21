@@ -113,4 +113,9 @@ class User < ActiveRecord::Base
     all_meetings = (self.meetings + self.invited_meetings).select { |meeting| meeting.is_done == false }
     all_meetings.sort_by { |meeting| meeting.start_time }
   end
+
+  def all_finished_meetings
+    all_meetings = (self.meetings + self.invited_meetings).select { |meeting| meeting.is_done == true }
+    all_meetings.sort_by { |meeting| meeting.start_time }
+  end  
 end

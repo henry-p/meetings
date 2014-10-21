@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141020180707) do
+ActiveRecord::Schema.define(version: 20141021221213) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -70,6 +70,7 @@ ActiveRecord::Schema.define(version: 20141020180707) do
     t.datetime "updated_at"
     t.string   "calendar_event_id"
     t.boolean  "is_done",           default: false
+    t.boolean  "is_live"
   end
 
   add_index "meetings", ["creator_id"], name: "index_meetings_on_creator_id", using: :btree
