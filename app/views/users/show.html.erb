@@ -1,5 +1,5 @@
 <div class='container'>
-  <h1>My Meetings <small><%= current_user.email %></small></h1>
+  <h1>Upcoming Meetings <small><%= current_user.email %></small></h1>
   <% flash.each do |name, msg| %>
     <%= content_tag :div, msg, class: "flash #{name}" %>
   <% end %>
