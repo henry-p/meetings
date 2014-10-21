@@ -1,12 +1,5 @@
 <div class='container'>
-  <h1>PAST MEETINGS <small><%= current_user.email %></small></h1>
+  <h1>Meetings Archive <small><%= current_user.email %></small></h1>
 
-  <% flash.each do |name, msg| %>
-    <%= content_tag :div, msg, class: "flash #{name}" %>
-  <% end %>
-
-  <%= link_to "Create a meeting", new_meeting_path %><br>
-
-  <%= render @created_meetings.where('is_done = true').order('start_time') %>
-  <%= render @invited_meetings.where('is_done = true').order('start_time') %>
+  <%= render @meetings %>
 </div>

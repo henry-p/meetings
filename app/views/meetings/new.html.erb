@@ -1,5 +1,5 @@
-<% if @meeting.title %>
-  <h1>Follow up: <%= @meeting.title %></h1>
+<% if @meeting.title && @meeting.start_time && @meeting.end_time %>
+  <h1>Duplicate: <%= @meeting.title %></h1>
 <% else %>
   <h1>Create a New Meeting</h1>
 <% end %>
