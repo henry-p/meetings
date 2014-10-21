@@ -72,7 +72,7 @@ class User < ActiveRecord::Base
 
     contact_data = google_contacts_user.contacts.each do |contact|
       contact.emails.each do |email|
-        $redis.rpush(google_contacts_key, { full_name: contact.full_name, email: email }.to_json) if email
+        $redis.rpush(google_contacts_key, { full_name: contact.full_name, email: email }.to_json) if email && $redis.exists("workers:#{contacts_jid}")
       end
     end
   end
@@ -95,8 +95,9 @@ class User < ActiveRecord::Base
   end
 
   def logout
+    $redis.del("workers:#{contacts_jid}")
+    self.update(contacts_jid: nil)
     $redis.del(self.google_contacts_key)
-    self.update(contacts_jid: nil)     
   end
 
   def full_name
