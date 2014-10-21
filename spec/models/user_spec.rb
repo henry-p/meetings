@@ -13,7 +13,7 @@ describe User do
     end
 
     it "should have many meetings as an invitee" do
-      expect(user).to have_many(:meetings)
+      expect(user).to have_many(:invited_meetings)
     end
 
     it "should have many votes" do
@@ -98,5 +98,3 @@ describe User do
     end
   end
 end
-
-

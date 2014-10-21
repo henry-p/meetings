@@ -5,7 +5,10 @@ $(document).ready(function() {
 
 function makeDraggable(els) {
   els.draggable({
-    helper: "clone",
+    opacity: 0.7,
+    helper: function(e) {
+      return $(e.target).clone().css({width: $(e.target).width()})
+    },
     revert: "invalid"
   });
 }
