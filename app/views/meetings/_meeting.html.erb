@@ -1,19 +1,10 @@
-  <div class="card">
-    <div class="card-header">
-      <%= link_to meeting.title, meeting_path(meeting) %> - <%= link_to "Copy", new_meeting_path(id: meeting.id) %> | <%= link_to "Edit", edit_meeting_path(meeting) %> | <%= link_to "Delete", meeting_path(meeting), method: :delete %>
-      <% if meeting.is_done %>
-			  - <span id="meeting-finished">Closed</span>
-			<% end %>
-    </div>
-    <div class="card-copy">
-      <p><%= meeting.description %></p>
-      <p><%= Meeting.format_timestamp(meeting.start_time) %></p>
-    </div>
-    <div class="card-stats">
-      <ul>
-        <li><%= meeting.invites.count %><span>Invites</span></li>
-        <li><%= meeting.location %><span>Location</span></li>
-        <li><%= meeting.duration_formatted %><span>Duration</span></li>
-      </ul>
-    </div>
-  </div>
+<%= link_to "#{meeting.title}", meeting_path(meeting) %>
+<%= Meeting.format_timestamp(meeting.start_time) %>
+<%= meeting.duration_formatted %>
+<% if meeting.is_done %>
+  <span id="meeting-finished">Closed</span>
+<% end %>
+<%= link_to "Follow Up / Schedule again", new_meeting_path(id: meeting.id) %> | 
+<%= link_to "Edit", edit_meeting_path(meeting) %> |
+<%= link_to "Delete", meeting_path(meeting), method: :delete %>
+<br>
