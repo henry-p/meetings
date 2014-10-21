@@ -4,6 +4,11 @@ class UsersController < ApplicationController
     @invited_meetings = current_user.invited_meetings
   end
 
+  def archive
+    @created_meetings = current_user.meetings
+    @invited_meetings = current_user.invited_meetings
+  end
+
   def contacts
     contacts = current_user.load_contacts_from_redis
     respond_to do |format|
@@ -32,5 +37,4 @@ class UsersController < ApplicationController
       render json: { done: false }
     end
   end
-
 end
