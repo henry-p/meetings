@@ -9,6 +9,9 @@
       <% elsif !@meeting.is_done %>
         <%= link_to "Start Meeting", meeting_path(@meeting, start: true), method: :patch, id: 'start-meeting', class: 'nice-button' %>
       <% end %>
+      <% if @meeting.duration_in_seconds > 0 %>
+        <p id="meeting-length"><small>Length: <%= @meeting.duration_formatted %></small></p>
+      <% end %>
     </div>
   </div>
 

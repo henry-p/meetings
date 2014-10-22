@@ -1,11 +1,12 @@
 class SessionsController < ApplicationController
   skip_before_action :require_login, only: :create
+  rescue_from ActionController::InvalidAuthenticityToken, :with => :redirect_to_root
 
   layout false
 
   def destroy
     current_user.logout
-    session.clear
+    session.clear  
     redirect_to root_url
   end
 
@@ -25,6 +26,12 @@ class SessionsController < ApplicationController
 
     session[:user_id] = user.id
     redirect_to profile_path 
+  end
+
+  private
+
+  def redirect_to_root
+    redirect_to root_path
   end
 end
 

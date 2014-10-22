@@ -101,3 +101,30 @@ h1, h2 {
 a {
   color: #3299BB
 }
+
+#standup {
+  font-size:1.5em; 
+  display:inline-block;
+  padding:2px 5px;
+  margin-top:6px;
+  border:2px solid white;
+  font-weight:400;
+  color:white
+}
+
+.no-meetings {
+  background-color: #E9E9E9;
+  display:inline-block;
+  text-align:center;
+  padding:10px;
+  max-width:400px;
+  font-size:1.3em;
+  font-weight:400;
+}
+
+.information {
+  font-weight:100;
+  color:#aaa;
+}
+
+
