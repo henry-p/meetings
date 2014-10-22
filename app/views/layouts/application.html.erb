@@ -12,14 +12,14 @@
   </div>
   <header>
     <div class='container'>
-      <span id='nav-bar-icons'>
-        <%= link_to (fa_icon 'home 3x'), profile_path %>
-      </span>
-      <span id='nav-bar-greeting'>
-        <p><%= current_user.first_name %></p>
-        <%= image_tag current_user.image_path, id: 'header-google-img' %>
-        <%= link_to (fa_icon 'sign-out 3x'), logout_path, method: :delete %>
-      </span>
+      <span id='nav-bar'>
+        <% if current_user.image_path %>
+          <%= link_to (image_tag current_user.image_path, id: 'header-google-img'), profile_path %>
+        <% else %>
+          <%= link_to "Home", profile_path %>
+        <% end %>
+        <%= link_to ("Archive"), profile_archive_path %>
+        <%= link_to "Logout", logout_path, method: :delete %>
     </div>
   </header>
 <% end %>
