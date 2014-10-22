@@ -17,22 +17,27 @@
   margin: 0px;
   line-height: 1.2em;
 }
+
 .editable {
   display:block;
   font-size: 1.5em;
   line-height: 1.5em;
 }
+
 input.error {
   color: #a7a7a7;
 }
+
 a:focus {
   outline: none;
 }
+
 a.list-group-item.hover {
   background-color: #6cb1e9;
   color: #ffffff;
   text-decoration: none;
 }
+
 .meeting-row {
   text-align: center;
   margin: auto;
@@ -40,10 +45,9 @@ a.list-group-item.hover {
 
 /*.meeting-content {
   overflow: hidden;
-}*/
-
+}
+*/
 .meeting-column {
-
   vertical-align: top;
   display:inline-block;
   width: 33%;
@@ -62,16 +66,19 @@ a.list-group-item.hover {
   position: relative;
   overflow-y: scroll;
 }
+
 .not-live {
   width: 80%;
   height: auto !important;
   overflow-y: auto !important;
 }
 
+
 #invitees-list {
   height: 247px;
   overflow-y: scroll;
 }
+
 #notes {
   overflow-y: scroll;
   text-align: left;
@@ -81,6 +88,7 @@ a.list-group-item.hover {
   box-shadow: -2px 2px 5px #555;
   padding: 5px;
 }
+
 .agenda, .actionable {
   margin: 10px 5px;
   min-height: 30px;
@@ -93,10 +101,12 @@ a.list-group-item.hover {
     padding: 3px;
   };
 }
+
 .agenda {
 
   padding-top: 5px;
 }
+
 .conclusion {
   border: 2px solid lightyellow;
   padding: 2px;
@@ -108,10 +118,12 @@ a.list-group-item.hover {
     font-size: 1.1em;
   };
 }
+
 .actionable {
   padding: 5px;
   background-color: #E0FFE0;
 }
+
 .dragon-drop, .dragon-drop-disabled {
   position: relative;
   padding: 3px;
@@ -121,89 +133,32 @@ a.list-group-item.hover {
   margin: 5px auto;
   width: 80%;
 }
+
 .dragon-drop {
   cursor: move;
 }
+
 .responsible-user{
   cursor: auto;
   background-color: #EBFFEB
 }
+
 .placeholder {
   list-style-type: none;
   margin: 0px;
   color: #999;
 }
+
 #invitees-list, .responsible-users-list{
   padding: 0px;
   margin: 0px;
   margin: auto;
 }
-.glyphicon-remove:hover {
-  color: #333333;
-}
-.panel {
-  margin: 0;
-  transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s;
-}
-.panel.focus {
-  border-color: #66AFE9;
-  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(102, 175, 233, 0.6);
-  outline: 0 none;
-}
-.panel-body {
-  padding: 3px 6px;
-}
-.popover {
-  max-width: 347px;
-  min-width: 276px;
-}
-.popover-content {
-  overflow: hidden;
-  font-size: 90%;
-}
-.popover-content .col-lg-4, .popover-content .col-lg-8 {
-  padding: 0 5px
-}
+
 #meeting-id {
   display:none;
 }
+
 .name-tag {
   display:none;
-}
-input[data-role="input"] {
-  outline: none;
-  border: none;
-  font-size: 12px;
-  color: #555;
-  vertical-align: middle;
-  padding: 3px 4px;
-  margin: 3px;
-}
-a.label-default {
-  cursor: pointer;
-  font-size: 12px;
-  margin: 3px;
-  color: #ffffff;
-  background-color: #6cb1e9;
-  text-decoration: none;
-}
-a.label-default.hover {
-  box-shadow: 0 0 5px #a9a9a9;
-  text-decoration: none;
-}
-a.label-default.active {
-  box-shadow: none;
-  text-decoration: none;
-}
-
-[data-role="picker"] {
-  text-align: left;
-  z-index: 100;
-  max-height: 375px;
-  overflow: auto;
-}
-
-/* Datetimepicker clock icon */
-.glyphicon-time {
-  font-size: 500%;
 }
