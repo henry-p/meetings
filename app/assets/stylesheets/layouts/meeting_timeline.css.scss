@@ -263,10 +263,6 @@ section h3.section-subheading {
 }
 
 
-#live {
-    background-color:#98D9AF;
-    font-weight: 900;
-}
 
 .meeting-tile {
     vertical-align: top;
@@ -347,9 +343,12 @@ section h3.section-subheading {
 }   
 
 #past { 
-    background-color:#DE9D8E;
+    color:#D83E1A;
 }   
 
+#live {
+    color:#08A677;
+}
 
 @media screen and (max-width: 1000px) {
     .meeting-tile {

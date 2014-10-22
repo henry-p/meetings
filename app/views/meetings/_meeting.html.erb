@@ -4,11 +4,11 @@
   <div id='meeting-date'>
     <% if !meeting.is_done %>
       <% if meeting.is_live %>
-        <b id='live' class='meeting-date-display'>Live now!</b>
+        <b class='meeting-date-display'><span id='live'><%= fa_icon 'circle' %></span> Live now!</b>
       <% elsif meeting.time_from_now == 0 %>
         <b id='today' class='meeting-date-display'><%= fa_icon 'calendar' %> Today</b>
       <% elsif meeting.time_from_now > 0 %>
-        <b id='past' class='meeting-date-display'>Passed scheduled date</b>
+        <b class='meeting-date-display'><span id='past'><%= fa_icon 'exclamation-circle' %></span> Passed scheduled date</b>
       <% else %>
         <b class='meeting-date-display'><%= fa_icon 'calendar' %> <%= "About #{pluralize(meeting.time_from_now.abs, 'day')} from now" %></b>
       <% end %>
