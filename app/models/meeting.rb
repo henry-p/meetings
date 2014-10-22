@@ -1,4 +1,6 @@
 class Meeting < ActiveRecord::Base
+  include ActionView::Helpers::DateHelper
+
   has_many :invites
   has_many :invitees, through: :invites
   belongs_to :creator, class_name: "User"
@@ -14,6 +16,15 @@ class Meeting < ActiveRecord::Base
 
   def duration_in_seconds
     self.end_time - self.start_time
+  end
+
+  def truncated_title
+    return "#{title[0..17]}..." if title.length > 17
+    title
+  end
+
+  def just_the_date
+    start_time.strftime('%A - %b %d, %Y')
   end
 
   def duration_formatted
@@ -102,5 +113,9 @@ class Meeting < ActiveRecord::Base
 
   def start
     self.update(is_live: true)
+  end
+
+  def time_from_now
+    days_from_now = ( ((Time.now - start_time) / 86400).floor ).abs
   end
 end

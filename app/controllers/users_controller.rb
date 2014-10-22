@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   def show
-    @meetings = current_user.all_meetings_chronologically.reverse
+    @meetings = current_user.all_meetings_chronologically
   end
 
   def archive

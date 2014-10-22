@@ -1,0 +1,96 @@
+/*!
+ * Start Bootstrap - Agency Bootstrap Theme (http://startbootstrap.com)
+ * Code licensed under the Apache License v2.0.
+ * For details, see http://www.apache.org/licenses/LICENSE-2.0.
+ */
+
+
+$lightbluegray: #D4DCE7;
+$mediumbluegray: #C0CDDC;
+$darkbluegray: #5A6480;
+$black: #333;
+
+
+
+.live {
+    color:#009900;
+    font-weight: 900;
+}
+
+.meeting-tile {
+    vertical-align: top;
+    background-color: #E9E9E9;
+    display:inline-block;
+    width:30%;
+    margin-bottom: 20px;
+    padding:10px;
+}
+
+#meeting-title {
+    font-size: 2em;
+    display:block;
+    text-align: center;
+    padding:20px 0px;
+}
+
+#meeting-options {
+    text-align: center;
+}
+
+.meeting-list {
+    text-align: center;
+}
+
+#create-meeting {
+    a {
+        color:white;
+        font-weight:400;
+        background-color:#FF9900;
+        padding:15px;
+        border-radius:5px;
+        &:hover {
+            text-decoration:none;
+            background-color:#E68A00;
+        }
+    };
+    text-align: center;
+    margin:50px;
+}
+
+#meeting-date {
+    text-align:left;
+}
+
+.meeting-date-display {
+    color:#424242;
+    padding:5px;
+    border-radius:3px;    
+}
+
+#today { 
+    background-color:#C2C2C2;
+}   
+
+
+
+@media screen and (max-width: 1000px) {
+    .meeting-tile {
+        width:45%;
+    }
+}
+
+
+
+@media screen and (max-width: 650px) {
+    .meeting-tile {
+        margin:20px auto;
+        display:block;
+        width:90%;
+    }
+}
+
+
+
+
+
+
