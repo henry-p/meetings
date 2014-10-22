@@ -62,6 +62,8 @@ gem 'bourbon'
 # grid framework for bourbon
 gem 'neat'
 
+gem 'coveralls', require: false
+
 group :development, :test do
   gem 'timecop'
   gem 'rspec-rails', '~> 2.14.1'
