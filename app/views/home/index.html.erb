@@ -1,26 +1,25 @@
 <div id='top-banner'>
 </div>
 
+
 <div id='sign-in-banner'>
   <div class='container'>
     <div id='about'>
 
-      <br><br>
-
-      <h1>Meetings suck.</h1>
-
-      <br><br>
-
+      <h1>Standup</h1>
+      
       <p>
-        <b>Standup</b> helps make them better. We believe collaborative preparation allows for more effective meetings. Share what you think should be discussed in advance and get clear feedback from other meeting members. Spend less time documenting and organizing information and more time solving problems.   
+        Meetings are ineffective. <b>Standup</b> helps make them better. We believe collaborative preparation allows for more effective meetings. Share what you think should be discussed in advance and get clear feedback from other meeting members. Spend less time documenting and organizing information and more time solving problems.   
       </p>
+
+
 
       <br>
 
     </div>
 
     <% flash.each do |name, msg| %>
-      <%= content_tag :div, msg, class: "flash #{name}" %>
+    <%= content_tag :div, msg, class: "flash #{name}" %>
     <% end %>
 
     <div id='sign-in'>
@@ -29,14 +28,12 @@
 
     <br><br>
 
-    <div id='meeting-img'><%= image_tag('meeting.png') %></div>
+  </div>
+  <div id='scroll-feature'>
+    <a href="#about_cats" class="scroll"><i class="fa fa-angle-double-down fa-5x"></i></a>
   </div>
 </div>
 
-
 <br><br><br>
-
-
-
 
 <%= render "meeting_timeline" %>

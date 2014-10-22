@@ -9,13 +9,23 @@ $darkbluegray: #5A6480;
 $black: #333;
 
 #sign-in-banner {
-  background: -webkit-linear-gradient($lightbluegray, $mediumbluegray); 
-  background: -o-linear-gradient($lightbluegray, $mediumbluegray); 
-  background: -moz-linear-gradient($lightbluegray, $mediumbluegray); 
-  background: linear-gradient($lightbluegray, $mediumbluegray);
+  background-image: image-url("standing_cat.jpg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+
   div {
     display:block;
   };
+  p {
+    color: #E9E9E9;
+    font-family: 'Lato', sans-serif;
+    font-size: 1em;
+    margin-top: 3em;
+    margin-bottom: 2em;
+  }
   #about {
     padding:10px;
     font-size:1.3em;
@@ -28,33 +38,26 @@ $black: #333;
       max-width:70%;
     }
   }
+  h1 {
+    padding: .2em;
+    color: #E9E9E9;
+    font-size: 3em;
+    font-family: 'Lato', sans-serif;
+    margin: 0 auto;
+    margin-top: 1em;
+    border:3px white solid;
+    width: 40%;
+  }
   overflow:hidden;
 }
 
-#how-it-works {
-  text-align:center;
-  .tile {
-    margin-bottom:10px;
-  }
+.fa-angle-double-down {
+  margin: 0 auto;
+  color: #E9E9E9;
 }
 
-.tile {
-  background: -webkit-linear-gradient($lightbluegray, $mediumbluegray); 
-  background: -o-linear-gradient($lightbluegray, $mediumbluegray); 
-  background: -moz-linear-gradient($lightbluegray, $mediumbluegray); 
-  background: linear-gradient($lightbluegray, $mediumbluegray);
-  line-height:1.3em;
-  width:200px;  
-  display:inline-block;
-  vertical-align:top;
-  border-radius:5px;
-  padding:15px 10px 10px 10px;
-  margin:5px;
-}
-
-#meeting-img {
-  opacity:0.4;
-  text-align:center;
-  margin-bottom: -40px;
-  margin-top:-80px;
+#scroll-feature {
+  width: 1%;
+  margin: 0 auto;
+  margin-bottom: 50px;
 }
