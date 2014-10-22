@@ -11,7 +11,7 @@ $grey-med: #bcbcbc;
 $blue: #3299bb;
 
 .meeting-body {
-  background-color: $grey-light;
+  background-color: #F5F5F5;
 }
 .meeting-container {
   max-width:1000px;
@@ -30,7 +30,7 @@ $blue: #3299bb;
   };
 }
 [contenteditable="true"]:focus {
-    background-color: #F0FAFF;
+  background-color: #F0FAFF;
 }
 
 .editable {
@@ -116,6 +116,9 @@ a.meeting-container {
   height: 247px;
   overflow-y: scroll;
 }
+#invitees-list li {
+  border-radius: 2px;
+}
 
 #notes {
   margin: auto, 2px;
@@ -156,6 +159,7 @@ a.meeting-container {
 
 
 #new_agenda_topic input[name='commit'], #new_actionable input[name='commit'] {
+  vertical-align: top;
   font-family: inherit;
   border: none;
   border-radius: 2px;
@@ -163,7 +167,7 @@ a.meeting-container {
   border-bottom: 2px;
   height: 1.8em;
   font-weight: bold;
-  background-color: $orange
+  background-color: $orange;
 }
 .agenda:first-child, .actionable:first-child {
   margin-top: 0px;
@@ -189,19 +193,19 @@ a.meeting-container {
   border: none;
   font-size: 1.3em;
   padding: 0px 5px;
-     /*-moz-box-shadow:    inset 0 0 2px #000000;*/
-   /*-webkit-box-shadow: inset 0 0 2px #000000;*/
-   /*box-shadow:         inset 0 0 2px #000000;*/
-  /*border-radius: 2px;*/
+  box-shadow: 0 0 5px #aaa;
+  border-radius: 2px;
 }
 .agenda {
   box-shadow: 0 0 7px #aaa;
-
+  border-radius: 2px;
+  
   /*box-shadow: 0 0 7px #70B894;*/
   /*border: 1px solid #70B894;*/
 }
 .actionable {
   box-shadow: 0 0 7px #aaa;
+  border-radius: 2px;
   /*padding: 5px;*/
 
   /*box-shadow: 0 0 7px #FF9933;*/
@@ -212,8 +216,8 @@ a.meeting-container {
   padding: 10px 5px 0px 5px;
   margin: 0 auto;
   background-color: #fefefe;
-    .editable {
-      margin-bottom: 0px;
+  .editable {
+    margin-bottom: 0px;
     line-height: 1.1em;
     font-size: 1.1em;
   };
@@ -272,6 +276,7 @@ a.add_conclusion {
     right: 5px;
     top: 5px;
   };
+  border-radius: 2px;
   word-wrap: break-word;
 }
 .ui-draggable {
@@ -288,6 +293,7 @@ a.add_conclusion {
   padding: 0px;
   margin: 0px;
   margin: auto;
+
 }
 
 #meeting-id {
@@ -296,6 +302,12 @@ a.add_conclusion {
 
 .name-tag {
   display:none;
+}
+
+#arrow-left {
+  margin-right: 45px;
+  margin-top: 1px;
+  float: right;
 }
 
 /* Contacts Multisearch */

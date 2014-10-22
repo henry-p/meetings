@@ -1,7 +1,7 @@
 <div class = "actionable" id = "<%= actionable.id %>">
   <div class = 'meeting-item-header'>
     <% if !actionable.meeting.is_done %>
-      <span class="placeholder">Drag members to assign</span>
+      <span class="placeholder">Drag members to assign</span><img id="arrow-left" src="/assets/arrow_left.png">
       <%= link_to((fa_icon 'times lg'), meeting_actionable_path(actionable.meeting, actionable), class: "delete_actionable", method: :delete, remote: true, data: {confirm: "are u sure bro"}) %>
     <% end %>
   </div>
