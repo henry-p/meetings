@@ -24,7 +24,7 @@ body {
 
 #top-banner {
   height:6px;
-  background-color: #CC7A00;
+  background-color:#1F6075;
 }
 
 .container {
@@ -45,18 +45,17 @@ body {
 header {
   height:50px;
   margin-bottom:50px;
-  background: -webkit-linear-gradient(#E9E9E9, #BCBCBC); 
-  background: -o-linear-gradient(#E9E9E9, #BCBCBC); 
-  background: -moz-linear-gradient(#E9E9E9, #BCBCBC); 
-  background: linear-gradient(#E9E9E9, #BCBCBC);
+  background: -webkit-linear-gradient(#E9E9E9, #C4C4C4); 
+  background: -o-linear-gradient(#E9E9E9, #C4C4C4); 
+  background: -moz-linear-gradient(#E9E9E9, #C4C4C4); 
+  background: linear-gradient(#E9E9E9, #C4C4C4);
   img {
-    margin-top:-22px;
-    border:1px solid #424242;
+    margin-top:-5px;
   };
   a {
     color:#424242;
     display:inline-block;
-    margin-top:5px;
+    margin-top:15px;
     &:hover {
       color:#333;
     };
@@ -64,20 +63,18 @@ header {
 }
 
 
-#nav-bar-icons {
-  float:left
-}
-
-#nav-bar-greeting {
-  img {
-    margin-right:15px;
+#nav-bar {
+  float:right;
+  a {
+    color: #424242;
+    font-weight:600;
+    margin-top:10px;
+    padding:5px;
+    &:hover {
+      text-decoration:none;
+      color:#2D8AA8
+    }
   };
-  p {
-    display:inline-block;
-    vertical-align:bottom;
-  };
-  font-weight:600;
-  float:right
 }
 
 .flash.error {
