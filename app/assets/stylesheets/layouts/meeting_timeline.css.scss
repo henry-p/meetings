@@ -263,8 +263,8 @@ section h3.section-subheading {
 }
 
 
-.live {
-    color:#009900;
+#live {
+    background-color:#98D9AF;
     font-weight: 900;
 }
 
@@ -273,8 +273,16 @@ section h3.section-subheading {
     background-color: #E9E9E9;
     display:inline-block;
     width:30%;
-    margin-bottom: 20px;
+    margin:0px 5px 20px 5px;
     padding:10px;
+    &:hover {
+        background-color:#DEDEDE
+    };
+    a {
+        &:hover {
+            text-decoration:none;   
+        }
+    }
 }
 
 #meeting-title {
@@ -290,6 +298,22 @@ section h3.section-subheading {
 
 .meeting-list {
     text-align: center;
+}
+
+.meeting-option-link {
+    background-color:#3299bb;
+    padding:3px 5px;
+    border-radius:2px;
+    a {
+        font-weight:400;
+        color:white;
+        &:hover {
+            color:white
+        }
+    };
+    &:hover {
+        background-color:#2E8EAD
+    }
 }
 
 #create-meeting {
@@ -322,6 +346,9 @@ section h3.section-subheading {
     background-color:#C2C2C2;
 }   
 
+#past { 
+    background-color:#DE9D8E;
+}   
 
 
 @media screen and (max-width: 1000px) {

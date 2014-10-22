@@ -22,6 +22,10 @@ body {
   margin-bottom: 50px;
 }
 
+h1 small {
+  font-size: 50%;
+}
+
 #top-banner {
   height:6px;
   background-color:#1F6075;
@@ -81,6 +85,12 @@ header {
   font-weight:900;
   color:red;
   text-align:center;
+}
+
+.flash.success {
+  font-weight:900;
+  color:#0BD961;
+  text-align:center;  
 }
 
 h1, h2 {

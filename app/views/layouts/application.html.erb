@@ -15,9 +15,8 @@
       <span id='nav-bar'>
         <% if current_user.image_path %>
           <%= link_to (image_tag current_user.image_path, id: 'header-google-img'), profile_path %>
-        <% else %>
-          <%= link_to "Home", profile_path %>
         <% end %>
+        <%= link_to "Home", profile_path %>
         <%= link_to ("Archive"), profile_archive_path %>
         <%= link_to "Logout", logout_path, method: :delete %>
     </div>
