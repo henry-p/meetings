@@ -2,7 +2,15 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 @import "bootstrap";
+$orange: #FF9900;
+$dark: #424242;
+$grey-light: #e9e9e9;
+$grey-med: #bcbcbc;
+$blue: #3299bb;
 
+ body {
+  background-color: $grey-light;
+ }
 .meeting-container {
   max-width:1000px;
   margin:auto;
@@ -28,7 +36,7 @@ input.error {
 a:focus {
   outline: none;
 }
-a.list-group-item.hover {
+.list-group-item.hover {
   background-color: #6cb1e9;
   color: #ffffff;
   text-decoration: none;
@@ -38,12 +46,32 @@ a.list-group-item.hover {
   margin: auto;
 }
 
-/*.meeting-content {
-  overflow: hidden;
-}*/
+a.meeting-container {
+  color: $blue;
+}
+.meeting-container a:hover {
+  text-decoration: none;
+};
 
+.meeting-item-header {
+  margin-bottom: 10px;
+  position: relative;
+  .google-circle-sm {
+    display: block;
+    margin: auto;
+  };
+  .fa-times {
+    position: absolute;
+    top: 0px;
+    right: 2px;
+  };
+  .vote {
+    position: absolute;
+    top: 0px;
+    left: 2px;
+  };
+}
 .meeting-column {
-
   vertical-align: top;
   display:inline-block;
   width: 33%;
@@ -51,11 +79,9 @@ a.list-group-item.hover {
   padding: 7px;
   overflow-y: hidden;
 }
-
 .meeting-column input[type='text'] {
   width: 80%;
 }
-
 #actionables, #agendas {
   width: 100%;
   height: 550px;
@@ -76,41 +102,38 @@ a.list-group-item.hover {
   overflow-y: scroll;
   text-align: left;
   height: 247px;
-  background-color: #eee;
+  background-color: white;
   border-radius: 4px;
-  box-shadow: -2px 2px 5px #555;
+  box-shadow: 0 0 7px #aaa;
   padding: 5px;
 }
 .agenda, .actionable {
-  margin: 10px 5px;
-  min-height: 30px;
-  border-radius: 4px;
-  text-align: center;
-  background-color: #FFFFBF;
-  box-shadow: -2px 2px 5px #555;
+  margin: 15px 5px;
+  padding: 10px;
+  /*min-height: 30px;*/
+  /*height: 100%;*/
+  text-align: left;
+  background-color: white;
+  box-shadow: 0 0 7px #aaa;
   .editable {
     line-height: 1em;
     padding: 3px;
   };
 }
-.agenda {
-
-  padding-top: 5px;
-}
 .conclusion {
-  border: 2px solid lightyellow;
-  padding: 2px;
-  border-radius: 4px;
-  background-color: lightyellow;
-  border-style:inset;
+  padding: 5px;
+  margin: auto;
+  margin-top: 15px;
+  border-top: 1px solid grey;
+  background-color: #fefefe;
     .editable {
     line-height: 1.1em;
     font-size: 1.1em;
   };
 }
 .actionable {
-  padding: 5px;
-  background-color: #E0FFE0;
+  /*padding: 5px;*/
+  /*background-color: #E0FFE0;*/
 }
 .dragon-drop, .dragon-drop-disabled {
   position: relative;
@@ -131,7 +154,7 @@ a.list-group-item.hover {
 .placeholder {
   list-style-type: none;
   margin: 0px;
-  color: #999;
+  color: #aaa;
 }
 #invitees-list, .responsible-users-list{
   padding: 0px;

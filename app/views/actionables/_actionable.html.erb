@@ -1,19 +1,17 @@
 <div class = "actionable" id = "<%= actionable.id %>">
+  <div class = 'meeting-item-header'>
+    <% if !actionable.meeting.is_done %>
+      <span class="placeholder">Drag members to assign</span>
+      <%= link_to((fa_icon 'times lg'), meeting_actionable_path(actionable.meeting, actionable), class: "delete_actionable", method: :delete, remote: true, data: {confirm: "are u sure bro"}) %>
+    <% end %>
+  </div>
   <% if !actionable.meeting.is_done %>
     <div class = "editable" contenteditable = 'true'><%= actionable.content %></div>
   <% else %>
     <div class = "editable"><%= actionable.content %></div>
   <% end %>
-
-  <% if !actionable.meeting.is_done %>
-    <%= link_to("Delete", meeting_actionable_path(actionable.meeting, actionable), class: "delete_actionable", method: :delete, remote: true, data: {confirm: "are u sure bro"}) %>
-  <% end %>
-
   <ul class = "responsible-users-list">
-    <% if !actionable.meeting.is_done %>
-      <li class="placeholder">Drag members to assign</li>
-    <% end %>
     <%= render actionable.responsible_users, actionable: actionable %>
-  </class>
+  </ul>
 
 </div>
