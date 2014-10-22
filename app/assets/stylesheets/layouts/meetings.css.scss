@@ -20,7 +20,9 @@ $blue: #3299bb;
   text-align: center;
   margin: auto;
 }
-
+[contenteditable="true"]:focus {
+    background-color: #F0FAFF;
+}
 #notes p {
   margin: 0px;
   line-height: 1.2em;
@@ -93,6 +95,12 @@ a.meeting-container {
   height: auto !important;
   overflow-y: auto !important;
 }
+#new_agenda_topic input[name='commit'], #new_actionable input[name='commit'] {
+  font-family: inherit;
+  border: none;
+  border-radius: 5px;
+  background-color: $orange;
+}
 
 #invitees-list {
   height: 247px;
@@ -114,32 +122,58 @@ a.meeting-container {
   /*height: 100%;*/
   text-align: left;
   background-color: white;
-  box-shadow: 0 0 7px #aaa;
+  /*box-shadow: 0 0 7px #aaa;*/
+  /*box-shadow: 0 0 7px $orange;*/
   .editable {
     line-height: 1em;
     padding: 3px;
   };
 }
+#close-meeting {
+  border: 2px solid $orange;
+  margin: 15px;
+}
+.agenda {
+  box-shadow: 0 0 7px #aaa;
+
+  /*box-shadow: 0 0 7px #70B894;*/
+  /*border: 1px solid #70B894;*/
+}
+.actionable {
+  box-shadow: 0 0 7px #aaa;
+
+  /*box-shadow: 0 0 7px #FF9933;*/
+  /*border: 1px solid #FF9933;*/
+}
 .conclusion {
-  padding: 5px;
-  margin: auto;
-  margin-top: 15px;
-  border-top: 1px solid grey;
+  padding: 10px 5px 0px 5px;
+  margin: 0 auto;
   background-color: #fefefe;
     .editable {
+      margin-bottom: 0px;
     line-height: 1.1em;
     font-size: 1.1em;
   };
 }
-.actionable {
-  /*padding: 5px;*/
-  /*background-color: #E0FFE0;*/
+.agenda > .content {
+  margin-bottom: 15px;
+}
+.agenda-bottom-border {
+  border-bottom: 1px solid grey;
+}
+a.add_conclusion {
+  display: block;
+  margin-top: 10px;
+  padding: 0px 5px 2px 5px;
+}
+.actionable > .editable {
+  margin: 15px auto;
 }
 .dragon-drop, .dragon-drop-disabled {
   position: relative;
   padding: 3px;
-  border: 1px solid blue;
-  border-radius: 8px;
+  border: 1px solid $blue;
+  /*border-radius: 8px;*/
   list-style-type: none;
   margin: 5px auto;
   width: 80%;
@@ -149,7 +183,12 @@ a.meeting-container {
 }
 .responsible-user{
   cursor: auto;
-  background-color: #EBFFEB
+  position: relative;
+  padding: 3px 3px 3px 15px;
+  .fa-times {
+    position: absolute;
+    right: 10px;
+  };
 }
 .placeholder {
   list-style-type: none;
