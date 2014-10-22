@@ -1,7 +1,3 @@
-<% if @meeting.title && @meeting.start_time && @meeting.end_time %>
-  <h1>Duplicate: <%= @meeting.title %></h1>
-<% else %>
-  <h1>Create a New Meeting</h1>
-<% end %>
+<h1>New meeting</h1>
 
 <%= render "meeting_form" %>
