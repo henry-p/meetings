@@ -222,22 +222,40 @@ a.add_conclusion {
   position: relative;
   padding: 3px;
   border: 1px solid $blue;
-  /*border-radius: 8px;*/
   list-style-type: none;
   margin: 5px auto;
   width: 80%;
+  background-color: white;
 }
 .dragon-drop {
   cursor: move;
+  word-wrap: break-word;
 }
-.responsible-user{
-  cursor: auto;
+.dragon-drop:first-child{
+  margin-top: 0px;
+}
+.hover_drop {
   position: relative;
   padding: 3px 3px 3px 15px;
   .fa-times {
     position: absolute;
     right: 10px;
   };
+}
+.responsible-user{
+  cursor: auto;
+  position: relative;
+  padding: 3px 20px 3px 13px;
+  width: 80%;
+  .fa-times {
+    position: absolute;
+    right: 5px;
+    top: 5px;
+  };
+  word-wrap: break-word;
+}
+.ui-draggable {
+  padding: 3px 20px 3px 13px;
 }
 .placeholder {
   list-style-type: none;
