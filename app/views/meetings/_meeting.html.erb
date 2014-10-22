@@ -1,31 +1,46 @@
-<%= link_to "#{meeting.title}", meeting_path(meeting) %>
-<%= Meeting.format_timestamp(meeting.start_time) %>
-<%= meeting.duration_formatted %>
+<div class='meeting-tile'>
 
-<% if meeting.is_done %>
-  <span id="meeting-finished"><b>Closed</b></span>
-<% end %>
 
-<br>
-
-<% if current_user == meeting.creator %>
-  <% if !meeting.is_done %>
-    <% if !meeting.is_live %>
-      <%= link_to "Start", meeting_path(meeting, start: true), method: :patch %> |
+  <div id='meeting-date'>
+    <% if !meeting.is_done %>
+      <% if meeting.time_from_now == 0 %>
+        <b id='today' class='meeting-date-display'><%= fa_icon 'calendar' %> Today</b>
+      <% else %>
+        <b class='meeting-date-display'><%= fa_icon 'calendar' %> <%= "About #{pluralize(meeting.time_from_now, 'day')} from now" %></b>
+      <% end %>
     <% else %>
-      Live now! |
+      <b class='meeting-date-display'><%= fa_icon 'calendar' %> <%= meeting.just_the_date %></b>
     <% end %>
-  	<%= link_to "Duplicate", new_meeting_path(id: meeting.id) %> | 
-  	<%= link_to "Edit", edit_meeting_path(meeting) %> |
-  	<%= link_to "Delete", meeting_path(meeting), method: :delete %>
-  <% else %>
-    <%= link_to "Duplicate", new_meeting_path(id: meeting.id) %>
-  <% end %>
-<% else %>
-  <% if !meeting.is_done %>
-  	<%= link_to "Decline", meeting_invite_path(meeting, Invite.where(invitee_id: current_user.id, meeting_id: meeting.id)[0]), method: :delete %>
-  <% end %>
-<% end %>
+  </div>
 
-<br>
-<br>
+  <span id='meeting-title'><%= link_to "#{meeting.truncated_title}", meeting_path(meeting) %></span>
+
+  <% if meeting.is_done %>
+    <span id="meeting-finished"><b>Closed</b></span>
+  <% end %>
+
+  <div class='meeting-options'>
+    <% if current_user == meeting.creator %>
+      <% if !meeting.is_done %>
+        <% if !meeting.is_live %>
+          <%= link_to "Start", meeting_path(meeting, start: true), method: :patch %> |
+        <% else %>
+          <span class='live'>Live now!</span> |
+        <% end %>
+      	<%= link_to "Duplicate", new_meeting_path(id: meeting.id) %> | 
+      	<%= link_to "Edit", edit_meeting_path(meeting) %> |
+      	<%= link_to "Delete", meeting_path(meeting), method: :delete %>
+      <% else %>
+        <%= link_to "Duplicate", new_meeting_path(id: meeting.id) %>
+      <% end %>
+    <% else %>
+      <% if !meeting.is_done %>
+        <% if meeting.is_live %> 
+          <span class='live'>Live now!</span> |
+        <% end %>
+      	<%= link_to "Decline Invite", meeting_invite_path(meeting, Invite.where(invitee_id: current_user.id, meeting_id: meeting.id)[0]), method: :delete %>
+      <% end %>
+    <% end %>
+  </div>
+
+</div>

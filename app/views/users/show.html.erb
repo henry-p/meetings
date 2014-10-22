@@ -3,6 +3,6 @@
   <% flash.each do |name, msg| %>
     <%= content_tag :div, msg, class: "flash #{name}" %>
   <% end %>
-  <%= link_to "Create a meeting", new_meeting_path %><br>
-  <%= render @meetings %>
+  <div id='create-meeting'><%= link_to "Create a meeting", new_meeting_path %></div>
+  <div class='meeting-list'><%= render @meetings %></div>
 </div>
