@@ -3,9 +3,6 @@ class SessionsController < ApplicationController
 
   layout false
 
-  def new
-  end
-
   def destroy
     current_user.logout
     session.clear
