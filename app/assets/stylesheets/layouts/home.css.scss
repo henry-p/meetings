@@ -46,7 +46,10 @@ $black: #333;
     margin: 0 auto;
     margin-top: 1em;
     border:3px white solid;
-    width: 40%;
+    max-width:400px;
+  }
+  #catch {
+    font-size:1.3em;
   }
   overflow:hidden;
 }
