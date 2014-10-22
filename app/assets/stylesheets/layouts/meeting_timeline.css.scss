@@ -18,13 +18,17 @@ p.large {
     font-size: 16px;
 }
 
+p#meeting-length {
+    color: gray;
+}
 
 h1,
 h2,
 h3,
 h4,
 h5,
-h6 {
+h6,
+p#meeting-length {
     font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
     font-weight: 700;
 }

@@ -16,13 +16,13 @@ Rails.application.routes.draw do
 
   resources :meetings, except: :index do
     resources :invites, only: :destroy
-    resources :agenda_topics do
-      resources :conclusions
+    resources :agenda_topics, only: [:create, :update, :destroy] do
+      resources :conclusions, only: [:create, :update]
       resources :votes, only: :create
     end
 
-    resources :actionables do
-      resources :responsibilities, except: [:edit, :update]
+    resources :actionables, only: [:create, :update, :destroy] do
+      resources :responsibilities, only: [:create, :destroy]
     end
 
     get "/invited" => "meetings#check_invited"

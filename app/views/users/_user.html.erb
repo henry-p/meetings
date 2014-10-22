@@ -1,5 +1,5 @@
 <li class = "dragon-drop responsible-user" id = '<%= user.id %>'><%= user.full_name_or_email %>
   <% if !@meeting.is_done %>
-    <%= link_to "Unassign", meeting_actionable_responsibility_path(@meeting, actionable, user.responsibilities.where(actionable_id: actionable.id).first), method: :delete, remote: true %>
+    <%= link_to (fa_icon 'times'), meeting_actionable_responsibility_path(@meeting, actionable, user.responsibilities.where(actionable_id: actionable.id).first), method: :delete, remote: true %>
   <% end %>
 </li>
