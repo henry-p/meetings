@@ -22,9 +22,6 @@
   <div class='meeting-options'>
     <% if current_user == meeting.creator %>
       <% if !meeting.is_done %>
-        <% if !meeting.is_live %>
-          <span class='meeting-option-link'><%= link_to "Start", meeting_path(meeting, start: true), method: :patch %></span>
-        <% end %>
       	<span class='meeting-option-link'><%= link_to "Duplicate", new_meeting_path(id: meeting.id) %></span>
       	<span class='meeting-option-link'><%= link_to "Edit", edit_meeting_path(meeting) %></span>
       	<span class='meeting-option-link'><%= link_to "Delete", meeting_path(meeting), method: :delete %></span>
