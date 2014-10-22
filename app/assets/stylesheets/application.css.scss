@@ -15,11 +15,6 @@
  *= require bootstrap-datetimepicker.min
  */
 
-$lightbluegray: #D4DCE7;
-$mediumbluegray: #C0CDDC;
-$darkbluegray: #5A6480;
-$black: #333;
-
 body {
   font-family: helvetica;
   font-weight: 100;
@@ -29,7 +24,7 @@ body {
 
 #top-banner {
   height:6px;
-  background-color: #FF9900;
+  background-color: #CC7A00;
 }
 
 .container {
@@ -50,20 +45,20 @@ body {
 header {
   height:50px;
   margin-bottom:50px;
-  background: -webkit-linear-gradient($lightbluegray, #ADB8C6); 
-  background: -o-linear-gradient($lightbluegray, #ADB8C6); 
-  background: -moz-linear-gradient($lightbluegray, #ADB8C6); 
-  background: linear-gradient($lightbluegray, #ADB8C6);
+  background: -webkit-linear-gradient(#E9E9E9, #BCBCBC); 
+  background: -o-linear-gradient(#E9E9E9, #BCBCBC); 
+  background: -moz-linear-gradient(#E9E9E9, #BCBCBC); 
+  background: linear-gradient(#E9E9E9, #BCBCBC);
   img {
     margin-top:-22px;
-    border:1px solid $darkbluegray;
+    border:1px solid #424242;
   };
   a {
-    color:$darkbluegray;
+    color:#424242;
     display:inline-block;
     margin-top:5px;
     &:hover {
-      color:#515A73;
+      color:#333;
     };
   };
 }
@@ -95,3 +90,6 @@ h1, h2 {
   text-align: center;
 }
 
+a {
+  color: #3299BB
+}
