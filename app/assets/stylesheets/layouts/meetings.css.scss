@@ -172,7 +172,7 @@ a.meeting-container {
   max-width: 100%;
   input[name='commit'] {
     width: 15%;
-    float: left;
+    float: right;
     font-family: inherit;
     border: none;
     border-radius: 2px;
@@ -205,12 +205,12 @@ a.meeting-container {
   background-color: $dark-orange;
 }
 #agenda_topic_content, #actionable_content {
-  width: 85%;
+  width: 82%;
   float: left;
   border: none;
   font-size: 1.3em;
   /*margin: 0px 5px;*/
-  padding: 0px;
+  margin-right: 3%;
 }
 .agenda {
   box-shadow: 0 0 7px #aaa;
