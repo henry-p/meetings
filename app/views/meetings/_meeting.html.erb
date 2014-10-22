@@ -3,10 +3,14 @@
 
   <div id='meeting-date'>
     <% if !meeting.is_done %>
-      <% if meeting.time_from_now == 0 %>
+      <% if meeting.is_live %>
+        <b id='live' class='meeting-date-display'>Live now!</b>
+      <% elsif meeting.time_from_now == 0 %>
         <b id='today' class='meeting-date-display'><%= fa_icon 'calendar' %> Today</b>
+      <% elsif meeting.time_from_now > 0 %>
+        <b id='past' class='meeting-date-display'>Passed scheduled date</b>
       <% else %>
-        <b class='meeting-date-display'><%= fa_icon 'calendar' %> <%= "About #{pluralize(meeting.time_from_now, 'day')} from now" %></b>
+        <b class='meeting-date-display'><%= fa_icon 'calendar' %> <%= "About #{pluralize(meeting.time_from_now.abs, 'day')} from now" %></b>
       <% end %>
     <% else %>
       <b class='meeting-date-display'><%= fa_icon 'calendar' %> <%= meeting.just_the_date %></b>
@@ -23,22 +27,17 @@
     <% if current_user == meeting.creator %>
       <% if !meeting.is_done %>
         <% if !meeting.is_live %>
-          <%= link_to "Start", meeting_path(meeting, start: true), method: :patch %> |
-        <% else %>
-          <span class='live'>Live now!</span> |
+          <span class='meeting-option-link'><%= link_to "Start", meeting_path(meeting, start: true), method: :patch %></span>
         <% end %>
-      	<%= link_to "Duplicate", new_meeting_path(id: meeting.id) %> | 
-      	<%= link_to "Edit", edit_meeting_path(meeting) %> |
-      	<%= link_to "Delete", meeting_path(meeting), method: :delete %>
+      	<span class='meeting-option-link'><%= link_to "Duplicate", new_meeting_path(id: meeting.id) %></span>
+      	<span class='meeting-option-link'><%= link_to "Edit", edit_meeting_path(meeting) %></span>
+      	<span class='meeting-option-link'><%= link_to "Delete", meeting_path(meeting), method: :delete %></span>
       <% else %>
-        <%= link_to "Duplicate", new_meeting_path(id: meeting.id) %>
+        <span class='meeting-option-link'><%= link_to "Duplicate", new_meeting_path(id: meeting.id) %></span>
       <% end %>
     <% else %>
       <% if !meeting.is_done %>
-        <% if meeting.is_live %> 
-          <span class='live'>Live now!</span> |
-        <% end %>
-      	<%= link_to "Decline Invite", meeting_invite_path(meeting, Invite.where(invitee_id: current_user.id, meeting_id: meeting.id)[0]), method: :delete %>
+      	<span class='meeting-option-link'><%= link_to "Decline Invite", meeting_invite_path(meeting, Invite.where(invitee_id: current_user.id, meeting_id: meeting.id)[0]), method: :delete %></span>
       <% end %>
     <% end %>
   </div>

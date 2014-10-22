@@ -19,7 +19,7 @@ class Meeting < ActiveRecord::Base
   end
 
   def truncated_title
-    return "#{title[0..17]}..." if title.length > 17
+    return "#{title[0..15]}..." if title.length > 15
     title
   end
 
@@ -116,6 +116,6 @@ class Meeting < ActiveRecord::Base
   end
 
   def time_from_now
-    days_from_now = ( ((Time.now - start_time) / 86400).floor ).abs
+    days_from_now = ((Time.now - start_time) / 86400).floor
   end
 end
