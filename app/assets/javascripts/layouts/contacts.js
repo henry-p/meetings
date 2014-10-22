@@ -7,7 +7,7 @@ function startContactLoad() {
     if (data.jid) {
       displayWaitMsg();
       checkOnContacts(data.jid);
-    } 
+    }
   });
   ajax.fail(function() {
     displayFailureMsg();
@@ -17,8 +17,8 @@ function startContactLoad() {
 
 function checkOnContacts(jid) {
   interval = setInterval(function() {
-    checkContactsAjaxCall(jid)
-  }, 3000)
+    checkContactsAjaxCall(jid);
+  }, 3000);
 }
 
 function checkContactsAjaxCall(jid) {
@@ -36,25 +36,27 @@ function checkContactsAjaxCall(jid) {
   });
   ajax.fail(function() {
     displayFailureMsg();
-  });  
+  });
 }
 
 
 function displayWaitMsg() {
   clearMsg();
-  $("<p class='load-msg'>We're loading your contacts from Google to make inviting people to meetings easier. This may take a few minutes.</p>").insertBefore('h1')
+  $('<div class="signal"></div><br><p class="load-msg">Please wait while your contacts are loading. This may take a while.</p>').insertBefore('h1');
 }
 
 function displaySuccessMsg() {
   clearMsg();
-  $("<p class='load-msg'>Your contacts have been successfully loaded.</p>").insertBefore('h1')
+  $("<p class='load-msg'>Your contacts have been successfully loaded.</p>").insertBefore('h1').fadeOut(1500, function() {
+    $(this).remove();
+  });
 }
 
 function displayFailureMsg() {
   clearMsg();
-  $("<p class='load-msg'>There was an error loading your contacts.</p>").insertBefore('h1')
+  $("<p class='load-msg'>There was an error loading your contacts.</p>").insertBefore('h1');
 }
 
 function clearMsg() {
-  $('.load-msg').remove();
+  $('.signal, .load-msg').remove();
 }
