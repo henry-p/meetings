@@ -4,14 +4,14 @@
   <%= form_for @meeting do |f| %>
     <%= f.text_field :title, placeholder: 'Title', class: 'form-control' %><br>
 
-    <%= f.text_field :location, placeholder: 'Location', class: 'form-control' %><br>
+    <%= f.text_field :location, placeholder: 'Location (optional)', class: 'form-control' %><br>
 
-    <%= f.text_area :description, placeholder: 'Description', class: 'form-control', rows: '4' %>
+    <%= f.text_area :description, placeholder: 'Description (optional)', class: 'form-control', rows: '4' %>
 
 
     <br><br><br>
     
-    <p>Add meeting members by e-mail:</p>
+    <p class='information'>Add meeting members by e-mail:</p>
     <%= render "add_contacts" %>
 
     <br><br><br>
@@ -27,10 +27,11 @@
       <input id='datetimepicker_end' placeholder='End time'  type='datetime' class="form-control datetime" name="meeting[end_time]" value="<%= @meeting.format_to_local_time(@meeting.end_time) %>"/>
     </div>
 
-    <br>
+    <br><br><br>
+      <p class='information'>This will integrate with your Google Calendar.</p>
     <br>
 
-    <%= button_tag "Submit" %>
+    <%= button_tag "Create meeting" %>
   <% end %>
 </div>
 
