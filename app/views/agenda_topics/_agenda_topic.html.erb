@@ -6,7 +6,7 @@
     <span class='name-tag'><%= agenda_topic.creator.full_name_or_email %></span>
 
     <% if !agenda_topic.meeting.is_done %>
-      <%= link_to (fa_icon 'times lg'), meeting_agenda_topic_path(agenda_topic.meeting, agenda_topic), method: :delete, remote: true, data: { confirm: "Are you sure? This cannot be undone" } %>
+      <%= link_to (fa_icon 'times lg'), meeting_agenda_topic_path(agenda_topic.meeting, agenda_topic), method: :delete, remote: true, data: { confirm: "Are you sure you want to delete?" } %>
     <% end %>
     <span class = 'vote'>
       <% if !agenda_topic.meeting.is_done %>

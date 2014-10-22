@@ -5,7 +5,7 @@
     <div class = 'sub-header'>
       <h2><small><%= Meeting.format_timestamp @meeting.start_time %></small></h2>
       <% if !@meeting.is_done && @meeting.is_live %>
-        <%= link_to "Close Meeting", meeting_path(@meeting, close: true), method: :patch, id: "close-meeting", class: 'nice-button' %>
+        <%= link_to "End Meeting", meeting_path(@meeting, close: true), method: :patch, id: "end-meeting", class: 'nice-button', data: { confirm: "Ending meeting will lock editing." } %>
       <% elsif !@meeting.is_done %>
         <%= link_to "Start Meeting", meeting_path(@meeting, start: true), method: :patch, id: 'start-meeting', class: 'nice-button' %>
       <% end %>
@@ -30,6 +30,7 @@
 
       <div class = 'meeting-column'>
         <h2>Members</h2>
+        <h4 class = 'info'>Drag members to actionables to delegate responsibilities.</h4>
       </div>
     </div>
 
