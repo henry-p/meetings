@@ -2,15 +2,14 @@
 
   <div class = 'meeting-header'>
     <h1><%= @meeting.title %></h1>
-    <% if !@meeting.is_done && @meeting.is_live %>
-      <%= link_to "Close Meeting", meeting_path(@meeting, close: true), method: :patch, id: "close-meeting" %>
-    <% elsif !@meeting.is_done && current_user == @meeting.creator %>
-      <%= link_to "Start", meeting_path(@meeting, start: true), method: :patch %>
-    <% end %>
-    <h2><small><%= Meeting.format_timestamp @meeting.start_time %></small></h2>
-    <% if @meeting.duration_in_seconds > 0 %>
-      <p id="meeting-length"><small>Length: <%= @meeting.duration_formatted %></small></p>
-    <% end %>
+    <div class = 'sub-header'>
+      <h2><small><%= Meeting.format_timestamp @meeting.start_time %></small></h2>
+      <% if !@meeting.is_done && @meeting.is_live %>
+        <%= link_to "Close Meeting", meeting_path(@meeting, close: true), method: :patch, id: "close-meeting", class: 'nice-button' %>
+      <% elsif !@meeting.is_done %>
+        <%= link_to "Start Meeting", meeting_path(@meeting, start: true), method: :patch, id: 'start-meeting', class: 'nice-button' %>
+      <% end %>
+    </div>
   </div>
 
   <div class = 'meeting-content'>

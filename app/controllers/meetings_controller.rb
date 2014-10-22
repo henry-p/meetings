@@ -30,6 +30,7 @@ class MeetingsController < ApplicationController
 	end
 
 	def show
+		@showing_meeting = true
 		if logged_in?
 			if current_user.email.downcase != @meeting.creator.email.downcase
 				@invitee_emails = @meeting.invitees.pluck(:email).map(&:downcase)
@@ -132,14 +133,16 @@ class MeetingsController < ApplicationController
 	end
 
   def update_notes
-    notes = params[:notes]
-    notes.strip!
-    notes.gsub!(/(<br>|<p>|<div>)/, "\n")
-    notes = strip_tags(notes)
-    notes.strip!
-    notes.gsub!(/(\n+\s*){3,}/, "\n\n")
-    @meeting.update_attributes(notes: notes)
-    render 'update_notes'
+  	if !@meeting.is_done
+	    notes = params[:notes]
+	    notes.strip!
+	    notes.gsub!(/(<br>|<p>|<div>)/, "\n")
+	    notes = strip_tags(notes)
+	    notes.strip!
+	    notes.gsub!(/(\n+\s*){3,}/, "\n\n")
+	    @meeting.update_attributes(notes: notes)
+	    render 'update_notes'
+  	end
   end
 
 	private
