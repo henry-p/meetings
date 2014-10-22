@@ -17,4 +17,16 @@ class VotesController < ApplicationController
     end
   end
 
+
+  def destroy
+    vote = Vote.find_by_id(params[:id])
+    @agenda = vote.agenda_topic
+    vote.destroy
+
+    respond_to do |format|
+      format.html { redirect_to meeting_path(params[:meeting_id]) }
+      format.js
+    end
+  end
+
 end

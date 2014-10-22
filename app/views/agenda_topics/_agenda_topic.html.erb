@@ -10,16 +10,16 @@
     <% end %>
     <span class = 'vote'>
       <% if !agenda_topic.meeting.is_done %>
-        <%= link_to (fa_icon 'thumbs-up lg'), meeting_agenda_topic_votes_path(agenda_topic.meeting, agenda_topic), remote: true, method: :post %>
+        <% if (vote = Vote.find_by(agenda_topic_id: agenda_topic, voter: current_user)) %>
+          <%= link_to (fa_icon 'thumbs-up lg'), meeting_agenda_topic_vote_path(agenda_topic.meeting, agenda_topic, vote), remote: true, method: :delete, class: 'voted' %>
+        <% else %>
+          <%= link_to (fa_icon 'thumbs-up lg'), meeting_agenda_topic_votes_path(agenda_topic.meeting, agenda_topic), remote: true, method: :post %>
+        <% end %>
       <% else %>
         <span> <%= fa_icon 'thumbs-up lg' %></span>      
       <% end %>
       <span id="vote"><%= agenda_topic.votes.count %></span>
     <span>
-
-    <span id="agenda-voter-pictures">
-      <%= render agenda_topic.votes %>
-    </span>
   </div>
 
   <% if !agenda_topic.meeting.is_done %>
