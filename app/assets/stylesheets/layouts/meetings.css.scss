@@ -43,6 +43,7 @@ a.list-group-item.hover {
 }*/
 
 .meeting-column {
+
   vertical-align: top;
   display:inline-block;
   width: 33%;
@@ -50,16 +51,9 @@ a.list-group-item.hover {
   padding: 7px;
   overflow-y: hidden;
 }
-.not-live input[type='text'] {
+
+.meeting-column input[type='text'] {
   width: 80%;
-}
-.meeting-column-not-live {
-  vertical-align: top;
-  display:inline-block;
-  width: 80%;
-  text-align: center;
-  padding: 7px;
-  overflow-y: hidden;
 }
 
 #actionables, #agendas {
@@ -68,8 +62,8 @@ a.list-group-item.hover {
   position: relative;
   overflow-y: scroll;
 }
-
 .not-live {
+  width: 80%;
   height: auto !important;
   overflow-y: auto !important;
 }
@@ -212,3 +206,5 @@ a.label-default.active {
 .glyphicon-time {
   font-size: 500%;
 }
+
+
