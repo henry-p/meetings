@@ -1,10 +1,33 @@
-<h1>INVITED PAGE</h1>
+<div class='container'>
 
-<% flash.each do |name, msg| %>
-  <%= content_tag :div, msg, class: "flash #{name}" %>
-<% end %>
+  <br><br><br>
 
-<%= form_tag meeting_invited_path(@meeting), method: :get do %>
-  <%= text_field_tag "email", nil, { placeholder: "Email" } %>
-  <%= button_tag "Go to meeting!" %>
-<% end %>
+  <h1>Meeting Invite List</h1>
+
+  <div class='text-center'><%= link_to "Back to home page", root_path %></div>
+
+  <% flash.each do |name, msg| %>
+    <%= content_tag :div, msg, class: "flash #{name}" %>
+  <% end %>
+
+  <br><br><br>
+
+  <div id='special-signin' class='text-center'>
+    <%= form_tag meeting_invited_path(@meeting), method: :get do %>
+      <%= text_field_tag "email", nil, { placeholder: "Email", class: 'form-control', id:'email-check-input' } %>
+      <br>
+      <%= button_tag "Continue to meeting", id: 'check-email' %>
+    <% end %>
+
+    <br>
+
+    <h1>or</h1>
+
+    <br>
+
+    <div class='text-center' id='check-email-google'>
+      <%= link_to image_tag('google.png', :onmouseover => "this.src='#{asset_path('google-hover.png')}'", :onmouseout => "this.src='#{asset_path('google.png')}'"), '/auth/google_oauth2' %>
+    </div>
+  </div>
+
+</div>

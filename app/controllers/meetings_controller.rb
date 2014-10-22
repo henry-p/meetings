@@ -62,7 +62,7 @@ class MeetingsController < ApplicationController
 			session[:user_id] = User.find_by_email(params[:email].downcase).id
 			render :show
 		else
-			flash[:error] = "This email address is not on the list of the people invited to this meeting."
+			flash[:error] = "This email address is not associated with any of this meeting's members."
 			render :invited
 		end
 	end
