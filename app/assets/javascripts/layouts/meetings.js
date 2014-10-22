@@ -185,9 +185,12 @@ function showNameOnHover() {
     $(this).first().next().css({
       'display': 'inline-block',
       'position': 'absolute',
-      'background-color': 'white',
+      'bottom': '-10px',
+      'right': '5px',
+      'color': '#ff9900',
+      'background-color': '#e9e9e9',
       'font-weight': '900',
-      'padding': '5px',
+      'padding': '3px',
       'opacity': '0.8'
     });
     $(this).on('mouseleave', function() {

@@ -16,10 +16,6 @@
       <% end %>
       <span id="vote"><%= agenda_topic.votes.count %></span>
     <span>
-
-    <span id="agenda-voter-pictures">
-      <%= render agenda_topic.votes %>
-    </span>
   </div>
 
   <% if !agenda_topic.meeting.is_done %>
