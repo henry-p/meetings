@@ -62,9 +62,9 @@ gem 'bourbon'
 # grid framework for bourbon
 gem 'neat'
 
-gem 'coveralls', require: false
-
 group :development, :test do
+	gem 'coveralls', require: false
+	gem 'simplecov', :require => false, :group => :test
   gem 'timecop'
   gem 'rspec-rails', '~> 2.14.1'
   gem 'capybara', '~> 2.2.1'

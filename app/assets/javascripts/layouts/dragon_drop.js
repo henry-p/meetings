@@ -1,6 +1,12 @@
 $(document).ready(function() {
   makeDroppable($(".actionable"));
   makeDraggable($('#invitees .dragon-drop'));
+  $('.dragon-drop').on('dragstart', function() {
+    $('.placeholder').css({"color": "#08A677"});
+  });
+  $('.dragon-drop').on('dragstop', function() {
+    $('.placeholder').css({"color": "#aaa"});
+  });
 });
 
 function makeDraggable(els) {

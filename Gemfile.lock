@@ -334,6 +334,7 @@ DEPENDENCIES
   sdoc (~> 0.4.0)
   shoulda-matchers
   sidekiq (~> 2.17.0)
+  simplecov
   sinatra (>= 1.3.0)
   spring
   thin
