@@ -18,7 +18,7 @@ Rails.application.routes.draw do
     resources :invites, only: :destroy
     resources :agenda_topics, only: [:create, :update, :destroy] do
       resources :conclusions, only: [:create, :update]
-      resources :votes, only: :create
+      resources :votes, only: [:create, :destroy]
     end
 
     resources :actionables, only: [:create, :update, :destroy] do
