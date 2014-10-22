@@ -21,10 +21,12 @@
     <%= render agenda_topic.votes %>
   </span>
 
+  <% if @meeting.is_live %>
     <% if !agenda_topic.conclusion && !agenda_topic.meeting.is_done %>
       <%= link_to "Click to add conclusion", meeting_agenda_topic_conclusions_path(agenda_topic.meeting, agenda_topic), remote: true, method: :post, class: "add_conclusion" %>
     <% elsif agenda_topic.conclusion %>
       <%= render partial: "conclusions/conclusion", locals: {conclusion: agenda_topic.conclusion}%>
     <% end %>
+  <% end %>
 
 </div>

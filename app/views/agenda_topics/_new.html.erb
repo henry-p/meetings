@@ -1,0 +1,6 @@
+<% if !@meeting.is_done %>
+  <%= form_for [@meeting, AgendaTopic.new], remote: true do |f| %>
+    <%= f.text_field :content %>
+  <%= f.submit "Add" %>
+  <% end %>
+<% end %>
