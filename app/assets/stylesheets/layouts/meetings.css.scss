@@ -3,14 +3,16 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 @import "bootstrap";
 $orange: #FF9900;
+$dark-orange: #E68A00;
+$light-orange: #F8DCB2;
 $dark: #424242;
 $grey-light: #e9e9e9;
 $grey-med: #bcbcbc;
 $blue: #3299bb;
 
- body {
+.meeting-body {
   background-color: $grey-light;
- }
+}
 .meeting-container {
   max-width:1000px;
   margin:auto;
@@ -20,12 +22,15 @@ $blue: #3299bb;
   text-align: center;
   margin: auto;
 }
+.sub-header {
+  h2 {
+    display: inline;
+    margin-right: 13px;
+    padding-right: 13px;
+  };
+}
 [contenteditable="true"]:focus {
     background-color: #F0FAFF;
-}
-#notes p {
-  margin: 0px;
-  line-height: 1.2em;
 }
 .editable {
   display:block;
@@ -74,6 +79,7 @@ a.meeting-container {
   };
 }
 .meeting-column {
+  margin-top: 10px;
   vertical-align: top;
   display:inline-block;
   width: 33%;
@@ -95,18 +101,12 @@ a.meeting-container {
   height: auto !important;
   overflow-y: auto !important;
 }
-#new_agenda_topic input[name='commit'], #new_actionable input[name='commit'] {
-  font-family: inherit;
-  border: none;
-  border-radius: 5px;
-  background-color: $orange;
-}
-
 #invitees-list {
   height: 247px;
   overflow-y: scroll;
 }
 #notes {
+  margin: auto, 2px;
   overflow-y: scroll;
   text-align: left;
   height: 247px;
@@ -114,12 +114,23 @@ a.meeting-container {
   border-radius: 4px;
   box-shadow: 0 0 7px #aaa;
   padding: 5px;
+  p {
+    margin: 0px;
+    line-height: 1.2em;
+  };
+}
+.meeting-row:first-child {
+  /*min-height: 125px;*/
+}
+.meeting-content {
+  margin-top: 10px;
+  h2 {
+    margin: 20px auto;
+  };
 }
 .agenda, .actionable {
-  margin: 15px 5px;
+  margin: 15px 2px;
   padding: 10px;
-  /*min-height: 30px;*/
-  /*height: 100%;*/
   text-align: left;
   background-color: white;
   /*box-shadow: 0 0 7px #aaa;*/
@@ -129,9 +140,44 @@ a.meeting-container {
     padding: 3px;
   };
 }
-#close-meeting {
-  border: 2px solid $orange;
-  margin: 15px;
+#new_agenda_topic input[name='commit'], #new_actionable input[name='commit'] {
+  font-family: inherit;
+  border: none;
+  border-radius: 2px;
+  color: white;
+  border-bottom: 2px;
+  height: 1.8em;
+  font-weight: bold;
+  background-color: $orange
+}
+.agenda:first-child, .actionable:first-child {
+  margin-top: 0px;
+}
+.agenda:last-child, .actionable:last-child {
+  margin-bottom: 3px;
+}
+
+.nice-button{
+  font-family: inherit;
+  font-weight: bold;
+  border-radius: 4px;
+  padding: 7px;
+  color: white;
+  background-color: $orange;
+}
+.nice-button:hover {
+  color: white;
+  background: none;
+  background-color: $dark-orange;
+}
+#agenda_topic_content, #actionable_content {
+  border: none;
+  font-size: 1.3em;
+  padding: 0px 5px;
+     /*-moz-box-shadow:    inset 0 0 2px #000000;*/
+   /*-webkit-box-shadow: inset 0 0 2px #000000;*/
+   /*box-shadow:         inset 0 0 2px #000000;*/
+  /*border-radius: 2px;*/
 }
 .agenda {
   box-shadow: 0 0 7px #aaa;
@@ -157,6 +203,9 @@ a.meeting-container {
 }
 .agenda > .content {
   margin-bottom: 15px;
+}
+.agenda > .content {
+  word-wrap: break-word;
 }
 .agenda-bottom-border {
   border-bottom: 1px solid grey;
