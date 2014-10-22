@@ -197,7 +197,8 @@ a.label-default.active {
 }
 
 [data-role="picker"] {
-  z-index: 1080;
+  text-align: left;
+  z-index: 100;
   max-height: 375px;
   overflow: auto;
 }
@@ -206,6 +207,3 @@ a.label-default.active {
 .glyphicon-time {
   font-size: 500%;
 }
-
-
-

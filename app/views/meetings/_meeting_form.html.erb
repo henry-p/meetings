@@ -14,16 +14,13 @@
 
 
     <br><br><br>
-
-    Add meeting members by e-mail:
-    <div id='contacts-search' data-control="multisearch"></div>
-
+    
+    <p>Add meeting members by e-mail:</p>
+    <%= render "add_contacts" %>
 
     <br><br><br>
 
     <%= render "timezone_select" %><br>
-
-
 
     <div class='wrap-center'>
       <input id='datetimepicker_start' placeholder='Start time' type='datetime' class="form-control datetime" name="meeting[start_time]" value="<%= @meeting.format_to_local_time(@meeting.start_time) %>"/>
