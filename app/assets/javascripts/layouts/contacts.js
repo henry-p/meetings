@@ -14,7 +14,6 @@ function startContactLoad() {
   });
 }
 
-
 function checkOnContacts(jid) {
   interval = setInterval(function() {
     checkContactsAjaxCall(jid);
@@ -42,12 +41,12 @@ function checkContactsAjaxCall(jid) {
 
 function displayWaitMsg() {
   clearMsg();
-  $('<div class="signal"></div><br><p class="load-msg">Please wait while your contacts are loading. This may take a while.</p>').insertBefore('h1');
+  $('<div class="signal"></div><p class="load-msg"><br>Please wait while your contacts are loading. This may take a while.</p>').insertBefore('h1');
 }
 
 function displaySuccessMsg() {
   clearMsg();
-  $("<p class='load-msg'>Your contacts have been successfully loaded.</p>").insertBefore('h1').fadeOut(1500, function() {
+  $("<p class='load-msg'><br>Your contacts have been successfully loaded.</p>").insertBefore('h1').fadeOut(1500, function() {
     $(this).remove();
   });
 }

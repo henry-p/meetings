@@ -31,7 +31,6 @@ $(function() {
   }
 
   if (/\/meetings\/\d+\/edit/.test(current_path) || /\/meetings\/new\?id=\d+/.test(current_path)) {
-    console.log("/meetings/" + /\d+/.exec(current_path)[0] + "/attendees")
     getInvitedContacts("/meetings/" + /\d+/.exec(current_path)[0] + "/attendees");
     fillContactsBoxWithAttendees();
   }
