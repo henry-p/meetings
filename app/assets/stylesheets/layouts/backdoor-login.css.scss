@@ -1,0 +1,21 @@
+#check-email {
+  color:white;
+  border:none;
+  font-weight:400;
+  background-color:#FF9900;
+  padding:15px;
+  border-radius:5px;
+  &:hover {
+      text-decoration:none;
+      background-color:#E68A00;
+  }
+};
+
+#email-check-input {
+  max-width:400px;
+  margin:auto;
+}
+
+#check-email-google {
+  img { max-width:60%; }  
+}

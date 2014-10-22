@@ -19,10 +19,6 @@
 
   <span id='meeting-title'><%= link_to "#{meeting.truncated_title}", meeting_path(meeting) %></span>
 
-  <% if meeting.is_done %>
-    <span id="meeting-finished"><b>Closed</b></span>
-  <% end %>
-
   <div class='meeting-options'>
     <% if current_user == meeting.creator %>
       <% if !meeting.is_done %>
@@ -38,6 +34,8 @@
     <% else %>
       <% if !meeting.is_done %>
       	<span class='meeting-option-link'><%= link_to "Decline Invite", meeting_invite_path(meeting, Invite.where(invitee_id: current_user.id, meeting_id: meeting.id)[0]), method: :delete %></span>
+        <% else %>
+          <span id="meeting-finished"><b>Closed</b></span>
       <% end %>
     <% end %>
   </div>
