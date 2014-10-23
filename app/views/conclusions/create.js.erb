@@ -1,5 +1,5 @@
 <% publish_to "/meetings/#{@meeting.id}" do %>
   var conclusion = ("<%= j render(@conclusion)%>")
   $('#<%= @agenda_topic.id %>'+ " .add_conclusion").replaceWith(conclusion);
-  focusOn(conclusion)
 <% end %>
+  focusOn(conclusion);
