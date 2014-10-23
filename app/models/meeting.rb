@@ -85,26 +85,11 @@ class Meeting < ActiveRecord::Base
   end
 
   def to_google_time_zone
-    case self.time_zone
-    when "Hawaii"
-      return "Pacific/Honolulu"
-    when "Alaska"
-      return "America/Anchorage"
-    when "Pacific Time (US & Canada)"
-      return "America/Los_Angeles"
-    when "Arizona"
-      return "America/Phoenix"
-    when "Mountain Time (US & Canada)"
-      return "America/Denver"
-    when "Central Time (US & Canada)"
-      return "America/Chicago"
-    when "Eastern Time (US & Canada)"
-      return "America/New_York"
-    when "Indiana (East)"
-      return "America/Indiana/Indianapolis"
-    else
-      return "America/Chicago"
-    end
+    ActiveSupport::TimeZone::MAPPING.select {|k, v| k == self.time_zone }.values.first
+  end
+
+  def self.to_rails_time_zone(time)
+    ActiveSupport::TimeZone::MAPPING.select {|k, v| v == time }.keys.first
   end
 
   def format_to_local_time(utc_time)
