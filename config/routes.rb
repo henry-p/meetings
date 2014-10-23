@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   require 'sidekiq/web'
   mount Sidekiq::Web => '/sidekiq'
-  
+
   root 'home#index'
 
   get "/auth/google_oauth2/callback" => "sessions#create", as: :create_session

@@ -19,4 +19,8 @@ $(document).ready(function() {
       $("#agenda-error").text('');
     }
   });
+
+  $('body').on('click', '.add_conclusion', function () {
+    
+  })
 });
