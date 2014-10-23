@@ -3,7 +3,7 @@
   <div class = "meeting-header <%= 'not-live' if !@meeting.is_live %>">
     <h1><%= @meeting.title %></h1>
     <div class = 'sub-header'>
-      <h2><small><%= Meeting.format_timestamp @meeting.start_time %> <span class = 'timezone'><%= @meeting.time_zone %></span></small></h2>
+      <h2><small><%= Meeting.show_start_datetime(@meeting.start_time, @meeting.time_zone) %></small></h2>
       <% if !@meeting.is_done && @meeting.is_live %>
         <%= link_to "End Meeting", meeting_path(@meeting, close: true), method: :patch, id: "end-meeting", class: 'nice-button', data: { confirm: "Ending meeting will lock editing." } %>
       <% elsif !@meeting.is_done %>
