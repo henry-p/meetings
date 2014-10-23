@@ -33,6 +33,7 @@ $(function() {
     makeWholeBoxClickable();
     makeDateTimePicker(datetimepicker_start, datetimepicker_end);
     submitFormEventHandler();
+    setSecondDatetimepickerTime();
   }
 
   if (/\/meetings\/\d+\/edit/.test(current_path) || /\/meetings\/new\?id=\d+/.test(current_path)) {
