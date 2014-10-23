@@ -354,6 +354,12 @@ section h3.section-subheading {
     color:#08A677;
 }
 
+div.timeline-image.last-bubble {
+  &:hover {
+    border: 7px solid #ff9900;
+  }
+}
+
 @media screen and (max-width: 1000px) {
     .meeting-tile {
         width:45%;

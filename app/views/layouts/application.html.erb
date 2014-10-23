@@ -8,11 +8,9 @@
 </head>
 <body class = "<%= 'meeting-body' if @showing_meeting %>" >
 <% if logged_in? %>
-  <div id="top-banner">
-  </div>
   <header>
     <div class='container'>
-      <span id='standup'>Standup</span>
+      <a href="<%= profile_path %>" id='standup'>Standup</a>
       <span id='nav-bar'>
         <% if current_user.image_path %>
           <%= link_to (image_tag current_user.image_path, id: 'header-google-img'), profile_path %>

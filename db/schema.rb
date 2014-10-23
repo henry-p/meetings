@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141021221213) do
+ActiveRecord::Schema.define(version: 20141022212757) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -78,6 +78,12 @@ ActiveRecord::Schema.define(version: 20141021221213) do
   add_index "meetings", ["start_time"], name: "index_meetings_on_start_time", using: :btree
   add_index "meetings", ["time_zone"], name: "index_meetings_on_time_zone", using: :btree
 
+  create_table "messages", force: true do |t|
+    t.text     "content"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "responsibilities", force: true do |t|
     t.integer  "actionable_id"
     t.integer  "user_id"
@@ -92,7 +98,7 @@ ActiveRecord::Schema.define(version: 20141021221213) do
     t.string   "email"
     t.string   "first_name"
     t.string   "last_name"
-    t.string   "image_path"
+    t.string   "image_path",       default: "https://lh3.googleusercontent.com/-XdUIqdMkCWA/AAAAAAAAAAI/AAAAAAAAAAA/4252rscbv5M/photo.jpg?sz=50"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "token"

@@ -19,7 +19,7 @@ class Meeting < ActiveRecord::Base
   end
 
   def truncated_title
-    return "#{title[0..15]}..." if title.length > 15
+    return "#{title[0..13]}..." if title.length > 13
     title
   end
 
