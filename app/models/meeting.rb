@@ -14,10 +14,6 @@ class Meeting < ActiveRecord::Base
     datetime.strftime('%A - %b %d, %Y (%l:%M %p)')
   end
 
-  def duration_in_seconds
-    self.end_time - self.start_time
-  end
-
   def truncated_title
     return "#{title[0..13]}..." if title.length > 13
     title
@@ -25,17 +21,6 @@ class Meeting < ActiveRecord::Base
 
   def just_the_date
     start_time.strftime('%A - %b %d, %Y')
-  end
-
-  def duration_formatted
-    duration_seconds = self.duration_in_seconds
-
-    mm, ss = duration_seconds.divmod(60)
-    hh, mm = mm.divmod(60)
-    dd, hh = hh.divmod(24)
-
-    output_array = [dd == 1 ? "#{dd} day, " : "#{dd} days, ", hh == 1 ? "#{hh} hour, " : "#{hh} hours, ", mm == 1 ? "#{mm} minute, " : "#{mm} minutes, ", ss == 1 ? "#{ss} second" : "#{ss} seconds"]
-    output_array.reject { |measure| measure.starts_with?("0") }.join("").chomp(", ")
   end
 
   def self.event_hash(event)
@@ -80,6 +65,7 @@ class Meeting < ActiveRecord::Base
   end
 
   def close_meeting_and_send_email
+    self.update(is_live: false)
     self.update(is_done: true)
     SendGridWorker.perform_async(self.id)
   end

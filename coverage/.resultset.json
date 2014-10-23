@@ -1,14 +1,14 @@
 {
   "RSpec": {
     "coverage": {
-      "/Users/joetimmer/DBC/DBC-phase-3/meetings/config/environment.rb": [
+      "/Users/inoda/meetings/config/environment.rb": [
         null,
         1,
         null,
         null,
         1
       ],
-      "/Users/joetimmer/DBC/DBC-phase-3/meetings/config/application.rb": [
+      "/Users/inoda/meetings/config/application.rb": [
         1,
         1,
         1,
@@ -18,13 +18,13 @@
         null,
         null
       ],
-      "/Users/joetimmer/DBC/DBC-phase-3/meetings/config/boot.rb": [
+      "/Users/inoda/meetings/config/boot.rb": [
         null,
         1,
         null,
         1
       ],
-      "/Users/joetimmer/DBC/DBC-phase-3/meetings/config/environments/test.rb": [
+      "/Users/inoda/meetings/config/environments/test.rb": [
         1,
         null,
         null,
@@ -65,7 +65,7 @@
         null,
         null
       ],
-      "/Users/joetimmer/DBC/DBC-phase-3/meetings/config/initializers/assets.rb": [
+      "/Users/inoda/meetings/config/initializers/assets.rb": [
         null,
         null,
         null,
@@ -75,7 +75,7 @@
         null,
         null
       ],
-      "/Users/joetimmer/DBC/DBC-phase-3/meetings/config/initializers/backtrace_silencers.rb": [
+      "/Users/inoda/meetings/config/initializers/backtrace_silencers.rb": [
         null,
         null,
         null,
@@ -84,88 +84,88 @@
         null,
         null
       ],
-      "/Users/joetimmer/DBC/DBC-phase-3/meetings/config/initializers/cookies_serializer.rb": [
+      "/Users/inoda/meetings/config/initializers/cookies_serializer.rb": [
         null,
         null,
         1
       ],
-      "/Users/joetimmer/DBC/DBC-phase-3/meetings/config/initializers/faye_auth.rb": [
+      "/Users/inoda/meetings/config/initializers/faye_auth.rb": [
         1
       ],
-      "/Users/joetimmer/DBC/DBC-phase-3/meetings/config/initializers/filter_parameter_logging.rb": [
+      "/Users/inoda/meetings/config/initializers/filter_parameter_logging.rb": [
         null,
-        null,
-        null,
-        1
-      ],
-      "/Users/joetimmer/DBC/DBC-phase-3/meetings/config/initializers/google_auth.rb": [
-        1,
-        0,
-        0,
-        0,
-        null,
-        0,
-        0,
-        0,
-        null
-      ],
-      "/Users/joetimmer/DBC/DBC-phase-3/meetings/config/initializers/inflections.rb": [
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null
-      ],
-      "/Users/joetimmer/DBC/DBC-phase-3/meetings/config/initializers/mime_types.rb": [
-        null,
-        null,
-        null,
-        null
-      ],
-      "/Users/joetimmer/DBC/DBC-phase-3/meetings/config/initializers/omniauth.rb": [
-        1,
-        1,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        1,
-        null
-      ],
-      "/Users/joetimmer/DBC/DBC-phase-3/meetings/config/initializers/private_pub.rb": [
-        1,
-        null,
-        1,
-        1,
-        null,
-        1,
-        0,
-        null
-      ],
-      "/Users/joetimmer/DBC/DBC-phase-3/meetings/config/initializers/redis.rb": [
-        1,
-        null,
-        1
-      ],
-      "/Users/joetimmer/DBC/DBC-phase-3/meetings/config/initializers/session_store.rb": [
         null,
         null,
         1
       ],
-      "/Users/joetimmer/DBC/DBC-phase-3/meetings/config/initializers/wrap_parameters.rb": [
+      "/Users/inoda/meetings/config/initializers/google_auth.rb": [
+        1,
+        0,
+        0,
+        0,
+        null,
+        0,
+        0,
+        0,
+        null
+      ],
+      "/Users/inoda/meetings/config/initializers/inflections.rb": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "/Users/inoda/meetings/config/initializers/mime_types.rb": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "/Users/inoda/meetings/config/initializers/omniauth.rb": [
+        1,
+        1,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        1,
+        null
+      ],
+      "/Users/inoda/meetings/config/initializers/private_pub.rb": [
+        1,
+        null,
+        1,
+        1,
+        null,
+        1,
+        0,
+        null
+      ],
+      "/Users/inoda/meetings/config/initializers/redis.rb": [
+        1,
+        null,
+        1
+      ],
+      "/Users/inoda/meetings/config/initializers/session_store.rb": [
+        null,
+        null,
+        1
+      ],
+      "/Users/inoda/meetings/config/initializers/wrap_parameters.rb": [
         null,
         null,
         null,
@@ -181,7 +181,7 @@
         null,
         null
       ],
-      "/Users/joetimmer/DBC/DBC-phase-3/meetings/app/controllers/users_controller.rb": [
+      "/Users/inoda/meetings/app/controllers/users_controller.rb": [
         1,
         1,
         0,
@@ -223,7 +223,7 @@
         null,
         null
       ],
-      "/Users/joetimmer/DBC/DBC-phase-3/meetings/app/controllers/application_controller.rb": [
+      "/Users/inoda/meetings/app/controllers/application_controller.rb": [
         1,
         null,
         null,
@@ -277,11 +277,11 @@
         null,
         null
       ],
-      "/Users/joetimmer/DBC/DBC-phase-3/meetings/app/helpers/application_helper.rb": [
+      "/Users/inoda/meetings/app/helpers/application_helper.rb": [
         1,
         null
       ],
-      "/Users/joetimmer/DBC/DBC-phase-3/meetings/config/routes.rb": [
+      "/Users/inoda/meetings/config/routes.rb": [
         1,
         1,
         1,
@@ -318,7 +318,7 @@
         1,
         null
       ],
-      "/Users/joetimmer/DBC/DBC-phase-3/meetings/app/mailers/send_grid_mailer.rb": [
+      "/Users/inoda/meetings/app/mailers/send_grid_mailer.rb": [
         1,
         1,
         null,
@@ -329,7 +329,7 @@
         null,
         null
       ],
-      "/Users/joetimmer/DBC/DBC-phase-3/meetings/spec/models/actionable_spec.rb": [
+      "/Users/inoda/meetings/spec/models/actionable_spec.rb": [
         1,
         null,
         1,
@@ -356,7 +356,7 @@
         null,
         null
       ],
-      "/Users/joetimmer/DBC/DBC-phase-3/meetings/app/models/actionable.rb": [
+      "/Users/inoda/meetings/app/models/actionable.rb": [
         1,
         1,
         1,
@@ -368,7 +368,7 @@
         1,
         null
       ],
-      "/Users/joetimmer/DBC/DBC-phase-3/meetings/spec/models/agenda_topic_spec.rb": [
+      "/Users/inoda/meetings/spec/models/agenda_topic_spec.rb": [
         1,
         null,
         1,
@@ -399,7 +399,7 @@
         null,
         null
       ],
-      "/Users/joetimmer/DBC/DBC-phase-3/meetings/app/models/agenda_topic.rb": [
+      "/Users/inoda/meetings/app/models/agenda_topic.rb": [
         1,
         1,
         null,
@@ -412,7 +412,7 @@
         1,
         null
       ],
-      "/Users/joetimmer/DBC/DBC-phase-3/meetings/spec/models/conclusion_spec.rb": [
+      "/Users/inoda/meetings/spec/models/conclusion_spec.rb": [
         1,
         null,
         1,
@@ -425,12 +425,12 @@
         null,
         null
       ],
-      "/Users/joetimmer/DBC/DBC-phase-3/meetings/app/models/conclusion.rb": [
+      "/Users/inoda/meetings/app/models/conclusion.rb": [
         1,
         1,
         null
       ],
-      "/Users/joetimmer/DBC/DBC-phase-3/meetings/spec/models/invite_spec.rb": [
+      "/Users/inoda/meetings/spec/models/invite_spec.rb": [
         1,
         null,
         1,
@@ -459,7 +459,7 @@
         null,
         null
       ],
-      "/Users/joetimmer/DBC/DBC-phase-3/meetings/app/models/invite.rb": [
+      "/Users/inoda/meetings/app/models/invite.rb": [
         1,
         1,
         1,
@@ -485,12 +485,16 @@
         null,
         null
       ],
-      "/Users/joetimmer/DBC/DBC-phase-3/meetings/spec/models/meeting_spec.rb": [
+      "/Users/inoda/meetings/spec/models/meeting_spec.rb": [
         1,
         null,
         1,
         1,
-        5,
+        6,
+        null,
+        1,
+        1,
+        null,
         null,
         1,
         1,
@@ -515,8 +519,12 @@
         null,
         null,
         1,
+        1,
+        11,
+        null,
+        null,
+        9,
         3,
-        3,
         null,
         1,
         1,
@@ -535,6 +543,54 @@
         null,
         null,
         1,
+        1,
+        1,
+        1,
+        null,
+        null,
+        null,
+        1,
+        1,
+        1,
+        1,
+        null,
+        null,
+        null,
+        1,
+        1,
+        1,
+        1,
+        1,
+        null,
+        null,
+        null,
+        1,
+        1,
+        1,
+        null,
+        null,
+        1,
+        1,
+        1,
+        null,
+        null,
+        null,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        null,
+        null,
+        null,
+        1,
+        1,
+        1,
+        null,
+        null,
+        null,
         1,
         1,
         1,
@@ -547,7 +603,7 @@
         null,
         null
       ],
-      "/Users/joetimmer/DBC/DBC-phase-3/meetings/app/models/meeting.rb": [
+      "/Users/inoda/meetings/app/models/meeting.rb": [
         1,
         1,
         null,
@@ -561,31 +617,16 @@
         1,
         null,
         1,
-        0,
+        1,
         null,
         null,
         1,
-        0,
+        2,
+        1,
         null,
         null,
         1,
-        0,
-        0,
-        null,
-        null,
         1,
-        0,
-        null,
-        null,
-        1,
-        0,
-        null,
-        0,
-        0,
-        0,
-        null,
-        0,
-        0,
         null,
         null,
         1,
@@ -599,7 +640,7 @@
         null,
         null,
         1,
-        0,
+        1,
         null,
         null,
         1,
@@ -630,31 +671,9 @@
         null,
         null,
         1,
-        0,
-        0,
-        null,
-        null,
         1,
-        0,
-        null,
-        0,
-        null,
-        0,
-        null,
-        0,
-        null,
-        0,
-        null,
-        0,
-        null,
-        0,
-        null,
-        0,
-        null,
-        0,
-        null,
-        0,
-        null,
+        1,
+        1,
         null,
         null,
         1,
@@ -663,6 +682,14 @@
         null,
         1,
         0,
+        null,
+        null,
+        1,
+        0,
+        null,
+        null,
+        1,
+        1,
         null,
         null,
         1,
@@ -670,7 +697,7 @@
         null,
         null
       ],
-      "/Users/joetimmer/DBC/DBC-phase-3/meetings/spec/models/responsibility_spec.rb": [
+      "/Users/inoda/meetings/spec/models/responsibility_spec.rb": [
         1,
         null,
         1,
@@ -687,7 +714,7 @@
         null,
         null
       ],
-      "/Users/joetimmer/DBC/DBC-phase-3/meetings/app/models/responsibility.rb": [
+      "/Users/inoda/meetings/app/models/responsibility.rb": [
         1,
         1,
         1,
@@ -695,7 +722,7 @@
         1,
         null
       ],
-      "/Users/joetimmer/DBC/DBC-phase-3/meetings/spec/models/user_spec.rb": [
+      "/Users/inoda/meetings/spec/models/user_spec.rb": [
         1,
         null,
         1,
@@ -797,7 +824,7 @@
         null,
         null
       ],
-      "/Users/joetimmer/DBC/DBC-phase-3/meetings/app/models/user.rb": [
+      "/Users/inoda/meetings/app/models/user.rb": [
         1,
         1,
         1,
@@ -920,7 +947,7 @@
         null,
         null
       ],
-      "/Users/joetimmer/DBC/DBC-phase-3/meetings/spec/models/votes_spec.rb": [
+      "/Users/inoda/meetings/spec/models/votes_spec.rb": [
         1,
         null,
         1,
@@ -937,13 +964,23 @@
         null,
         null
       ],
-      "/Users/joetimmer/DBC/DBC-phase-3/meetings/app/models/vote.rb": [
+      "/Users/inoda/meetings/app/models/vote.rb": [
         1,
         1,
         1,
         null
+      ],
+      "/Users/inoda/meetings/app/models/send_grid_worker.rb": [
+        1,
+        1,
+        null,
+        1,
+        0,
+        0,
+        null,
+        null
       ]
     },
-    "timestamp": 1413675900
+    "timestamp": 1413668700
   }
 }
