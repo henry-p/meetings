@@ -5,6 +5,7 @@ class MeetingsController < ApplicationController
 	include ActionView::Helpers::SanitizeHelper
 
 	def new
+		@time_zone = Meeting.to_rails_time_zone(cookies["time_zone"])
 		id = params[:id]
 		if id
 			previous_meeting = Meeting.find_by_id(id)
@@ -98,6 +99,8 @@ class MeetingsController < ApplicationController
 	end
 
 	def update
+		@time_zone = @meeting.time_zone
+
 		if params[:close]
 			@meeting.close_meeting_and_send_email
 			return redirect_to profile_archive_path

@@ -16,7 +16,7 @@
 
     <br><br><br>
 
-    <%= render "timezone_select" %><br>
+    <%= f.time_zone_select :time_zone, ActiveSupport::TimeZone.us_zones, { default: @time_zone }, { class: "form-control" } %><br>
 
     <div class='wrap-center'>
       <input id='datetimepicker_start' placeholder='Start time' type='datetime' class="form-control datetime" name="meeting[start_time]" value="<%= @meeting.format_to_local_time(@meeting.start_time) %>"/>
@@ -31,7 +31,7 @@
       <p class='information'>This will integrate with your Google Calendar.</p>
     <br>
 
-    <%= button_tag "Create meeting" %>
+    <%= button_tag "Submit" %>
   <% end %>
 </div>
 

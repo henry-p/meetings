@@ -1,33 +1,178 @@
-<h2><%= @meeting.title  %></h2>
-<h3><%= Meeting.format_timestamp @meeting.start_time %></h3>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+ 
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>Summary: <%= @meeting.title %> | <%= Meeting.format_timestamp @meeting.start_time %></title>
+  <style type="text/css">
+  body {margin: 0; padding: 0; min-width: 100%!important;}
+  img {height: auto;}
+  .content {width: 100%; max-width: 600px;}
+  .header {padding: 40px 30px 20px 30px;}
+  .innerpadding {padding: 30px 30px 30px 30px;}
+  .borderbottom {border-bottom: 1px solid #f2eeed;}
+  .subhead {font-size: 15px; color: #ffffff; font-family: sans-serif; font-style: italic;}
+  .h1 {font-size: 33px; line-height: 38px; font-weight: bold; color: #ffffff; font-family: sans-serif;}
+  .h2, .bodycopy {color: #153643; font-family: sans-serif;}
+  .h2 {padding: 0 0 15px 0; font-size: 24px; line-height: 28px; font-weight: bold;}
+  .bodycopy {font-size: 16px; line-height: 22px;}
+  .button {text-align: center; font-size: 18px; font-family: sans-serif; font-weight: bold; padding: 0 30px 0 30px;}
+  .button a {color: #ffffff; text-decoration: none;}
+  .footer {padding: 20px 30px 15px 30px;}
+  .footercopy {font-family: sans-serif; font-size: 14px; color: #ffffff;}
+  .footercopy a {color: #ffffff; text-decoration: underline;}
 
-<br>
+  @media only screen and (max-width: 550px), screen and (max-device-width: 550px) {
+  body[yahoo] .hide {display: none!important;}
+  body[yahoo] .buttonwrapper {background-color: transparent!important;}
+  body[yahoo] .button {padding: 0px!important;}
+  body[yahoo] .button a {background-color: #e05443; padding: 15px 15px 13px!important;}
+  body[yahoo] .unsubscribe {display: block; margin-top: 20px; padding: 10px 50px; background: #2f3942; border-radius: 5px; text-decoration: none!important; font-weight: bold;}
+  }
 
-<h4>Agenda Topics</h4>
-<ul>
-  <% @meeting.agenda_topics.each do |agenda_topic| %>
-    <li>
-      <%= agenda_topic.content %>
-      <br>
-      <% if agenda_topic.conclusion %>
-        <pre>   </pre>Conclusion: <%= agenda_topic.conclusion.content %>
-      <% end %>
-    </li>
-  <% end %>
-</ul>
+  /*@media only screen and (min-device-width: 601px) {
+    .content {width: 600px !important;}
+    .col425 {width: 425px!important;}
+    .col380 {width: 380px!important;}
+    }*/
 
-<br>
+  </style>
+</head>
 
-<h4>Actionables</h4>
-<ul>
-  <% @meeting.actionables.each do |actionable| %>
-    <li>
-      <%= actionable.content %>
-    </li>
-  <% end %>
-</ul>
-
-<br>
-
-<h4>Notes</h4>
-<%= simple_format(@meeting.notes.gsub(/\n/, '<br>')) %>
+<body yahoo bgcolor="#424242">
+  <table width="100%" bgcolor="#424242" border="0" cellpadding="0" cellspacing="0">
+    <tr>
+      <td> 
+        <table bgcolor="#ffffff" class="content" align="center" cellpadding="0" cellspacing="0" border="0">
+          <tr>
+            <td bgcolor="#FF9900" class="header">
+              <table class="col425" align="left" border="0" cellpadding="0" cellspacing="0" style="width: 100%; max-width: 425px;">  
+                <tr>
+                  <td height="70">
+                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                      <tr>
+                        <td class="h1" style="padding: 5px 0 0 0;">
+                          <%= @meeting.title %> | Summary
+                        </td>
+                      </tr>
+                      <tr><td><br /></td></tr>
+                      <tr>
+                        <td class="subhead" style="padding: 0 0 0 3px;">
+                          <%= Meeting.format_timestamp @meeting.start_time %>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+          <tr>
+            <td class="innerpadding borderbottom">
+              <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                <tr>
+                  <td class="h2">
+                    Agenda Topics
+                  </td>
+                </tr>
+                <tr>
+                  <td class="bodycopy">
+                    <ul>
+                      <% @meeting.agenda_topics.each do |agenda_topic| %>
+                      <li>
+                        <%= agenda_topic.content %>
+                        <% if agenda_topic.conclusion %>
+                        <br />
+                        <strong><em>Conclusion:</em></strong> <%= agenda_topic.conclusion.content %>
+                        <% end %>
+                      </li>
+                      <% end %>
+                    </ul>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+          <tr>
+            <td class="innerpadding borderbottom">
+              <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                <tr>
+                  <td class="h2">
+                    Assignments
+                  </td>
+                </tr>
+                <tr>
+                  <td class="bodycopy">
+                    <ul>
+                      <% @meeting.actionables.each do |actionable| %>
+                      <li>
+                        <%= actionable.content %>
+                        <br />
+                        <ul>
+                        <% actionable.responsible_users.each do |user| %>
+                        <li>
+                          <% if user.full_name != nil && user.full_name != "" %>
+                            <%= user.full_name + " | " %>
+                          <% end %>
+                          <%= user.email %>
+                        </li>
+                        <% end %>
+                        </ul>
+                      </li>
+                      <% end %>
+                    </ul>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+          <tr>
+            <td class="innerpadding borderbottom">
+              <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                <tr>
+                  <td class="h2">
+                    Notes
+                  </td>
+                </tr>
+                <tr>
+                  <td class="bodycopy">
+                    <%= simple_format(@meeting.notes.gsub(/\n/, '<br>')) %>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+          <tr>
+            <td class="innerpadding borderbottom">
+              <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                <tr>
+                  <td class="h2">
+                    Invited Members
+                  </td>
+                </tr>
+                <tr>
+                  <td class="bodycopy">
+                    <ul>
+                      <li>
+                        <%= @meeting.creator.full_name %> | <%= @meeting.creator.email %>
+                      </li>
+                      <% @meeting.invitees.each do |user| %>
+                        <li>
+                        <% if user.full_name != nil && user.full_name != "" %>
+                          <%= user.full_name + " | " %>
+                        <% end %>
+                        <%= user.email %>
+                        </li>
+                      <% end %>
+                    </ul>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>
