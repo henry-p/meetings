@@ -15,7 +15,8 @@ class Invite < ActiveRecord::Base
           last_name = names[-1] ? names[-1] : "name"
         end
         contact = {first_name: first_name, last_name: last_name, email: email}
-        user = User.find_or_create_by(contact)
+        user = User.find_or_create_by(email: email)
+        user.update(first_name: first_name, last_name: last_name)
         meeting.invites.create!(invitee_id: user.id)
       end
     end

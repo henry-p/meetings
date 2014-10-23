@@ -1,4 +1,4 @@
-[ ![Codeship Status for inoda/meetings](https://www.codeship.io/projects/ae492720-3981-0132-a05a-4664fd0eaf1d/status)](https://www.codeship.io/projects/42219)
+[ ![Codeship Status for inoda/meetings](https://www.codeship.io/projects/ae492720-3981-0132-a05a-4664fd0eaf1d/status)](https://www.codeship.io/projects/42219) [![Coverage Status](https://coveralls.io/repos/inoda/meetings/badge.png?branch=development)](https://coveralls.io/r/inoda/meetings?branch=development)
 # [Standup](http://meetingz.herokuapp.com/)
 
 #### Version 1.0 _beta_
@@ -29,6 +29,7 @@ To contribute to this project or even just give us feedback (we love feedback), 
 * Rails 4.x
 * Postgresql
 * Redis
+* Sidekiq
 * Google API credentials 
 
 ##### Config
@@ -40,8 +41,9 @@ To contribute to this project or even just give us feedback (we love feedback), 
 * Run `bundle install`
 * Run `bundle exec rake db:create` and `bundle exec rake db:migrate`
 * Start your Redis server on port 6379 with `redis-server`
+* Start your Sidekiq with `bundle exec sidekiq`
 * Run `rails s`
-* Go to`'http://localhost:3000/` in your browser
+* Go to `http://localhost:3000/` in your browser
 
 
 ### The Standup Team
@@ -49,5 +51,5 @@ We are four highly committed [Dev Bootcamp Chicago](http://devbootcamp.com/) gra
 
 * Isaac Noda - [LinkedIn](https://www.linkedin.com/profile/view?id=344664589) | [GitHub](https://github.com/inoda)
 * Joseph Timmer - [LinkedIn](https://www.linkedin.com/in/jtimmer89) | [GitHub](https://github.com/jtimmer89)
-* Samuel Spread - [Google+](https://plus.google.com/117925567488555774987/) | [GitHub](https://github.com/sspread)
+* Samuel Spread - [LinkedIn](https://www.linkedin.com/profile/view?id=68221986&trk) | [GitHub](https://github.com/sspread)
 * Henry Perschk - [LinkedIn](https://www.linkedin.com/profile/view?id=76929566) | [GitHub](https://github.com/henry-p)

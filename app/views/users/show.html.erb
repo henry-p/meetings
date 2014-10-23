@@ -1,10 +1,13 @@
 <div class='container'>
-  <h1>My Meetings <small><%= current_user.email %></small></h1>
+  <h1>Upcoming Meetings <small><%= current_user.email %></small></h1>
   <% flash.each do |name, msg| %>
-  	<%= content_tag :div, msg, class: "flash #{name}" %>
-	<% end %>
-  <%= link_to "Create a meeting", new_meeting_path %><br>
-  <%= render @meetings.where('is_done = false').order('start_time') %>
-  <%= render @meetings.where('is_done = true').order('start_time DESC') %>
-</div>
+    <%= content_tag :div, msg, class: "flash #{name}" %>
+  <% end %>
+  <div id='create-meeting'><%= link_to "Create a meeting", new_meeting_path %></div>
 
+  <% if @meetings.length > 0 %>
+    <div class='meeting-list'><%= render @meetings %></div>
+  <% else %>
+    <div class='text-center'><span class='no-meetings'>It looks like you don't have any upcoming meetings yet. Click 'Create a meeting' to schedule one, or enjoy your meeting-free time!</span></div>
+  <% end %>
+</div>

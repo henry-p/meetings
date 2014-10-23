@@ -1,51 +1,87 @@
-<div class = "container">
+<div class = "meeting-container">
 
-
-  <h1><%= @meeting.title %></h1>
-  <h2><small><%= Meeting.format_timestamp @meeting.start_time %></small></h2>
-
-  <% if !@meeting.is_done %>
-    <button><%= link_to "Close Meeting", meeting_path(@meeting, close: true), method: :patch, id: "close-meeting" %></button>
-  <% end %>
-
-  <br><br><br>
-
-  <h2>Agenda Topics</h2>
-  <div id="agendas">
-    <%= render @meeting.agenda_topics.order('updated_at DESC') %>
+  <div class = 'meeting-header'>
+    <h1><%= @meeting.title %></h1>
+    <div class = 'sub-header'>
+      <h2><small><%= Meeting.format_timestamp @meeting.start_time %> <span class = 'timezone'><%= @meeting.time_zone %></span> </small></h2>
+      <% if !@meeting.is_done && @meeting.is_live %>
+        <%= link_to "End Meeting", meeting_path(@meeting, close: true), method: :patch, id: "end-meeting", class: 'nice-button', data: { confirm: "Ending meeting will lock editing." } %>
+      <% elsif !@meeting.is_done %>
+        <%= link_to "Start Meeting", meeting_path(@meeting, start: true), method: :patch, id: 'start-meeting', class: 'nice-button' %>
+      <% end %>
+    </div>
   </div>
 
-   <% if !@meeting.is_done %>
-    <%= link_to "Add agenda item", new_meeting_agenda_topic_path(@meeting), remote:true, id: "new-agenda-link" %>
-   <% end %>
+  <div class = 'meeting-content'>
+  <% if @meeting.is_live %>
+    <div class = 'meeting-row'>
+      <div class = 'meeting-column'>
+        <h2>Agenda Topics</h2>
+        <%= render partial: "agenda_topics/new" %>
+      </div>
 
-  <div id="new-agenda-form"></div>
+      <div class = 'meeting-column'>
+        <h2>Actionables</h2>
+        <%= render partial: "actionables/new" %>
+      </div>
 
-  <div id="actionables">
-  <h2>Actionables</h2>
-    <%= render @meeting.actionables.order('updated_at DESC') %>
-  </div>
+      <div class = 'meeting-column'>
+        <h2 style = "text-align:center;">Members</h2>
+        <h4 class = 'info' style = "text-align:center;">Drag members to actionables to delegate responsibilities.</h4>
+      </div>
+    </div>
 
-  <% if !@meeting.is_done %>
-    <%= form_for [@meeting, Actionable.new], :html => {:remote => true} do |f| %>
-      <%= f.text_field :content %>
-      <%= f.submit "Send" %>
-    <% end %> 
-  <% end %>
-  <span id="actionables-error"></span>
+    <div class = 'meeting-row'>
+      <div class = 'meeting-column'>
+        <div id="agendas">
+          <%= render @meeting.agenda_topics.order('updated_at DESC') %>
+        </div>
+      </div>
 
-  <h2>Notes</h2>
-  <% if !@meeting.is_done %>
-    <div id = "notes" contenteditable = 'true'><%= render partial: "notes" %></div>
+      <div class = 'meeting-column'>
+        <div id="actionables" >
+          <%= render @meeting.actionables.order('created_at DESC') %>
+        </div>
+        <span id="actionables-error"></span>
+      </div>
+
+      <div class = 'meeting-column'>
+        <div id = 'members-notes'>
+          <div id = "invitees">
+            <%= render partial: "invitees" %>
+          </div>
+          <h3>Notes <small class = 'info'>click off to save</small></h3>
+          <% if !@meeting.is_done %>
+            <div id = "notes" contenteditable = 'true'><%= render partial: "notes" %></div>
+          <% else %>
+            <div id = "notes">
+              <%= render partial: "notes" %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
   <% else %>
-    <div id = "notes"><%= render partial: "notes" %></div>
+    <div class = 'meeting-row'>
+      <div class = 'meeting-column not-live'>
+        <h2>Agenda Topics</h2>
+        <%= render partial: "agenda_topics/new" %>
+      </div>
+    </div>
+    <div class = 'meeting-row'>
+      <div class = 'meeting-column not-live'>
+        <div id="agendas" class = "not-live">
+          <%= render @meeting.agenda_topics.order('updated_at DESC') %>
+        </div>
+      </div>
+    </div>
   <% end %>
+  </div>
 
   <% if !@meeting.is_done %>
     <%= subscribe_to "/meetings/#{@meeting.id}" %>
   <% end %>
 
   <span id="meeting-id"><%= @meeting.id %></span>
-
-
 </div>

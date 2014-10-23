@@ -12,5 +12,6 @@ class ActionablesController < ApplicationController
 
   def destroy
     @actionable = Actionable.find_by_id(params[:id])
+    @actionable.destroy
   end
 end

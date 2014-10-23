@@ -1,33 +1,39 @@
 <div id="<%= agenda_topic.id %>" class='agenda'>
-  <%= image_tag("#{agenda_topic.creator.image_path}", class: "google-circle-sm") %>
-  <span class='name-tag'><%= agenda_topic.creator.full_name_or_email %></span>
+
+  <div class = "meeting-item-header">
+
+    <%= image_tag("#{agenda_topic.creator.image_path}", class: "google-circle-sm") %>
+    <span class='name-tag'><%= agenda_topic.creator.full_name_or_email %></span>
+
+    <% if !agenda_topic.meeting.is_done %>
+      <%= link_to (fa_icon 'times lg'), meeting_agenda_topic_path(agenda_topic.meeting, agenda_topic), method: :delete, remote: true, data: { confirm: "Are you sure you want to delete?" } %>
+    <% end %>
+    <span class = 'vote'>
+      <% if !agenda_topic.meeting.is_done %>
+        <% if (vote = Vote.find_by(agenda_topic_id: agenda_topic, voter: current_user)) %>
+          <%= link_to (fa_icon 'thumbs-up lg'), meeting_agenda_topic_vote_path(agenda_topic.meeting, agenda_topic, vote), remote: true, method: :delete, class: 'voted' %>
+        <% else %>
+          <%= link_to (fa_icon 'thumbs-up lg'), meeting_agenda_topic_votes_path(agenda_topic.meeting, agenda_topic), remote: true, method: :post %>
+        <% end %>
+      <% else %>
+        <span> <%= fa_icon 'thumbs-up lg' %></span>      
+      <% end %>
+      <span id="vote"><%= agenda_topic.votes.count %></span>
+    <span>
+  </div>
 
   <% if !agenda_topic.meeting.is_done %>
-    <%= link_to "Delete", meeting_agenda_topic_path(agenda_topic.meeting, agenda_topic), method: :delete, remote: true, data: { confirm: "Are you sure? This cannot be undone" } %>
-  <% end %>
-
-  <% if !agenda_topic.meeting.is_done %>
-    <span class='content'><div class='editable edit_agenda' contenteditable='true'><%= agenda_topic.content %></div></span>
+    <div class='content'><div class='editable edit_agenda' contenteditable='true'><%= agenda_topic.content %></div></div>
   <% else %>
-    <span class='content'><span><%= agenda_topic.content %></span></span>
+    <div class='content'><div class = 'editable edit_agenda'><%= agenda_topic.content %></div></div>
   <% end %>
-
-  <% if !agenda_topic.meeting.is_done %>
-    <%= link_to (fa_icon 'thumbs-up 2x'), meeting_agenda_topic_votes_path(agenda_topic.meeting, agenda_topic), remote: true, method: :post %>
-  <% end %>
-  <span id="vote"><%= agenda_topic.votes.count %></span>
-
-  <span id="agenda-voter-pictures">
-    <%= render agenda_topic.votes %>
-  </span>
-
-  <div>
+  <div class = "agenda-bottom-border"></div>
+  <% if @meeting.is_live %>
     <% if !agenda_topic.conclusion && !agenda_topic.meeting.is_done %>
-      <%= link_to "Click to add conclusion", meeting_agenda_topic_conclusions_path(agenda_topic.meeting, agenda_topic), remote: true, method: :post, class: "add_conclusion" %>
+      <%= link_to "What was decided?", meeting_agenda_topic_conclusions_path(agenda_topic.meeting, agenda_topic), remote: true, method: :post, class: "add_conclusion" %>
     <% elsif agenda_topic.conclusion %>
       <%= render partial: "conclusions/conclusion", locals: {conclusion: agenda_topic.conclusion}%>
     <% end %>
-  </div>
+  <% end %>
 
-<br>
 </div>

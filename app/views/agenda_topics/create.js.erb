@@ -1,4 +1,4 @@
 <% publish_to "/meetings/#{@meeting.id}" do %>
-  $('<%= escape_javascript render(@agenda) %>').fadeIn().appendTo('#agendas')
+  $('<%= escape_javascript render(@agenda_topic) %>').fadeIn().prependTo('#agendas')
 <% end %>
-$('#new-agenda-form textarea').first().val('')
+$('#agenda_topic_content').val('')

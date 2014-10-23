@@ -1,0 +1,66 @@
+// Place all the styles related to the home controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+$lightbluegray: #D4DCE7;
+$mediumbluegray: #C0CDDC;
+$darkbluegray: #5A6480;
+$black: #333;
+
+#sign-in-banner {
+  background-image: image-url("standing_cat.jpg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+
+  div {
+    display:block;
+  };
+  p {
+    color: white;
+    font-family: 'Lato', sans-serif;
+    font-size: 1em;
+    margin-top: 3em;
+    margin-bottom: 2em;
+  }
+  #about {
+    padding:10px;
+    font-size:1.3em;
+    line-height:1.5em;
+  };
+  #sign-in {
+    text-align:center;
+    margin-bottom:30px;
+    img {
+      max-width:70%;
+    }
+  }
+  h1 {
+    padding: .2em;
+    color: white;
+    font-size: 3em;
+    font-family: 'Lato', sans-serif;
+    margin: 0 auto;
+    margin-top: 1em;
+    border:3px white solid;
+    max-width:400px;
+  }
+  #catch {
+    font-size:1.3em;
+  }
+  overflow:hidden;
+}
+
+.fa-angle-double-down {
+  margin: 0 auto;
+  color: white;
+}
+
+#scroll-feature {
+  width: 1%;
+  margin: 0 auto;
+  margin-bottom: 50px;
+}

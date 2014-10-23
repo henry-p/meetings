@@ -1,0 +1,53 @@
+#meeting-form {
+  #down-arrow {
+    display:none;
+  }
+  margin:10px;
+  text-align:center;
+  .form-control {
+    max-width:500px;
+    margin:auto;
+  };
+  .datetime {
+    max-width:200px;
+    display:inline-block;
+  };
+  .osb-multisearch {
+    margin:auto;
+    max-width:500px;
+  }; 
+  button {
+    outline: none;
+    color:white;
+    border:none;
+    font-weight:400;
+    background-color:#FF9900;
+    padding:15px;
+    border-radius:5px;
+    &:hover {
+        text-decoration:none;
+        background-color:#E68A00;
+    }
+  }
+}
+
+
+.wrap-center {
+  display:block;
+  text-align:center
+}
+
+
+@media screen and (max-width: 650px) {
+  #meeting-form {
+    #down-arrow {
+      display:block;
+    };
+    #right-arrow {
+      display:none;
+    };
+    .datetime {
+      display:block;
+    }
+  }
+}
