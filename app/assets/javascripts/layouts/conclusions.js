@@ -10,15 +10,9 @@ $(document).ready(function() {
       data: {content: input, id: conclusionId}
     });
   });
-
-  $('.add_conclusion').bind("ajax:success", function(evt, data, status, xhr) {
-    console.log(data);
-  });
-
-
-  // $('body').on('click', '.add_conclusion', function () {
-  //   var response = $.ajax({
-  //     type: ""
-  //   })
-  // })
 });
+
+function focusOn(conclusion) {
+  var conclusionId = $(conclusion).attr('id')
+  $('.conclusion#'+conclusionId).find(".edit_conclusion").focus();
+}
