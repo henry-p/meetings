@@ -236,5 +236,6 @@ function getInvitedContacts(path) {
         meeting.selectedEmails.push(email);
       });
     }
+
   });
 }

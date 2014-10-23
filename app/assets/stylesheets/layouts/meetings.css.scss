@@ -20,9 +20,8 @@ $blue: #3299bb;
 
 .meeting-header {
   text-align: left;
-  margin: auto;
+  margin: 7px;
   h1 {text-align: left;};
-
 }
 .sub-header {
   h2 {
@@ -114,7 +113,7 @@ a.meeting-container {
 .not-live {
   width: 80%;
   height: auto !important;
-  overflow-y: auto !important;
+  overflow-y: visible !important;
 }
 
 #invitees-list {
