@@ -334,7 +334,11 @@
         null,
         1,
         1,
-        4,
+        5,
+        null,
+        1,
+        1,
+        null,
         null,
         1,
         1,
@@ -722,6 +726,27 @@
         1,
         null
       ],
+      "/Users/inoda/meetings/spec/models/send_grid_worker_spec.rb": [
+        1,
+        null,
+        1,
+        1,
+        1,
+        1,
+        null,
+        null,
+        null
+      ],
+      "/Users/inoda/meetings/app/models/send_grid_worker.rb": [
+        1,
+        1,
+        null,
+        1,
+        0,
+        0,
+        null,
+        null
+      ],
       "/Users/inoda/meetings/spec/models/user_spec.rb": [
         1,
         null,
@@ -968,16 +993,6 @@
         1,
         1,
         1,
-        null
-      ],
-      "/Users/inoda/meetings/app/models/send_grid_worker.rb": [
-        1,
-        1,
-        null,
-        1,
-        0,
-        0,
-        null,
         null
       ]
     },

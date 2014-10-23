@@ -12,6 +12,10 @@ describe Actionable do
       expect(actionable).to have_many(:responsible_users)
     end
 
+    it "should have many responsibilities" do
+      expect(actionable).to have_many(:responsibilities)
+    end
+
     it "should belong to a meeting" do
       expect(actionable).to belong_to(:meeting)
     end
