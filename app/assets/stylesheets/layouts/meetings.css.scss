@@ -19,8 +19,10 @@ $blue: #3299bb;
 }
 
 .meeting-header {
-  text-align: center;
+  text-align: left;
   margin: auto;
+  h1 {text-align: left;};
+
 }
 .sub-header {
   h2 {
@@ -58,10 +60,13 @@ a:focus {
   margin: auto;
 }
 
-/*.meeting-content {
-  overflow: hidden;
+.meeting-content {
+  h2, h3, h4 {
+  text-align: left;
+  /*padding-left: 20px;*/
+  };
 }
-*/
+
 a.meeting-container {
   color: $blue;
 }
@@ -97,7 +102,7 @@ a.meeting-container {
   overflow-y: hidden;
 }
 .meeting-column input[type='text'] {
-  width: 80%;
+  /*width: 100%;*/
 }
 #actionables, #agendas {
   width: 100%;
@@ -134,6 +139,14 @@ a.meeting-container {
     line-height: 1.2em;
   };
 }
+#members-notes {
+  /*h3 {display: inline;};*/
+  small{
+    padding-left: 5px;
+    size: 95%;
+
+  }
+}
 .meeting-row:first-child {
   /*min-height: 125px;*/
 }
@@ -158,16 +171,20 @@ a.meeting-container {
 }
 
 
-#new_agenda_topic input[name='commit'], #new_actionable input[name='commit'] {
-  vertical-align: top;
-  font-family: inherit;
-  border: none;
-  border-radius: 2px;
-  color: white;
-  border-bottom: 2px;
-  height: 1.8em;
-  font-weight: bold;
-  background-color: $orange;
+#new_agenda_topic, #new_actionable{
+  max-width: 100%;
+  input[name='commit'] {
+    width: 15%;
+    float: right;
+    font-family: inherit;
+    border: none;
+    border-radius: 2px;
+    color: white;
+    border-bottom: 2px;
+    height: 1.8em;
+    font-weight: bold;
+    background-color: $orange;
+  };
 }
 .agenda:first-child, .actionable:first-child {
   margin-top: 0px;
@@ -190,8 +207,11 @@ a.meeting-container {
   background-color: $dark-orange;
 }
 #agenda_topic_content, #actionable_content {
+  width: 82%;
+  float: left;
   border: none;
   font-size: 1.3em;
+  margin-right: 3%;
   padding: 0px 5px;
   box-shadow: 0 0 5px #aaa;
   border-radius: 2px;
@@ -376,4 +396,8 @@ a.label-default.active {
 /* Datetimepicker clock icon */
 .glyphicon-time {
   font-size: 500%;
+}
+
+.voted {
+  color: #92CEE2
 }
