@@ -38,7 +38,7 @@ class Meeting < ActiveRecord::Base
   end
 
   def invite_notes
-    "#{self.description} \n\nlocalhost:3000/meetings/#{self.id}"
+    "#{self.description} \n\nhttp:/meetingz.herokuapp.com/meetings/#{self.id}"
   end
 
   def invitees_array
