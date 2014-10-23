@@ -13,6 +13,6 @@ $(document).ready(function() {
 });
 
 function focusOn(conclusion) {
-  var conclusionId = $(conclusion).attr('id')
+  var conclusionId = $(conclusion).attr('id');
   $('.conclusion#'+conclusionId).find(".edit_conclusion").focus();
 }
