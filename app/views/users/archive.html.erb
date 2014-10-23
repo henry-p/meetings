@@ -1,5 +1,5 @@
 <div class='container'>
-  <h1>Meetings Archive <small><%= current_user.email %></small></h1>
+  <h1>Meetings Archive <br><small><%= current_user.email %></small></h1>
   <br><br><br>
   <% if @meetings.length > 0 %>
     <div class='meeting-list'><%= render @meetings %></div>

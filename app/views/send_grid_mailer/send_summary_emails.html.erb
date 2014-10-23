@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
  
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
   <title>Summary: <%= @meeting.title %> | <%= Meeting.format_timestamp @meeting.start_time %></title>
   <style type="text/css">
   body {margin: 0; padding: 0; min-width: 100%!important;}
@@ -16,11 +16,6 @@
   .h2, .bodycopy {color: #153643; font-family: sans-serif;}
   .h2 {padding: 0 0 15px 0; font-size: 24px; line-height: 28px; font-weight: bold;}
   .bodycopy {font-size: 16px; line-height: 22px;}
-  .button {text-align: center; font-size: 18px; font-family: sans-serif; font-weight: bold; padding: 0 30px 0 30px;}
-  .button a {color: #ffffff; text-decoration: none;}
-  .footer {padding: 20px 30px 15px 30px;}
-  .footercopy {font-family: sans-serif; font-size: 14px; color: #ffffff;}
-  .footercopy a {color: #ffffff; text-decoration: underline;}
 
   @media only screen and (max-width: 550px), screen and (max-device-width: 550px) {
   body[yahoo] .hide {display: none!important;}
@@ -39,25 +34,25 @@
   </style>
 </head>
 
-<body yahoo bgcolor="#424242">
+<body yahoo bgcolor="#424242" style="margin: 0;padding: 0;min-width: 100%!important;">
   <table width="100%" bgcolor="#424242" border="0" cellpadding="0" cellspacing="0">
     <tr>
       <td> 
-        <table bgcolor="#ffffff" class="content" align="center" cellpadding="0" cellspacing="0" border="0">
+        <table bgcolor="#ffffff" class="content" align="center" cellpadding="0" cellspacing="0" border="0" style="width: 100%;max-width: 600px;">
           <tr>
-            <td bgcolor="#FF9900" class="header">
+            <td bgcolor="#FF9900" class="header" style="padding: 40px 30px 20px 30px;">
               <table class="col425" align="left" border="0" cellpadding="0" cellspacing="0" style="width: 100%; max-width: 425px;">  
                 <tr>
                   <td height="70">
                     <table width="100%" border="0" cellspacing="0" cellpadding="0">
                       <tr>
-                        <td class="h1" style="padding: 5px 0 0 0;">
+                        <td class="h1" style="padding: 5px 0 0 0;font-size: 33px;line-height: 38px;font-weight: bold;color: #ffffff;font-family: sans-serif;">
                           <%= @meeting.title %> | Summary
                         </td>
                       </tr>
-                      <tr><td><br /></td></tr>
+                      <tr><td><br></td></tr>
                       <tr>
-                        <td class="subhead" style="padding: 0 0 0 3px;">
+                        <td class="subhead" style="padding: 0 0 0 3px;font-size: 15px;color: #ffffff;font-family: sans-serif;font-style: italic;">
                           <%= Meeting.format_timestamp @meeting.start_time %>
                         </td>
                       </tr>
@@ -68,21 +63,21 @@
             </td>
           </tr>
           <tr>
-            <td class="innerpadding borderbottom">
+            <td class="innerpadding borderbottom" style="padding: 30px 30px 30px 30px;border-bottom: 1px solid #f2eeed;">
               <table width="100%" border="0" cellspacing="0" cellpadding="0">
                 <tr>
-                  <td class="h2">
+                  <td class="h2" style="color: #153643;font-family: sans-serif;padding: 0 0 15px 0;font-size: 24px;line-height: 28px;font-weight: bold;">
                     Agenda Topics
                   </td>
                 </tr>
                 <tr>
-                  <td class="bodycopy">
+                  <td class="bodycopy" style="color: #153643;font-family: sans-serif;font-size: 16px;line-height: 22px;">
                     <ul>
                       <% @meeting.agenda_topics.each do |agenda_topic| %>
                       <li>
                         <%= agenda_topic.content %>
                         <% if agenda_topic.conclusion %>
-                        <br />
+                        <br>
                         <strong><em>Conclusion:</em></strong> <%= agenda_topic.conclusion.content %>
                         <% end %>
                       </li>
@@ -94,20 +89,20 @@
             </td>
           </tr>
           <tr>
-            <td class="innerpadding borderbottom">
+            <td class="innerpadding borderbottom" style="padding: 30px 30px 30px 30px;border-bottom: 1px solid #f2eeed;">
               <table width="100%" border="0" cellspacing="0" cellpadding="0">
                 <tr>
-                  <td class="h2">
+                  <td class="h2" style="color: #153643;font-family: sans-serif;padding: 0 0 15px 0;font-size: 24px;line-height: 28px;font-weight: bold;">
                     Assignments
                   </td>
                 </tr>
                 <tr>
-                  <td class="bodycopy">
+                  <td class="bodycopy" style="color: #153643;font-family: sans-serif;font-size: 16px;line-height: 22px;">
                     <ul>
                       <% @meeting.actionables.each do |actionable| %>
                       <li>
                         <%= actionable.content %>
-                        <br />
+                        <br>
                         <ul>
                         <% actionable.responsible_users.each do |user| %>
                         <li>
@@ -127,15 +122,15 @@
             </td>
           </tr>
           <tr>
-            <td class="innerpadding borderbottom">
+            <td class="innerpadding borderbottom" style="padding: 30px 30px 30px 30px;border-bottom: 1px solid #f2eeed;">
               <table width="100%" border="0" cellspacing="0" cellpadding="0">
                 <tr>
-                  <td class="h2">
+                  <td class="h2" style="color: #153643;font-family: sans-serif;padding: 0 0 15px 0;font-size: 24px;line-height: 28px;font-weight: bold;">
                     Notes
                   </td>
                 </tr>
                 <tr>
-                  <td class="bodycopy">
+                  <td class="bodycopy" style="color: #153643;font-family: sans-serif;font-size: 16px;line-height: 22px;">
                     <%= simple_format(@meeting.notes.gsub(/\n/, '<br>')) %>
                   </td>
                 </tr>
@@ -143,15 +138,15 @@
             </td>
           </tr>
           <tr>
-            <td class="innerpadding borderbottom">
+            <td class="innerpadding borderbottom" style="padding: 30px 30px 30px 30px;border-bottom: 1px solid #f2eeed;">
               <table width="100%" border="0" cellspacing="0" cellpadding="0">
                 <tr>
-                  <td class="h2">
+                  <td class="h2" style="color: #153643;font-family: sans-serif;padding: 0 0 15px 0;font-size: 24px;line-height: 28px;font-weight: bold;">
                     Invited Members
                   </td>
                 </tr>
                 <tr>
-                  <td class="bodycopy">
+                  <td class="bodycopy" style="color: #153643;font-family: sans-serif;font-size: 16px;line-height: 22px;">
                     <ul>
                       <li>
                         <%= @meeting.creator.full_name %> | <%= @meeting.creator.email %>
