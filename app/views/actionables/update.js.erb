@@ -1,3 +1,5 @@
 <% publish_to "/meetings/#{@meeting.id}" do %>
-  $('#<%= @actionable.id %>.actionable').replaceWith("<%= j render(@actionable)%>")
+  var el = $("<%= j render(@actionable)%>");
+  makeDroppable(el);
+  $('#<%= @actionable.id %>.actionable').replaceWith(el);
 <% end %>

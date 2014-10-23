@@ -1,10 +1,40 @@
-<%= link_to "#{meeting.title}", meeting_path(meeting) %>
-<%= Meeting.format_timestamp(meeting.start_time) %>
-<%= meeting.duration_formatted %>
-<% if meeting.is_done %>
-  <span id="meeting-finished">Closed</span>
-<% end %>
-<%= link_to "Follow Up / Schedule again", new_meeting_path(id: meeting.id) %> | 
-<%= link_to "Edit", edit_meeting_path(meeting) %> |
-<%= link_to "Delete", meeting_path(meeting), method: :delete %>
-<br>
+<div class='meeting-tile'>
+
+
+  <div id='meeting-date'>
+    <% if !meeting.is_done %>
+      <% if meeting.is_live %>
+        <b class='meeting-date-display'><span id='live'><%= fa_icon 'circle' %></span> Live now!</b>
+      <% elsif meeting.time_from_now == 0 %>
+        <b id='today' class='meeting-date-display'><%= fa_icon 'calendar' %> Today</b>
+      <% elsif meeting.time_from_now > 0 %>
+        <b class='meeting-date-display'><span id='past'><%= fa_icon 'exclamation-circle' %></span> Passed scheduled date</b>
+      <% else %>
+        <b class='meeting-date-display'><%= fa_icon 'calendar' %> <%= "About #{pluralize(meeting.time_from_now.abs, 'day')} from now" %></b>
+      <% end %>
+    <% else %>
+      <b class='meeting-date-display'><%= fa_icon 'calendar' %> <%= meeting.just_the_date %></b>
+    <% end %>
+  </div>
+
+  <span id='meeting-title'><%= link_to "#{meeting.truncated_title}", meeting_path(meeting) %></span>
+
+  <div class='meeting-options'>
+    <% if current_user == meeting.creator %>
+      <% if !meeting.is_done %>
+      	<span class='meeting-option-link'><%= link_to "Duplicate", new_meeting_path(id: meeting.id) %></span>
+      	<span class='meeting-option-link'><%= link_to "Edit", edit_meeting_path(meeting) %></span>
+      	<span class='meeting-option-link'><%= link_to "Delete", meeting_path(meeting), method: :delete %></span>
+      <% else %>
+        <span class='meeting-option-link'><%= link_to "Duplicate", new_meeting_path(id: meeting.id) %></span>
+      <% end %>
+    <% else %>
+      <% if !meeting.is_done %>
+      	<span class='meeting-option-link'><%= link_to "Decline Invite", meeting_invite_path(meeting, Invite.where(invitee_id: current_user.id, meeting_id: meeting.id)[0]), method: :delete %></span>
+        <% else %>
+          <span id="meeting-finished"><b>Closed</b></span>
+      <% end %>
+    <% end %>
+  </div>
+
+</div>

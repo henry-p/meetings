@@ -1,4 +1,4 @@
-<select id="meeting_time_zone" name="meeting[time_zone]">
+<select id="meeting_time_zone" name="meeting[time_zone]" class="form-control">
     <option disabled="disabled" value="">-------------</option>
     <option <%= "selected" if @meeting.time_zone == "Hawaii" %> value="Hawaii">(GMT-10:00) Hawaii</option>
     <option <%= "selected" if @meeting.time_zone == "Alaska" %> value="Alaska">(GMT-09:00) Alaska</option>

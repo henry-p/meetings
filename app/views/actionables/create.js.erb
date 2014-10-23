@@ -1,5 +1,7 @@
 <% publish_to "/meetings/#{@meeting.id}" do %>
-  $('#actionables').append("<%= j render(@actionable)%>")
+  var el = $("<%= j render(@actionable)%>");
+  makeDroppable(el);
+  el.prependTo("#actionables");
 <% end %>
 $('#actionable_content').val('');
 

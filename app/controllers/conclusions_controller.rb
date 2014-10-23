@@ -2,7 +2,7 @@ class ConclusionsController < ApplicationController
   before_filter { |filter| filter.check_if_meeting_is_closed(params[:meeting_id]) }
 
   def create
-    @conclusion = Conclusion.create(content: 'What am I?')
+    @conclusion = Conclusion.create(content: '')
     @agenda_topic = AgendaTopic.find_by_id(params[:agenda_topic_id])
     @agenda_topic.conclusion = @conclusion    
     @meeting = @agenda_topic.meeting

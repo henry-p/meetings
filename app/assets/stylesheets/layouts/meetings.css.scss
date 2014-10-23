@@ -1,0 +1,403 @@
+// Place all the styles related to the meetings controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+@import "bootstrap";
+$orange: #FF9900;
+$dark-orange: #E68A00;
+$light-orange: #F8DCB2;
+$dark: #424242;
+$grey-light: #e9e9e9;
+$grey-med: #bcbcbc;
+$blue: #3299bb;
+
+.meeting-body {
+  background-color: #F5F5F5;
+}
+.meeting-container {
+  max-width:1000px;
+  margin:auto;
+}
+
+.meeting-header {
+  text-align: left;
+  margin: auto;
+  h1 {text-align: left;};
+
+}
+.sub-header {
+  h2 {
+    display: inline;
+    margin-right: 13px;
+    padding-right: 13px;
+  };
+}
+[contenteditable="true"]:focus {
+  background-color: #F0FAFF;
+}
+
+.editable {
+  display:block;
+  font-size: 1.5em;
+  line-height: 1.5em;
+}
+
+input.error {
+  color: #a7a7a7;
+}
+
+a:focus {
+  outline: none;
+}
+
+.list-group-item.hover {
+  background-color: #6cb1e9;
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.meeting-row {
+  text-align: center;
+  margin: auto;
+}
+
+.meeting-content {
+  h2, h3, h4 {
+  text-align: left;
+  /*padding-left: 20px;*/
+  };
+}
+
+a.meeting-container {
+  color: $blue;
+}
+.meeting-container a:hover {
+  text-decoration: none;
+};
+
+.meeting-item-header {
+  margin-bottom: 10px;
+  position: relative;
+  .google-circle-sm {
+    display: block;
+    margin: auto;
+  };
+  .fa-times {
+    position: absolute;
+    top: 0px;
+    right: 2px;
+  };
+  .vote {
+    position: absolute;
+    top: 0px;
+    left: 2px;
+  };
+}
+.meeting-column {
+  margin-top: 10px;
+  vertical-align: top;
+  display:inline-block;
+  width: 33%;
+  text-align: center;
+  padding: 7px;
+  overflow-y: hidden;
+}
+.meeting-column input[type='text'] {
+  /*width: 100%;*/
+}
+#actionables, #agendas {
+  width: 100%;
+  height: 550px;
+  position: relative;
+  overflow-y: scroll;
+}
+
+.not-live {
+  width: 80%;
+  height: auto !important;
+  overflow-y: auto !important;
+}
+
+#invitees-list {
+  height: 247px;
+  overflow-y: scroll;
+}
+#invitees-list li {
+  border-radius: 2px;
+}
+
+#notes {
+  margin: auto, 2px;
+  overflow-y: scroll;
+  text-align: left;
+  height: 247px;
+  background-color: white;
+  border-radius: 4px;
+  box-shadow: 0 0 7px #aaa;
+  padding: 5px;
+  p {
+    margin: 0px;
+    line-height: 1.2em;
+  };
+}
+#members-notes {
+  /*h3 {display: inline;};*/
+  small{
+    padding-left: 5px;
+    size: 95%;
+
+  }
+}
+.meeting-row:first-child {
+  /*min-height: 125px;*/
+}
+.meeting-content {
+  margin-top: 10px;
+  h2 {
+    margin: 20px auto;
+  };
+}
+
+.agenda, .actionable {
+  margin: 15px 2px;
+  padding: 10px;
+  text-align: left;
+  background-color: white;
+  /*box-shadow: 0 0 7px #aaa;*/
+  /*box-shadow: 0 0 7px $orange;*/
+  .editable {
+    line-height: 1em;
+    padding: 3px;
+  };
+}
+
+
+#new_agenda_topic, #new_actionable{
+  max-width: 100%;
+  input[name='commit'] {
+    width: 15%;
+    float: right;
+    font-family: inherit;
+    border: none;
+    border-radius: 2px;
+    color: white;
+    border-bottom: 2px;
+    height: 1.8em;
+    font-weight: bold;
+    background-color: $orange;
+  };
+}
+.agenda:first-child, .actionable:first-child {
+  margin-top: 0px;
+}
+.agenda:last-child, .actionable:last-child {
+  margin-bottom: 3px;
+}
+
+.nice-button{
+  font-family: inherit;
+  font-weight: bold;
+  border-radius: 4px;
+  padding: 7px;
+  color: white;
+  background-color: $orange;
+}
+.nice-button:hover {
+  color: white;
+  background: none;
+  background-color: $dark-orange;
+}
+#agenda_topic_content, #actionable_content {
+  width: 82%;
+  float: left;
+  border: none;
+  font-size: 1.3em;
+  margin-right: 3%;
+  padding: 0px 5px;
+  box-shadow: 0 0 5px #aaa;
+  border-radius: 2px;
+}
+.agenda {
+  box-shadow: 0 0 7px #aaa;
+  border-radius: 2px;
+  
+  /*box-shadow: 0 0 7px #70B894;*/
+  /*border: 1px solid #70B894;*/
+}
+.info {
+  color: #aaa;
+}
+.actionable {
+  box-shadow: 0 0 7px #aaa;
+  border-radius: 2px;
+  /*padding: 5px;*/
+
+  /*box-shadow: 0 0 7px #FF9933;*/
+  /*border: 1px solid #FF9933;*/
+}
+
+.conclusion {
+  padding: 10px 5px 0px 5px;
+  margin: 0 auto;
+  background-color: #fefefe;
+  .editable {
+    margin-bottom: 0px;
+    line-height: 1.1em;
+    font-size: 1.1em;
+  };
+}
+.agenda > .content {
+  margin-bottom: 15px;
+}
+.agenda > .content {
+  word-wrap: break-word;
+}
+.agenda-bottom-border {
+  border-bottom: 1px solid grey;
+}
+a.add_conclusion {
+  display: block;
+  margin-top: 10px;
+  padding: 0px 5px 2px 5px;
+}
+.actionable > .editable {
+  margin: 15px auto;
+}
+
+.dragon-drop, .dragon-drop-disabled {
+  position: relative;
+  padding: 3px;
+  border: 1px solid $blue;
+  list-style-type: none;
+  margin: 5px auto;
+  width: 80%;
+  background-color: white;
+}
+
+.dragon-drop {
+  cursor: move;
+  word-wrap: break-word;
+}
+.dragon-drop:first-child{
+  margin-top: 0px;
+}
+.hover_drop {
+  position: relative;
+  padding: 3px 3px 3px 15px;
+  .fa-times {
+    position: absolute;
+    right: 10px;
+  };
+}
+
+.responsible-user{
+  cursor: auto;
+  position: relative;
+  padding: 3px 20px 3px 13px;
+  width: 80%;
+  .fa-times {
+    position: absolute;
+    right: 5px;
+    top: 5px;
+  };
+  border-radius: 2px;
+  word-wrap: break-word;
+}
+.ui-draggable {
+  padding: 3px 20px 3px 13px;
+}
+
+.placeholder {
+  list-style-type: none;
+  margin: 0px;
+  color: #aaa;
+}
+
+#invitees-list, .responsible-users-list{
+  padding: 0px;
+  margin: 0px;
+  margin: auto;
+
+}
+
+#meeting-id {
+  display:none;
+}
+
+.name-tag {
+  display:none;
+}
+
+#arrow-left {
+  margin-right: 45px;
+  margin-top: 1px;
+  float: right;
+}
+
+/* Contacts Multisearch */
+.glyphicon-remove:hover {
+  color: #333333;
+}
+.panel {
+  margin: 0;
+  transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s;
+}
+.panel.focus {
+  border-color: #66AFE9;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(102, 175, 233, 0.6);
+  outline: 0 none;
+}
+.panel-body {
+  padding: 3px 6px;
+}
+.popover {
+  max-width: 347px;
+  min-width: 276px;
+}
+.popover-content {
+  overflow: hidden;
+  font-size: 90%;
+}
+.popover-content .col-lg-4, .popover-content .col-lg-8 {
+  padding: 0 0
+}
+input[data-role="input"] {
+  outline: none;
+  border: none;
+  font-size: 12px;
+  color: #555;
+  vertical-align: middle;
+  padding: 3px 4px;
+  margin: 3px;
+}
+a.label-default {
+  cursor: pointer;
+  font-size: 12px;
+  margin: 3px;
+  color: #ffffff;
+  background-color: #6cb1e9;
+  text-decoration: none;
+}
+a.label-default.hover {
+  box-shadow: 0 0 5px #a9a9a9;
+  text-decoration: none;
+}
+a.label-default.active {
+  box-shadow: none;
+  text-decoration: none;
+}
+
+[data-role="picker"] {
+  text-align: left;
+  z-index: 100;
+  max-height: 375px;
+  overflow: auto;
+}
+
+/* Datetimepicker clock icon */
+.glyphicon-time {
+  font-size: 500%;
+}
+
+.voted {
+  color: #92CEE2
+}

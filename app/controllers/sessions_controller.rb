@@ -1,15 +1,12 @@
 class SessionsController < ApplicationController
   skip_before_action :require_login, only: :create
+  rescue_from ActionController::InvalidAuthenticityToken, :with => :redirect_to_root
 
   layout false
 
-  def new
-  end
-
   def destroy
-    $redis.del(current_user.id.to_s)
-    # current_user.update(contacts_jid: '')
-    session.clear
+    current_user.logout
+    session.clear  
     redirect_to root_url
   end
 
@@ -17,7 +14,7 @@ class SessionsController < ApplicationController
     user_info = request.env["omniauth.auth"]['info']
     user_credentials = request.env["omniauth.auth"]['credentials']
 
-    user = User.find_or_create_by(email: CanonicalEmails::GMail.transform(user_info['email']).address)
+    user = User.find_or_create_by(email: CanonicalEmails::GMail.transform(user_info['email']).address.downcase)
     user.update(
       image_path: user_info['image'], 
       first_name: user_info['first_name'], 
@@ -29,6 +26,12 @@ class SessionsController < ApplicationController
 
     session[:user_id] = user.id
     redirect_to profile_path 
+  end
+
+  private
+
+  def redirect_to_root
+    redirect_to root_path
   end
 end
 

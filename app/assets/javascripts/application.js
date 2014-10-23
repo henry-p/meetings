@@ -20,7 +20,12 @@
 //= require jqueryui-multisearch.min
 //= require moment.min
 //= require bootstrap-datetimepicker.min
+//= require detect_timezone
+
+
 $(function() {
+  document.cookie = 'time_zone='+jstz.determine_timezone().timezone.olson_tz+';';
+
   var current_path = window.location.pathname + location.search;
   if (current_path === "/meetings/new" || /\/meetings\/\d+\/edit/.test(current_path) || /\/meetings\/new\?id=\d+/.test(current_path) || current_path === '/meetings') {
     getAllContacts();
@@ -31,7 +36,6 @@ $(function() {
   }
 
   if (/\/meetings\/\d+\/edit/.test(current_path) || /\/meetings\/new\?id=\d+/.test(current_path)) {
-    console.log("/meetings/" + /\d+/.exec(current_path)[0] + "/attendees")
     getInvitedContacts("/meetings/" + /\d+/.exec(current_path)[0] + "/attendees");
     fillContactsBoxWithAttendees();
   }

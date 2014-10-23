@@ -1,4 +1,6 @@
 class Meeting < ActiveRecord::Base
+  include ActionView::Helpers::DateHelper
+
   has_many :invites
   has_many :invitees, through: :invites
   belongs_to :creator, class_name: "User"
@@ -14,6 +16,15 @@ class Meeting < ActiveRecord::Base
 
   def duration_in_seconds
     self.end_time - self.start_time
+  end
+
+  def truncated_title
+    return "#{title[0..13]}..." if title.length > 13
+    title
+  end
+
+  def just_the_date
+    start_time.strftime('%A - %b %d, %Y')
   end
 
   def duration_formatted
@@ -42,9 +53,7 @@ class Meeting < ActiveRecord::Base
   end
 
   def invitees_array
-    emails_array = []
-    self.invitees.map { |invitee| emails_array << { 'email' => invitee.email } }
-    emails_array
+    self.invitees.map { |invitee| { 'email' => invitee.email } }
   end
 
   def email_array_for_mailer
@@ -76,29 +85,22 @@ class Meeting < ActiveRecord::Base
   end
 
   def to_google_time_zone
-    case self.time_zone
-    when "Hawaii"
-      return "Pacific/Honolulu"
-    when "Alaska"
-      return "America/Anchorage"
-    when "Pacific Time (US & Canada)"
-      return "America/Los_Angeles"
-    when "Arizona"
-      return "America/Phoenix"
-    when "Mountain Time (US & Canada)"
-      return "America/Denver"
-    when "Central Time (US & Canada)"
-      return "America/Chicago"
-    when "Eastern Time (US & Canada)"
-      return "America/New_York"
-    when "Indiana (East)"
-      return "America/Indiana/Indianapolis"
-    else
-      return "America/Chicago"
-    end
+    ActiveSupport::TimeZone::MAPPING.select {|k, v| k == self.time_zone }.values.first
+  end
+
+  def self.to_rails_time_zone(time)
+    ActiveSupport::TimeZone::MAPPING.select {|k, v| v == time }.keys.first
   end
 
   def format_to_local_time(utc_time)
     utc_time.strftime('%m/%d/%Y %I:%M %p') unless utc_time.nil?
+  end
+
+  def start
+    self.update(is_live: true)
+  end
+
+  def time_from_now
+    days_from_now = ((Time.now - start_time) / 86400).floor
   end
 end

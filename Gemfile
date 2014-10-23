@@ -54,9 +54,23 @@ gem "font-awesome-rails"
 gem 'rails_12factor', group: :production
 
 gem 'sidekiq', '~> 2.17.0'
+# sinatra for sidekiq dashboard https://github.com/mperham/sidekiq/wiki/Monitoring
+gem 'sinatra', '>= 1.3.0', :require => nil
 
+# sass mixins
+gem 'bourbon'
+# grid framework for bourbon
+gem 'neat'
+
+gem 'tzinfo-data'
+gem 'tzinfo'
+gem 'detect_timezone_rails'
+
+gem 'browser-timezone-rails'
 
 group :development, :test do
+	gem 'coveralls', require: false
+	gem 'simplecov', :require => false, :group => :test
   gem 'timecop'
   gem 'rspec-rails', '~> 2.14.1'
   gem 'capybara', '~> 2.2.1'

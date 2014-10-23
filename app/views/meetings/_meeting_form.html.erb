@@ -1,25 +1,37 @@
-<% flash.each do |name, msg| %>
-  <%= content_tag :div, msg, class: "flash #{name}"%>
-<% end %>
+<div id="meeting-form">
+  <%= render "underscore_templates" %>
 
-<%= render "underscore_templates" %>
-<%= render "add_contacts" %>
+  <%= form_for @meeting do |f| %>
+    <%= f.text_field :title, placeholder: 'Title', class: 'form-control' %><br>
 
-<%= form_for @meeting do |f| %>
-  <%= f.label :title %><br>
-  <%= f.text_field :title %><br>
+    <%= f.text_field :location, placeholder: 'Location (optional)', class: 'form-control' %><br>
 
-  <%= f.label :location %><br>
-  <%= f.text_field :location %><br>
+    <%= f.text_area :description, placeholder: 'Description (optional)', class: 'form-control', rows: '4' %>
 
-  <%= f.label :description %><br>
-  <%= f.text_area :description %><br>
 
-  <%= f.label :time_zone %><br>
-  <%= render "timezone_select" %><br>
+    <br><br><br>
+    
+    <p class='information'>To add members, type in their e-mail and hit enter:</p>
+    <%= render "add_contacts" %>
 
-  <%= f.label :meeting_time %><br>
-  <%= render "datetimepickers" %>
+    <br><br><br>
 
-  <%= button_tag "Submit" %>
-<% end %>
+    <%= f.time_zone_select :time_zone, ActiveSupport::TimeZone.us_zones, { default: @time_zone }, { class: "form-control" } %><br>
+
+    <div class='wrap-center'>
+      <input id='datetimepicker_start' placeholder='Start time' type='datetime' class="form-control datetime" name="meeting[start_time]" value="<%= @meeting.format_to_local_time(@meeting.start_time) %>"/>
+
+      <span id='right-arrow'><%= fa_icon 'long-arrow-right' %></span>
+      <span id='down-arrow'><%= fa_icon 'long-arrow-down' %></span>
+
+      <input id='datetimepicker_end' placeholder='End time'  type='datetime' class="form-control datetime" name="meeting[end_time]" value="<%= @meeting.format_to_local_time(@meeting.end_time) %>"/>
+    </div>
+
+    <br><br><br>
+      <p class='information'>This will integrate with your Google Calendar.</p>
+    <br>
+
+    <%= button_tag "Submit" %>
+  <% end %>
+</div>
+

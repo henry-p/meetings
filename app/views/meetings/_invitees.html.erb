@@ -1,0 +1,16 @@
+<ul id = "invitees-list">
+<% if !@meeting.is_done %>
+  <% @meeting.invitees.each do |invitee| %>
+    <li class = "dragon-drop" id = '<%= invitee.id %>'><%= invitee.full_name_or_email %></li>
+  <% end %>
+    <li class = "dragon-drop" id = '<%= @meeting.creator.id %>'><%= @meeting.creator.full_name_or_email %></li>
+  </ul>
+<% else %>
+
+  <% @meeting.invitees.each do |invitee| %>
+    <li class = "dragon-drop-disabled" id = '<%= invitee.id %>'><%= invitee.full_name_or_email %></li>
+  <% end %>
+    <li class = "dragon-drop-disabled" id = '<%= @meeting.creator.id %>'><%= @meeting.creator.full_name_or_email %></li>
+  </ul>
+
+<% end %>

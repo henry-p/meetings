@@ -1,6 +1,10 @@
 class UsersController < ApplicationController
   def show
-    @meetings = current_user.meetings
+    @meetings = current_user.all_meetings_chronologically
+  end
+
+  def archive
+    @meetings = current_user.all_finished_meetings.reverse
   end
 
   def contacts
@@ -11,10 +15,12 @@ class UsersController < ApplicationController
   end
 
   def init_contacts_load
-    if current_user.token && !$redis.exists(current_user.id.to_s) 
+    if current_user.token && !$redis.exists(current_user.google_contacts_key) 
       if current_user.contacts_jid.nil?
+        current_user.touch
         job_id = GoogleWorker.perform_async(current_user.id)
-        current_user.update(contacts_jid: job_id)
+        current_user.update_attribute(:contacts_jid, job_id)
+        
         render json: { jid: job_id } and return
       else
         render json: { jid: current_user.contacts_jid } and return
@@ -31,5 +37,4 @@ class UsersController < ApplicationController
       render json: { done: false }
     end
   end
-
 end

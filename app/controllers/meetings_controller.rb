@@ -1,27 +1,37 @@
 class MeetingsController < ApplicationController
 	skip_before_action :require_login, only: [:show, :check_invited]
 	before_filter(only: [:update, :destroy]) { |filter| filter.check_if_meeting_is_closed(params[:id]) }
+	before_filter :find_meeting_by_id, only: [:show, :edit, :destroy, :update_notes]
 	include ActionView::Helpers::SanitizeHelper
 
 	def new
+		@time_zone = Meeting.to_rails_time_zone(cookies["time_zone"])
 		id = params[:id]
 		if id
-			previous_meeting = Meeting.find(id)
-			local_time = Time.now
+			previous_meeting = Meeting.find_by_id(id)
 
-			@meeting = previous_meeting.dup
-			@meeting.invitees = previous_meeting.invitees
-			day_after_meeting = previous_meeting.start_time + 86400
-			start_time = day_after_meeting < local_time ? local_time : day_after_meeting
-			end_time = start_time + previous_meeting.duration_in_seconds
-			@meeting.update(start_time: start_time, end_time: end_time)
+			unless previous_meeting
+				redirect_to profile_path and return
+			end
+
+			if previous_meeting.creator == current_user || previous_meeting.invitees.include?(current_user)
+				local_time = Time.now
+				@meeting = previous_meeting.dup
+				@meeting.invitees = previous_meeting.invitees
+				day_after_meeting = previous_meeting.start_time + 86400
+				start_time = day_after_meeting < local_time ? local_time : day_after_meeting
+				end_time = start_time + previous_meeting.duration_in_seconds
+				@meeting.assign_attributes(start_time: start_time, end_time: end_time)
+			else
+				@meeting = Meeting.new
+			end
 		else
 			@meeting = Meeting.new
 		end
 	end
 
 	def show
-		@meeting = Meeting.find_by_id(params[:id])
+		@showing_meeting = true
 		if logged_in?
 			if current_user.email.downcase != @meeting.creator.email.downcase
 				@invitee_emails = @meeting.invitees.pluck(:email).map(&:downcase)
@@ -42,8 +52,8 @@ class MeetingsController < ApplicationController
 			{ full_name: invitee.full_name, email: invitee.email }
 		end
 		respond_to do |format|
-      format.json { render json: contact_data }
-    end
+			format.json { render json: contact_data }
+		end
 	end
 
 	def check_invited
@@ -54,7 +64,7 @@ class MeetingsController < ApplicationController
 			session[:user_id] = User.find_by_email(params[:email].downcase).id
 			render :show
 		else
-			flash[:error] = "This email address is not on the list of the people invited to this meeting."
+			flash[:error] = "This email address is not associated with any of this meeting's members."
 			render :invited
 		end
 	end
@@ -86,24 +96,28 @@ class MeetingsController < ApplicationController
 	end
 
 	def edit
-		@meeting = Meeting.find_by_id(params[:id])
 	end
 
 	def update
-		@meeting = Meeting.find_by_id(params[:id])
+		@time_zone = @meeting.time_zone
 
 		if params[:close]
 			@meeting.close_meeting_and_send_email
-			return redirect_to root_path
+			return redirect_to profile_archive_path
 		end
-		
+
+		if params[:start]
+			@meeting.start
+			return redirect_to meeting_path(@meeting)
+		end
+
 		unsaved_event = @meeting.clone # we only update the db if google calendar gets updated
 
 		response = current_user.update_event(Meeting.event_hash(unsaved_event), @meeting.calendar_event_id)
 		if google_api_call_success?(response)
 			@meeting.update(meeting_params)
 			@meeting.invites.destroy_all
-			Invite.create_invites(current_user, params[:attendees], @meeting)			
+			Invite.create_invites(current_user, params[:attendees], @meeting)
 			redirect_to root_path, flash: { success: "Your event was successfully edited." }
 		else
 			flash.now[:error] = "Google was not able to update your event. Please try again."
@@ -112,8 +126,6 @@ class MeetingsController < ApplicationController
 	end
 
 	def destroy
-		@meeting = Meeting.find_by_id(params[:id])
-
 		response = current_user.delete_event(@meeting.calendar_event_id)
 		if google_api_call_success?(response) || google_api_call_404(response)
 			@meeting.destroy_self_and_invites
@@ -124,19 +136,25 @@ class MeetingsController < ApplicationController
 	end
 
   def update_notes
-    @meeting = Meeting.find_by_id(params[:id])
-    notes = params[:notes]
-    notes.gsub!(/(<br>|<p>|<div>)/, "\n")
-    notes = strip_tags(notes)
-    notes.strip!
-    notes.gsub!(/(\n+\s*){3,}/, "\n\n")
-    @meeting.update_attributes(notes: notes)
-    render 'update_notes'
+  	if !@meeting.is_done
+	    notes = params[:notes]
+	    notes.strip!
+	    notes.gsub!(/(<br>|<p>|<div>)/, "\n")
+	    notes = strip_tags(notes)
+	    notes.strip!
+	    notes.gsub!(/(\n+\s*){3,}/, "\n\n")
+	    @meeting.update_attributes(notes: notes)
+	    render 'update_notes'
+  	end
   end
 
 	private
-	
+
 	def meeting_params
 		Meeting.format_params(params.require(:meeting).permit(:title, :description, :location, :start_time, :end_time, :time_zone, :notes))
+	end
+
+	def find_meeting_by_id
+		@meeting = Meeting.find_by_id(params[:id])
 	end
 end

@@ -1,0 +1,6 @@
+<% publish_to "/meetings/#{@agenda.meeting.id}" do %>
+  $("#<%= @agenda.id %> #vote").html('<%= @agenda.votes.count %>')
+<% end %>
+
+$("#<%= @agenda.id %>.agenda .vote a").replaceWith('<a data-method="post" data-remote="true" href="<%= meeting_agenda_topic_votes_path(@agenda.meeting, @agenda) %>" rel="nofollow"><i class="fa fa-thumbs-up fa-lg"></i></a>')
+$("#<%= @agenda.id %>.agenda .fa-thumbs-up").css('color', '#3299bb')
