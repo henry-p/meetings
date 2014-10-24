@@ -1,4 +1,19 @@
 $(document).ready(function() {
+  $("#agendas").on("keypress", ".edit_conclusion", function(event) {
+    if (event.keyCode == 13) {
+      event.preventDefault();
+      $(this).blur();
+      var conclusionId = $(this).parent().attr('id');
+      var meetingId = $('#meeting-id').text();
+      var agendaId = $(this).parents('.agenda').attr('id');
+      var input = $.trim($(this).text());
+      var response = $.ajax({
+        type: "PATCH",
+        url: "/meetings/"+meetingId+"/agenda_topics/"+agendaId+"/conclusions/"+conclusionId,
+        data: {content: input, id: conclusionId}
+      });
+    }
+  });
   $("#agendas").on("focusout", ".edit_conclusion", function() {
     var conclusionId = $(this).parent().attr('id');
     var meetingId = $('#meeting-id').text();
