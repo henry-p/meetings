@@ -1,5 +1,5 @@
 class SendGridMailer < ActionMailer::Base
-  default from: "meetingz.herokuapp.com"
+  default from: "standup-app.herokuapp.com"
 
   def send_summary_emails(meeting)
     @meeting = meeting
