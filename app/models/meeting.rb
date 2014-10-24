@@ -68,7 +68,7 @@ class Meeting < ActiveRecord::Base
   end
 
   def invite_notes
-    "#{self.description} \n\nlocalhost:3000/meetings/#{self.id}"
+    "#{self.description} \n\nhttp://meetingz.herokuapp.com/meetings/#{self.id}"
   end
 
   def invitees_array
@@ -99,6 +99,7 @@ class Meeting < ActiveRecord::Base
   end
 
   def close_meeting_and_send_email
+    self.update(is_live: false)
     self.update(is_done: true)
     SendGridWorker.perform_async(self.id)
   end
