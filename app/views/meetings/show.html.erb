@@ -2,7 +2,7 @@
 
   <div class = "meeting-header <%= 'not-live' if !@meeting.is_live %>">
     <h1 id="show-meeting-header"> 
-      <% if @meeting.is_live %>
+      <% if @meeting.is_live && !@meeting.is_done %>
         <%= fa_icon 'circle' %>
       <% end %>
       <%= @meeting.title %></h1>
