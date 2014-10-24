@@ -25,13 +25,15 @@
       </div>
 
       <div class = 'meeting-column'>
-        <h2>Actionables</h2>
+        <h2>Action Items</h2>
         <%= render partial: "actionables/new" %>
       </div>
 
       <div class = 'meeting-column'>
         <h2 style = "text-align:center;">Members</h2>
-        <h4 class = 'info' style = "text-align:center;">Drag members to actionables to delegate responsibilities.</h4>
+        <% if @meeting.is_live %>
+          <h4 class = 'info' style = "text-align:center;">Drag members to actionables to delegate responsibilities.</h4>
+        <% end %>
       </div>
     </div>
 
@@ -54,7 +56,9 @@
           <div id = "invitees">
             <%= render partial: "invitees" %>
           </div>
-          <h3>Notes <small class = 'info'>click off to save</small></h3>
+          <% if @meeting.is_live %>
+            <h3>Notes <small class = 'info'>click off to save</small></h3>
+          <% end %>
           <% if !@meeting.is_done %>
             <div id = "notes" contenteditable = 'true'><%= render partial: "notes" %></div>
           <% else %>
