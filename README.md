@@ -49,7 +49,7 @@ To contribute to this project or even just give us feedback (we love feedback), 
 ### The Standup Team
 We are four highly committed [Dev Bootcamp Chicago](http://devbootcamp.com/) grads.
 
-* Isaac Noda - [LinkedIn](https://www.linkedin.com/profile/view?id=344664589) | [GitHub](https://github.com/inoda)
+* Isaac Noda - [LinkedIn](https://www.linkedin.com/in/isaacnoda/) | [GitHub](https://github.com/inoda)
 * Joseph Timmer - [LinkedIn](https://www.linkedin.com/in/jtimmer89) | [GitHub](https://github.com/jtimmer89)
 * Samuel Spread - [LinkedIn](https://www.linkedin.com/profile/view?id=68221986&trk) | [GitHub](https://github.com/sspread)
 * Henry Perschk - [LinkedIn](https://www.linkedin.com/profile/view?id=76929566) | [GitHub](https://github.com/henry-p)
