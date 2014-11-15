@@ -10,8 +10,27 @@ class Meeting < ActiveRecord::Base
   validates :creator_id, presence: true
   validates :title, presence: true
 
-  def self.format_timestamp(datetime)
-    datetime.strftime('%A - %b %d, %Y (%l:%M %p)')
+  def self.format_timezone(timezone)
+    timezone.gsub(/\s\(US & Canada\)$/, "")
+  end
+
+  def self.format_date(datetime)
+    datetime.strftime('%A - %b %d, %Y')
+  end
+
+  def self.format_time(datetime)
+    datetime.strftime('%-l:%M %p')
+  end
+
+  def self.show_start_datetime(datetime, timezone)
+    date = self.format_date(datetime)
+    time = self.format_time(datetime)
+    timezone = self.format_timezone(timezone)
+    "#{date} @ #{time} (#{timezone})"
+  end
+
+  def self.format_from_to_time
+    datetime.strftime('%l:%M %p')
   end
 
   def duration_in_seconds
@@ -49,7 +68,7 @@ class Meeting < ActiveRecord::Base
   end
 
   def invite_notes
-    "#{self.description} \n\nhttp:/meetingz.herokuapp.com/meetings/#{self.id}"
+    "#{self.description} \n\nhttp://standup-app.herokuapp.com/meetings/#{self.id}"
   end
 
   def invitees_array

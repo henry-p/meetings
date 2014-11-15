@@ -127,7 +127,7 @@ class MeetingsController < ApplicationController
 
 	def destroy
 		response = current_user.delete_event(@meeting.calendar_event_id)
-		if google_api_call_success?(response) || google_api_call_404(response)
+		if google_api_call_success?(response) || google_api_call_410(response)
 			@meeting.destroy_self_and_invites
 			redirect_to root_path, flash: { success: "Your event was successfully deleted." }
 		else

@@ -102,10 +102,10 @@ a {
   display:inline-block;
   padding:2px 5px;
   margin-top:6px;
-  border:2px solid #424242;
+  border:2px solid white;
   font-weight:400;
   text-decoration: none;
-  color: #424242;
+  color: white;
 }
 
 .no-meetings {
@@ -121,4 +121,8 @@ a {
 .information {
   font-weight:100;
   color:#aaa;
+}
+
+h2 small {
+  padding-top: 0;
 }

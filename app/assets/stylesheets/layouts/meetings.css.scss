@@ -20,9 +20,8 @@ $blue: #3299bb;
 
 .meeting-header {
   text-align: left;
-  margin: auto;
+  padding: 0px 7px;
   h1 {text-align: left;};
-
 }
 .sub-header {
   h2 {
@@ -63,7 +62,6 @@ a:focus {
 .meeting-content {
   h2, h3, h4 {
   text-align: left;
-  /*padding-left: 20px;*/
   };
 }
 
@@ -101,9 +99,6 @@ a.meeting-container {
   padding: 7px;
   overflow-y: hidden;
 }
-.meeting-column input[type='text'] {
-  /*width: 100%;*/
-}
 #actionables, #agendas {
   width: 100%;
   height: 550px;
@@ -113,8 +108,10 @@ a.meeting-container {
 
 .not-live {
   width: 80%;
+  margin: auto;
+  /*padding: 7px;*/
   height: auto !important;
-  overflow-y: auto !important;
+  overflow-y: visible !important;
 }
 
 #invitees-list {
@@ -400,4 +397,10 @@ a.label-default.active {
 
 .voted {
   color: #92CEE2
+}
+
+#show-meeting-header .fa-circle {
+  color: #08A677;
+  font-size: .5em;
+  vertical-align: middle;
 }

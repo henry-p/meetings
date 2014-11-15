@@ -40,6 +40,11 @@ class ApplicationController < ActionController::Base
     false
   end  
 
+  def google_api_call_410(response)
+    return true if response.status.to_s =~ /41/
+    false
+  end  
+
   def job_is_complete(jid)
     waiting = Sidekiq::Queue.new
     working = Sidekiq::Workers.new

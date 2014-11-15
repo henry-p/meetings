@@ -1,9 +1,9 @@
 class SendGridMailer < ActionMailer::Base
-  default from: "meetingz.herokuapp.com"
+  default from: "standup-app.herokuapp.com"
 
   def send_summary_emails(meeting)
     @meeting = meeting
     mail( :to => @meeting.email_array_for_mailer,
-    :subject => "Meeting summary for #{@meeting.title} (#{Meeting.format_timestamp @meeting.start_time} )")
+    :subject => "Meeting summary for #{@meeting.title} (#{Meeting.show_start_datetime(@meeting.start_time, @meeting.time_zone)} )")
   end  
 end

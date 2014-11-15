@@ -66,7 +66,6 @@ gem 'tzinfo-data'
 gem 'tzinfo'
 gem 'detect_timezone_rails'
 
-gem 'browser-timezone-rails'
 
 group :development, :test do
 	gem 'coveralls', require: false

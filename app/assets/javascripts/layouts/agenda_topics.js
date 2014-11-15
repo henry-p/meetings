@@ -1,15 +1,15 @@
 $(document).ready(function() {
   $("body").on('focusout', '.edit_agenda', function() {
-    var agendaId = $(this).parent().parent().attr('id');
-    var agendaContent = $(this).context.innerText;
-    var meetingId = $("#meeting-id").text();
-    $.ajax({
-      type: "PATCH",
-      url: "/meetings/" + meetingId + "/agenda_topics/" + agendaId,
-      data: { 'content': agendaContent }
-    });
+    saveAgenda($(this));
   });
   
+  $("body").on("keypress", ".edit_agenda", function(event) {
+    if (event.keyCode == 13) {
+      event.preventDefault();
+      saveAgenda($(this));
+    }
+  });
+
   $("#new-agenda-topic").on('ajax:beforeSend', function(event, xhr) {
     var agendaContent = $("#new-agenda-form #content_").val();
     if (agendaContent.trim().length < 1) {
@@ -20,3 +20,14 @@ $(document).ready(function() {
     }
   });
 });
+
+function saveAgenda(agenda) {
+  var agendaId = $(agenda).parent().parent().attr('id');
+  var agendaContent = $(agenda).context.innerText;
+  var meetingId = $("#meeting-id").text();
+  $.ajax({
+    type: "PATCH",
+    url: "/meetings/" + meetingId + "/agenda_topics/" + agendaId,
+    data: { 'content': agendaContent }
+  });
+}

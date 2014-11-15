@@ -1,9 +1,13 @@
 <div class = "meeting-container">
 
-  <div class = 'meeting-header'>
-    <h1><%= @meeting.title %></h1>
+  <div class = "meeting-header <%= 'not-live' if !@meeting.is_live %>">
+    <h1 id="show-meeting-header"> 
+      <% if @meeting.is_live && !@meeting.is_done %>
+        <%= fa_icon 'circle' %>
+      <% end %>
+      <%= @meeting.title %></h1>
     <div class = 'sub-header'>
-      <h2><small><%= Meeting.format_timestamp @meeting.start_time %> <span class = 'timezone'><%= @meeting.time_zone %></span> </small></h2>
+      <h2><small><%= Meeting.show_start_datetime(@meeting.start_time, @meeting.time_zone) %></small></h2>
       <% if !@meeting.is_done && @meeting.is_live %>
         <%= link_to "End Meeting", meeting_path(@meeting, close: true), method: :patch, id: "end-meeting", class: 'nice-button', data: { confirm: "Ending meeting will lock editing." } %>
       <% elsif !@meeting.is_done %>
@@ -21,13 +25,15 @@
       </div>
 
       <div class = 'meeting-column'>
-        <h2>Actionables</h2>
+        <h2>Action Items</h2>
         <%= render partial: "actionables/new" %>
       </div>
 
       <div class = 'meeting-column'>
         <h2 style = "text-align:center;">Members</h2>
-        <h4 class = 'info' style = "text-align:center;">Drag members to actionables to delegate responsibilities.</h4>
+        <% if @meeting.is_live %>
+          <h4 class = 'info' style = "text-align:center;">Drag members to actionables to delegate responsibilities.</h4>
+        <% end %>
       </div>
     </div>
 
@@ -50,7 +56,9 @@
           <div id = "invitees">
             <%= render partial: "invitees" %>
           </div>
-          <h3>Notes <small class = 'info'>click off to save</small></h3>
+          <% if @meeting.is_live %>
+            <h3>Notes <small class = 'info'>click off to save</small></h3>
+          <% end %>
           <% if !@meeting.is_done %>
             <div id = "notes" contenteditable = 'true'><%= render partial: "notes" %></div>
           <% else %>
