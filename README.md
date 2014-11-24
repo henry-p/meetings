@@ -1,5 +1,5 @@
 [ ![Codeship Status for inoda/meetings](https://www.codeship.io/projects/ae492720-3981-0132-a05a-4664fd0eaf1d/status)](https://www.codeship.io/projects/42219) [![Coverage Status](https://coveralls.io/repos/inoda/meetings/badge.png?branch=development)](https://coveralls.io/r/inoda/meetings?branch=development)
-# [Standup](http://meetingz.herokuapp.com/)
+# [Standup](http://standup-app.herokuapp.com/)
 
 #### Version 1.0 _beta_
 ###Meetings suck.
