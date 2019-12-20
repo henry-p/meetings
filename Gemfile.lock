@@ -181,7 +181,7 @@ GEM
     pg (0.17.1)
     private_pub (1.0.3)
       faye
-    rack (1.5.2)
+    rack (1.5.5)
     rack-protection (1.5.3)
       rack
     rack-test (0.6.2)
